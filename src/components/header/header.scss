@@ -1,0 +1,29 @@
+.header {
+    width: 100%;
+    padding: .5rem 0;
+    box-shadow: 0px 6px 5px 0px rgba(204,204,204,0.75);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    img {
+        width: 8rem;
+    }
+
+    .btn-container {
+        .btn {
+            margin: 0 1rem;
+        }
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .header {
+        .btn-container {
+            .btn {
+                margin: 0 .5rem;
+            }
+        }
+    }
+}
