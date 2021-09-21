@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.scss'
-import LandingPage from './components/landingPage/LandingPage'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
+import LandingPage from './components/landingPage/LandingPage'
+import Profile from './components/profile/Profile'
 
 export default function App() {
   return (
@@ -12,7 +13,8 @@ export default function App() {
       <Switch>
   
         <Route path='/' exact>
-          <LandingPage/>
+          {/* <LandingPage/> */}
+          <Profile/>
         </Route>
 
       </Switch>
