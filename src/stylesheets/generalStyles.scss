@@ -1,9 +1,50 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
 }
 
 a {
     text-decoration: none;
+}
+
+/* Brand colors */
+$helpr-purple: #3a53b7;
+$helpr-darkBlue: #406bc8;
+$helpr-lightBlue: #4081d5;
+$helpr-greyedBlue: #7eaae2;
+$helpr-greyedText: #4a4a4a;
+
+/* Buttons */
+.btn {
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    padding: .5rem;
+    border-radius: .25rem;
+}
+
+.btn-primary {
+    background-color: $helpr-purple;
+    color: white;
+    transition: .3s;
+
+    &:hover {
+        background-color: #455dbd;
+    }
+}
+
+.btn-secondary {
+    background-color: $helpr-lightBlue;
+    color: white;
+    transition: .3s;
+
+    &:hover {
+        background-color: #4f89d4;
+    }
 }

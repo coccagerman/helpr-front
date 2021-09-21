@@ -1,0 +1,74 @@
+.tiposDeProyectos {
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        color: $helpr-purple;
+        font-size: 3.5rem;
+    }
+
+    .types {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+        padding: 0 20%;
+
+        article {
+            box-shadow: 9px 8px 9px -4px rgba(204,204,204,0.75);
+            width: 18rem;
+            height: 18rem;
+            margin: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: .3s;
+
+            p {
+                color: $helpr-greyedText;
+                font-size: 1.5rem;
+            }
+
+            .icon {
+                font-size: 5rem;
+                margin: 1rem;
+            }
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .tiposDeProyectos {
+    
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+    
+        .types {
+            padding: 0;
+
+            article {
+                width: 12rem;
+                height: 12rem;
+                margin: 1rem;
+                padding: 1rem;
+
+                p {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+    }
+}

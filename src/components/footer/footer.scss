@@ -1,0 +1,30 @@
+.footer {
+    background-color: $helpr-purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    width: 100%;
+    padding: 1.5rem;
+
+    p {
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        margin: 0 2rem;
+        text-decoration: none;
+        transition: .3s all;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .footer {
+        p {
+            text-align: center;
+        }
+    }
+}

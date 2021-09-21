@@ -1,0 +1,67 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .helperLogo {
+        margin-top: 5rem;
+    }
+
+    .txtAndImg-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .txt {
+            max-width: 35rem;
+
+            article {
+                margin: 2rem 0;
+
+                h3 {
+                    color: $helpr-purple;
+                    font-size: 3.5rem;
+                }
+    
+                p {
+                    color: $helpr-greyedText;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .hero {
+        .helperLogo {
+            margin-top: 2rem;
+            width: 15rem;
+        }
+
+        .txtAndImg-container {
+            flex-direction: column;
+
+            .txt {
+                max-width: 22rem;
+                text-align: center;
+
+                article {
+    
+                    h3 {
+                        font-size: 2rem;
+                    }
+        
+                    p {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+
+            img {
+                width: 22rem;
+            }
+        }
+    }
+}
