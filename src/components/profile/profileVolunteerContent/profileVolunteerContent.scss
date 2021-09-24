@@ -1,6 +1,60 @@
 .profileVolunteerContent {
-    img {
-        width: 10rem;
+    width: 50%;
+    margin: 2rem auto;
+    color: $helpr-greyedText;
+
+    .profileHeader {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 10rem;
+            border-radius: 50%;
+            border: $helpr-greyedText 2px solid;
+        }
+
+        .nameAndTittle {
+            margin-left: 3rem;
+
+            h1 {
+                font-size: 4rem;
+                color: $helpr-purple;
+            }
+
+            p {
+                font-size: 2rem;
+                color: $helpr-lightBlue;
+            }
+        }
+    }
+
+    .profileSection {
+        width: 90%;
+        margin: 2rem 0;
+
+        .profileSection-header {
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            .icon {
+                position: absolute;
+                right: 1.35rem;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .icon {
+        cursor: pointer;
+        padding: .5rem;
+        font-size: 2.5rem;
         border-radius: 50%;
+        transition: .3s;
+
+        &:hover {
+            background-color: $helpr-darkBlue;
+            color: white !important;
+        }
     }
 }

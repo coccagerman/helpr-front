@@ -1,0 +1,42 @@
+.recommendationsRecord {
+    background-color: $helpr-lightGreyBackground;
+    padding: 2rem;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    position: relative;
+    
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: .75rem;
+        right: .75rem;
+
+        .icon {
+            margin: 0 .5rem;
+        }
+    }
+
+    .horizontal-container {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+
+        .horizontal-division {
+            .record-data {
+                display: flex;
+                align-items: center;
+                margin: .35rem 0;
+    
+                p {
+                    margin-left: .75rem;
+                }
+            }
+        }
+    }
+
+    .work-description {
+        width: 90%;
+    }
+}
