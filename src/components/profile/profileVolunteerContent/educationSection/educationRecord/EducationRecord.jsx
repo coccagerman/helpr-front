@@ -1,16 +1,12 @@
 import { Icon } from '@iconify/react'
-import { useState } from 'react'
-import EducationRecordModal from './educationRecordModal/EducationRecordModal'
 
-export default function EducationRecord() {
-
-    const [showModal, setShowModal] = useState(false)
+export default function EducationRecord({ setShowEducationRecordModal }) {
 
     return (
         <article className='educationRecord'>
             <div className='icon-container'>
-                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowModal(true)} />
-                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowModal(true)} />
+                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEducationRecordModal(true)} />
+                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowEducationRecordModal(true)} />
             </div>
 
             <div className='horizontal-container'>
@@ -40,7 +36,6 @@ export default function EducationRecord() {
                 </div>
             </div>
 
-            <EducationRecordModal showModal={showModal} setShowModal={setShowModal}/>
         </article>
     )
 }

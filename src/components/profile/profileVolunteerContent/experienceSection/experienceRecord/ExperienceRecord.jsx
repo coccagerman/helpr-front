@@ -1,11 +1,11 @@
 import { Icon } from '@iconify/react'
 
-export default function ExperienceRecord() {
+export default function ExperienceRecord({ setShowExperienceRecordModal }) {
     return (
         <article className='experienceRecord'>
             <div className='icon-container'>
-                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' />
-                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' />
+                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowExperienceRecordModal(true)} />
+                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowExperienceRecordModal(true)} />
             </div>
 
             <div className='horizontal-container'>
