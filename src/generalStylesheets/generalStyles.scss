@@ -49,3 +49,14 @@ $helpr-lightGreyBackground:rgb(230, 230, 230);
         background-color: #4f89d4;
     }
 }
+
+.btn-red {
+    background-color: red;
+    color: white;
+    transition: .3s;
+
+    &:hover {
+        color: white !important;
+        background-color: rgb(245, 35, 35);
+    }
+}

@@ -10,7 +10,7 @@ export default function RecommendationsSection() {
     return (
         <div className='Recommendations profileSection'>
             <div className='profileSection-header'>
-                <h2>Intereses</h2>
+                <h2>Recomendaciones recibidas</h2>
                 <Icon icon='akar-icons:plus' color='#406bc8' className='icon' onClick={() => setShowRecommendationsRecordModal(true)}/>
             </div>
             <RecommendationsRecord setShowRecommendationsRecordModal={setShowRecommendationsRecordModal}/>

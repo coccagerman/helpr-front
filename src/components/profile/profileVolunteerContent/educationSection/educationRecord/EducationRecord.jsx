@@ -1,41 +1,54 @@
 import { Icon } from '@iconify/react'
+import { useState } from 'react'
+import EditEducationRecordModal from '../editEducationRecordModal/EditEducationRecordModal'
+import DeleteEducationRecordModal from '../deleteEducationRecordModal/DeleteEducationRecordModal'
 
-export default function EducationRecord({ setShowEducationRecordModal }) {
+export default function EducationRecord({record, deleteEducationRecord}) {
+
+    const [showEditEducationRecordModal, setShowEditEducationRecordModal] = useState(false)
+    const [showDeleteEducationRecordModal, setShowDeleteEducationRecordModal] = useState(false)
 
     return (
         <article className='educationRecord'>
             <div className='icon-container'>
-                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEducationRecordModal(true)} />
-                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowEducationRecordModal(true)} />
+                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEditEducationRecordModal(true)} />
+                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowDeleteEducationRecordModal(true)} />
             </div>
 
             <div className='horizontal-container'>
                 <div className='horizontal-division'>
                     <div className='record-data'>
                         <h3>Institución:</h3>
-                        <p>Loremememe</p>
+                        <p>{record.institution}</p>
                     </div>
                     <div className='record-data'>
                         <h3>Título:</h3>
-                        <p>Loremememe</p>
+                        <p>{record.title}</p>
                     </div>
                     <div className='record-data'>
                         <h3>Clasificación:</h3>
-                        <p>Ciencias sociales</p>
+                        <p>{record.clasification}</p>
+                    </div>
+
+                    <div className='record-data'>
+                        <h3>Estado:</h3>
+                        <p>{record.state}</p>
                     </div>
                 </div>
                 <div className='horizontal-division'>
                     <div className='record-data'>
                         <h3>Fecha inicio:</h3>
-                        <p>1/2/1998</p>
+                        <p>{record.beginDate}</p>
                     </div>
                     <div className='record-data'>
                         <h3>Fecha fin:</h3>
-                        <p>1/2/1998</p>
+                        <p>{record.endDate}</p>
                     </div>
                 </div>
             </div>
 
+            <EditEducationRecordModal showEditEducationRecordModal={showEditEducationRecordModal} setShowEditEducationRecordModal={setShowEditEducationRecordModal} record={record} />
+            <DeleteEducationRecordModal showDeleteEducationRecordModal={showDeleteEducationRecordModal} setShowDeleteEducationRecordModal={setShowDeleteEducationRecordModal} record={record} deleteEducationRecord={deleteEducationRecord} />
         </article>
     )
 }
