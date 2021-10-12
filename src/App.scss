@@ -18,15 +18,22 @@
 /* Profile - Volunteer */
 @import './components/profile/profileVolunteerContent/profileVolunteerContent.scss';
 
-/* Profile - Volunteer - Education*/
+/* Profile - Volunteer - About */
+@import './components/profile/profileVolunteerContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
+
+/* Profile - Volunteer - Education */
 @import './components/profile/profileVolunteerContent/educationSection/educationRecord/educationRecord.scss';
 @import './components/profile/profileVolunteerContent/educationSection/newEducationRecordModal/newEducationRecordModal.scss';
 @import './components/profile/profileVolunteerContent/educationSection/editEducationRecordModal/editEducationRecordModal.scss';
 
-/* Profile - Volunteer - Experience*/
+/* Profile - Volunteer - Experience */
 @import './components/profile/profileVolunteerContent/experienceSection/experienceRecord/experienceRecord.scss';
 @import './components/profile/profileVolunteerContent/experienceSection/newExperienceRecordModal/newExperienceRecordModal.scss';
 @import './components/profile/profileVolunteerContent/experienceSection/editExperienceRecordModal/editExperienceRecordModal.scss';
 
-@import './components/profile/profileVolunteerContent/interestsSection/interestsRecord/interestsRecord.scss';
+/* Profile - Volunteer - Interests */
+@import './components/profile/profileVolunteerContent/interestsSection/interestsSection.scss';
+@import './components/profile/profileVolunteerContent/interestsSection/interestRecord/interestRecord.scss';
+@import './components/profile/profileVolunteerContent/interestsSection/newInterestRecordModal/newInterestRecordModal.scss';
+
 @import './components/profile/profileVolunteerContent/recommendationsSection/recommendationsRecord/recommendationsRecord.scss';

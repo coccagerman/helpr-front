@@ -10,7 +10,7 @@ export default function ExperienceSection() {
         {
             position: 'Front end developer',
             company: 'Avature',
-            beginDate: '01/08/2021',
+            beginDate: '2014-02-09',
             endDate: 'Actualidad',
             description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio odit blanditiis numquam velit mollitia, pariatur quam impedit deserunt earum corporis laboriosam magni provident minus nam incidunt nulla.'
         }

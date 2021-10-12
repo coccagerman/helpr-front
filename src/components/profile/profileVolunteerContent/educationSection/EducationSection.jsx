@@ -9,8 +9,8 @@ export default function EducationSection() {
         {
             institution: 'UBA',
             title: 'Ingeniero civil',
-            beginDate: '03-01-2011',
-            endDate: '06-30-2017',
+            beginDate: '2014-02-09',
+            endDate: '2019-02-09',
             clasification: 'Ciencias exactas',
             state: 'Completo'
         }

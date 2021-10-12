@@ -20,27 +20,27 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
 
                         <div className='input-container'>
                             <label htmlFor='institution'>Institución</label>
-                            <input type='text' name='institution' defaultValue={institution} onChange={e => setInstitution(e.target.value)}/>
+                            <input type='text' name='institution' defaultValue={institution} required onChange={e => setInstitution(e.target.value)}/>
                         </div>
 
                         <div className='input-container'>
                             <label htmlFor='title'>Título</label>
-                            <input type='text' name='title' defaultValue={title} onChange={e => setTitle(e.target.value)}/>
+                            <input type='text' name='title' defaultValue={title} required onChange={e => setTitle(e.target.value)}/>
                         </div>
 
                         <div className='input-container'>
                             <label htmlFor='beginDate'>Fecha de inicio</label>
-                            <input type='date' name='beginDate' defaultValue={beginDate} onChange={e => setBeginDate(e.target.value)}/>
+                            <input type='date' name='beginDate' value={beginDate} required onChange={e => setBeginDate(e.target.value)}/>
                         </div>
 
                         <div className='input-container'>
                             <label htmlFor='endDate'>Fecha fin</label>
-                            <input type='date' name='endDate' defaultValue={endDate} onChange={e => setEndDate(e.target.value)}/>
+                            <input type='date' name='endDate' defaultValue={endDate} required onChange={e => setEndDate(e.target.value)}/>
                         </div>
 
                         <div className='input-container'>
                             <label htmlFor='clasification'>Clasificación</label>
-                            <select name='clasification' defaultValue={clasification} onChange={e => setClasification(e.target.value)}>
+                            <select name='clasification' defaultValue={clasification} required onChange={e => setClasification(e.target.value)}>
                                 <option value='Ciencias sociales'>Ciencias sociales</option>
                                 <option value='Ciencias exactas'>Ciencias exactas</option>
                                 <option value='Ciencias naturales'>Ciencias naturales</option>
@@ -51,7 +51,7 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
 
                         <div className='input-container'>
                             <label htmlFor='state'>Estado</label>
-                            <select name='state' defaultValue={state} onChange={e => setState(e.target.value)}>
+                            <select name='state' defaultValue={state} required onChange={e => setState(e.target.value)}>
                                 <option value='Completo'>Completo</option>
                                 <option value='Abandonado'>Abandonado</option>
                                 <option value='En curso'>En curso</option>
