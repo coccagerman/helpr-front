@@ -27,9 +27,13 @@
             .record-data {
                 display: flex;
                 align-items: center;
-                margin: .35rem 0;
-    
+                margin: 0;
+                
+                h3 {
+                    font-size: 1.5rem;
+                }
                 p {
+                    margin: 0;
                     margin-left: .75rem;
                 }
             }
@@ -38,5 +42,12 @@
 
     .work-description {
         width: 90%;
+
+        h3 {
+            font-size: 1.5rem;
+        }
+        p {
+            margin: 0;
+        }
     }
 }

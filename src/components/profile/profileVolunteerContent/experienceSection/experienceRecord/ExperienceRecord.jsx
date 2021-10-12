@@ -1,19 +1,22 @@
 import { Icon } from '@iconify/react'
+import { useState } from 'react'
+import EditExperienceRecordModal from '../editExperienceRecordModal/EditExperienceRecordModal'
+import DeleteExperienceRecordModal from '../deleteExperienceRecordModal/DeleteExperienceRecordModal'
 
-export default function ExperienceRecord({ exp, setShowExperienceRecordModal, setExperienceRecordModalContent, setExperienceRecordModalType }) {
+export default function ExperienceRecord({ record, deleteExperienceRecord }) {
+
+    const [showEditExperienceRecordModal, setShowEditExperienceRecordModal] = useState(false)
+    const [showDeleteExperienceRecordModal, setShowDeleteExperienceRecordModal] = useState(false)
+
     return (
         <article className='experienceRecord'>
             <div className='icon-container'>
                 <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => {
-                    setExperienceRecordModalContent(exp)
-                    setExperienceRecordModalType('edit')
-                    setShowExperienceRecordModal(true)
+                    setShowEditExperienceRecordModal(true)
                 }} />
 
                 <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => {
-                    setExperienceRecordModalContent(exp)
-                    setExperienceRecordModalType('delete')
-                    setShowExperienceRecordModal(true)
+                    setShowDeleteExperienceRecordModal(true)
                 }} />
             </div>
 
@@ -21,29 +24,32 @@ export default function ExperienceRecord({ exp, setShowExperienceRecordModal, se
                 <div className='horizontal-division'>
                     <div className='record-data'>
                         <h3>Posición:</h3>
-                        <p>{exp.position}</p>
+                        <p>{record.position}</p>
                     </div>
                     <div className='record-data'>
                         <h3>Empresa:</h3>
-                        <p>{exp.company}</p>
+                        <p>{record.company}</p>
                     </div>
                 </div>
                 <div className='horizontal-division'>
                     <div className='record-data'>
                         <h3>Fecha inicio:</h3>
-                        <p>{exp.beginDAte}</p>
+                        <p>{record.beginDate}</p>
                     </div>
                     <div className='record-data'>
                         <h3>Fecha fin:</h3>
-                        <p>{exp.endDate}</p>
+                        <p>{record.endDate}</p>
                     </div>
                 </div>
             </div>
 
             <div className='record-data work-description'>
                 <h3>Descripción:</h3>
-                <p>{exp.description}</p>
+                <p>{record.description}</p>
             </div>
+
+            <EditExperienceRecordModal showEditExperienceRecordModal={showEditExperienceRecordModal} setShowEditExperienceRecordModal={setShowEditExperienceRecordModal} record={record} />
+            <DeleteExperienceRecordModal showDeleteExperienceRecordModal={showDeleteExperienceRecordModal} setShowDeleteExperienceRecordModal={setShowDeleteExperienceRecordModal} record={record} deleteExperienceRecord={deleteExperienceRecord} />
         </article>
     )
 }

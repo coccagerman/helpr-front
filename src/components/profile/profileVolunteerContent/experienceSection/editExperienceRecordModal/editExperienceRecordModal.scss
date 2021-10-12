@@ -1,0 +1,10 @@
+.editExperienceRecordModal {
+    .input-container {
+        display: flex;
+        flex-direction: column;
+
+        input, select {
+            padding: .5rem;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react'
 
-export default function NewEducationRecordModal({showNewEducationRecordModal, setShowNewEducationRecordModal, addNewEducationRecord, educationRecords}) {
+export default function NewEducationRecordModal({showNewEducationRecordModal, setShowNewEducationRecordModal, addNewEducationRecord}) {
 
     const [institution, setInstitution] = useState(null)
     const [title, setTitle] = useState(null)
@@ -64,19 +64,17 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
                 <button className='btn btn-secondary' onClick={() => setShowNewEducationRecordModal(false)}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
                         addNewEducationRecord({
-                            institution: institution,
-                            title: title,
-                            beginDate: beginDate,
-                            endDate: endDate,
-                            clasification: clasification,
-                            state: state
+                            institution,
+                            title,
+                            beginDate,
+                            endDate,
+                            clasification,
+                            state
                         })
-                        console.log(educationRecords)
                         setShowNewEducationRecordModal(false)
                     }
                 }>Guardar</button>
 
-                
             </Modal.Footer>
         </Modal>
     )

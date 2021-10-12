@@ -1,46 +1,43 @@
 import { Icon } from '@iconify/react'
 import { useState } from 'react'
 import ExperienceRecord from './experienceRecord/ExperienceRecord'
-import ExperienceRecordModal from './experienceRecordModal/ExperienceRecordModal'
+import NewExperienceRecordModal from './newExperienceRecordModal/NewExperienceRecordModal'
 
 export default function ExperienceSection() {
 
-    const [showExperienceRecordModal, setShowExperienceRecordModal] = useState(false)
-    const [experienceRecordModalContent, setExperienceRecordModalContent] = useState(false)
-    const [experienceRecordModalType, setExperienceRecordModalType] = useState('delete')
-
     /* This will be replaced with db data and db calls. */
-    const [mockExperiences, setMockExperiences] = useState([
+    const [experienceRecords, setExperienceRecords] = useState([
         {
-            position: 'Lorem1',
-            company: 'Lorem1',
-            beginDate: '01/01/1920',
-            endDate: '01/01/1925',
+            position: 'Front end developer',
+            company: 'Avature',
+            beginDate: '01/08/2021',
+            endDate: 'Actualidad',
             description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio odit blanditiis numquam velit mollitia, pariatur quam impedit deserunt earum corporis laboriosam magni provident minus nam incidunt nulla.'
-        },
-        {
-            position: 'Lorem2',
-            company: 'Lorem2',
-            beginDate: '01/01/1930',
-            endDate: '01/01/1935',
-            description: 'Lorem ipsum dolor sit amet consectetur pariatur quam impedit deserunt earum corporis laboriosam magni provident minus nam incidunt nulla.'
         }
     ])
     /*  */
+
+    const addNewExperienceRecord = recordToAdd => setExperienceRecords([...experienceRecords, recordToAdd])
+    const deleteExperienceRecord = recordToDelete => setExperienceRecords(experienceRecords.filter(record => (record !== recordToDelete)))
+
+    const [showNewExperienceRecordModal, setShowNewExperienceRecordModal] = useState(false)
 
     return (
         <div className='experience profileSection'>
             <div className='profileSection-header'>
                 <h2>Experiencia</h2>
                 <Icon icon='akar-icons:plus' color='#406bc8' className='icon' onClick={() => {
-                    setExperienceRecordModalType('create')
-                    setShowExperienceRecordModal(true)
+                    setShowNewExperienceRecordModal(true)
                 }}/>
             </div>
+            
+            {experienceRecords.length > 0 ? 
+                experienceRecords.map((record, i) => <ExperienceRecord record={record} key={i} deleteExperienceRecord={deleteExperienceRecord} />)
+                :
+                'Aún no has cargado registros de experiencia.'
+            }
 
-            {mockExperiences.map((exp, i) => <ExperienceRecord exp={exp} key={i} setShowExperienceRecordModal={setShowExperienceRecordModal} setExperienceRecordModalContent={setExperienceRecordModalContent} setExperienceRecordModalType={setExperienceRecordModalType} />)}
-
-            <ExperienceRecordModal showExperienceRecordModal={showExperienceRecordModal} setShowExperienceRecordModal={setShowExperienceRecordModal} experienceRecordModalContent={experienceRecordModalContent} experienceRecordModalType={experienceRecordModalType} mockExperiences={mockExperiences} setMockExperiences={setMockExperiences} />
+            <NewExperienceRecordModal showNewExperienceRecordModal={showNewExperienceRecordModal} setShowNewExperienceRecordModal={setShowNewExperienceRecordModal} addNewExperienceRecord={addNewExperienceRecord} />
         </div>
     )
 }

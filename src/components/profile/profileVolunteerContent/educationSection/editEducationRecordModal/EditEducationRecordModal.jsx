@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react'
 
-export default function NewEducationRecordModal({showEditEducationRecordModal, setShowEditEducationRecordModal, record}) {
+export default function EditEducationRecordModal({showEditEducationRecordModal, setShowEditEducationRecordModal, record}) {
 
     const [institution, setInstitution] = useState(record.institution)
     const [title, setTitle] = useState(record.title)
