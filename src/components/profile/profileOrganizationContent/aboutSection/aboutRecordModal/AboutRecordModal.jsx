@@ -14,7 +14,7 @@ export default function AboutRecordModal({showAboutRecordModal, setShowAboutReco
                 <form action='' method='post'>
 
                     <div className='input-container'>
-                        <label htmlFor='about'>Contá sobre vos, tu historia, experiencias e intereses.</label>
+                        <label htmlFor='about'>Contá sobre tu organización, sus objetivos y las vacantes de voluntariado disponibles.</label>
                         <textarea className='textarea' name="about" rows="10" cols="50" defaultValue={AboutRecord} onChange={e => setAbout(e.target.value)}/>
                     </div>
 

@@ -1,0 +1,10 @@
+.editVacancyRecordModal {
+    .input-container {
+        display: flex;
+        flex-direction: column;
+
+        input, select, textarea {
+            padding: .5rem;
+        }
+    }
+}

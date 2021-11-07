@@ -36,4 +36,16 @@
 @import './components/profile/profileVolunteerContent/interestsSection/interestRecord/interestRecord.scss';
 @import './components/profile/profileVolunteerContent/interestsSection/newInterestRecordModal/newInterestRecordModal.scss';
 
+/* Profile - Volunteer - Recommendations */
 @import './components/profile/profileVolunteerContent/recommendationsSection/recommendationsRecord/recommendationsRecord.scss';
+
+/* Profile - Organization */
+@import './components/profile/profileOrganizationContent/profileOrganizationContent.scss';
+
+/* Profile - Organization - About */
+@import './components/profile/profileOrganizationContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
+
+/* Profile - Volunteer - Vacancies */
+@import './components/profile/profileOrganizationContent/vacanciesSection/vacancyRecord/vacancyRecord.scss';
+@import './components/profile/profileOrganizationContent/vacanciesSection/newVacancyRecordModal/newVacancyRecordModal.scss';
+@import './components/profile/profileOrganizationContent/vacanciesSection/editVacancyRecordModal/editVacancyRecordModal.scss';

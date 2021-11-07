@@ -11,7 +11,7 @@ export default function AboutSection() {
     return (
         <div className='about profileSection'>
             <div className='profileSection-header'>
-                <h2>Sobre mi</h2>
+                <h2>Sobre la organización</h2>
                 <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowAboutRecordModal(true)} />
             </div>
             <p>{AboutRecord ? AboutRecord : 'Aún no completaste esta sección.'}</p>
