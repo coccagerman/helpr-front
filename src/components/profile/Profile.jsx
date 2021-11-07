@@ -4,8 +4,8 @@ import ProfileOrganizationContent from './profileOrganizationContent/ProfileOrga
 export default function Profile() {
     return (
         <section className='profile'>
-            {/* <ProfileVolunteerContent/> */}
-            <ProfileOrganizationContent/>
+            <ProfileVolunteerContent/>
+            {/* <ProfileOrganizationContent/> */}
         </section>
     )
 }
