@@ -11,8 +11,43 @@
     }
 
     .btn-container {
+        display: flex;
+
         .btn {
             margin: 0 1rem;
+        }
+
+        article {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin: .5rem 2rem 0 2rem;
+
+            .icon {
+                font-size: 1.8rem;
+            }
+            
+            p {
+                font-size: .85rem;
+            }
+        }
+
+        /* Hack for profile bootstrap dropdown. */
+        .dropdown {
+            .dropdown-toggle::after {
+                display: none;
+            }
+
+            button {
+                background-color: white;
+                height: 5rem;
+
+                p {
+                    color: black;
+                }
+            }
         }
     }
 }

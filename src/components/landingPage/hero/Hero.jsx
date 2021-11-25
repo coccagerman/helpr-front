@@ -1,5 +1,5 @@
 import Logo from '../../../assets/logo.png'
-import Illustration from '../../../assets/illustration.png'
+import Illustration from '../../../assets/landingPage-illustration.png'
 
 export default function Hero() {
     return (

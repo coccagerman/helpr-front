@@ -12,6 +12,12 @@
 @import './components/landingPage/tiposDeProyectos/tiposDeProyectos.scss';
 @import './components/landingPage/register/register.scss';
 
+/* Register page */
+@import './components/registerPage/registerPage.scss';
+
+/* Login page */
+@import './components/loginPage/loginPage.scss';
+
 /* Profile section */
 @import './components/profile/profile.scss';
 
@@ -49,3 +55,6 @@
 @import './components/profile/profileOrganizationContent/vacanciesSection/vacancyRecord/vacancyRecord.scss';
 @import './components/profile/profileOrganizationContent/vacanciesSection/newVacancyRecordModal/newVacancyRecordModal.scss';
 @import './components/profile/profileOrganizationContent/vacanciesSection/editVacancyRecordModal/editVacancyRecordModal.scss';
+
+/* Job detail */
+@import './components/jobDetail/jobDetail.scss';

@@ -26,7 +26,7 @@ export default function ProfileVolunteerContent() {
 
             <InterestsSection />
 
-            {/* <RecommendationsSection /> */}
+            <RecommendationsSection />
 
         </section>
     )

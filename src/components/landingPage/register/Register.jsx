@@ -5,7 +5,10 @@ export default function Register() {
         <section className='register'>
             <h2>Registrate y encontrá lo que buscás con la ayuda de Helpr!</h2>
             <div className='registerMethods'>
-                <article>
+
+                <button className='btn btn-primary'>Registrate</button>
+                <button className='btn btn-secondary'>Ingresá</button>
+                {/* <article>
                     <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
                     <p>Ingresá con Google</p>
                 </article>
@@ -16,7 +19,7 @@ export default function Register() {
                 <article>
                     <Icon className='icon' icon='ant-design:twitter-circle-filled' color='#406bc8'/>
                     <p>Ingresá con Twitter</p>
-                </article>
+                </article> */}
             </div>
         </section>
     )

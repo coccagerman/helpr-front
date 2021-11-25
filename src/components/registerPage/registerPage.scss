@@ -1,18 +1,47 @@
-.register {
-    background-color: #f0f0f0;
-    padding: 3rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.registerPage {
+    h1 {
+        color: $helpr-purple;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .horizontal-division {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        form {
+            width: 25%;
+            .input-container {
+                display: flex;
+                flex-direction: column;
+                margin: 1rem 0;
+
+                label {
+                    color: $helpr-purple;
+                    font-size: 1.25rem;
+                }
+
+                input, select {
+                    padding: .25rem;
+                }
+            }
+        }
+
+        img {
+            width: 30rem;
+            margin: 1rem 1rem 1rem 3rem;
+        }
+    }
 
     h2 {
         color: $helpr-purple;
-        font-size: 3.5rem;
+        text-align: center;
+        margin-top: 1rem;
     }
 
     .registerMethods {
-        margin: 2rem 0;
+        margin-top: -2rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -42,11 +71,12 @@
             }
 
             p {
-                max-width: 6rem;
+                max-width: 7rem;
+                font-size: .9rem;
                 text-align: center;
                 color: $helpr-greyedText;
                 position: absolute;
-                bottom: -6rem;
+                bottom: -5.5rem;
                 opacity: 0;
                 transition: .3s;
             }
@@ -58,30 +88,6 @@
             &:hover p {
                 bottom: -1.2rem;
                 opacity: 1;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .register {
-    
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-        }
-    
-        .registerMethods {
-            margin: 1.5rem 0;
-            flex-direction: column;
-    
-            article {
-                margin: 1.5rem;
-    
-                p {
-                    bottom: 0;
-                    opacity: 1;
-                }
             }
         }
     }

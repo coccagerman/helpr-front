@@ -3,7 +3,10 @@ import './App.scss'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import LandingPage from './components/landingPage/LandingPage'
+import RegisterPage from './components/registerPage/RegisterPage'
+import LoginPage from './components/loginPage/LoginPage'
 import Profile from './components/profile/Profile'
+import JobDetail from './components/jobDetail/JobDetail'
 
 export default function App() {
   return (
@@ -14,7 +17,16 @@ export default function App() {
   
         <Route path='/' exact>
           {/* <LandingPage/> */}
-          <Profile/>
+          {/* <Profile/> */}
+          <JobDetail/>
+        </Route>
+
+        <Route path='/register' >
+          <RegisterPage/>
+        </Route>
+
+        <Route path='/login' >
+          <LoginPage/>
         </Route>
 
       </Switch>
