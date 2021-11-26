@@ -4,9 +4,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-export default function Header() {
-
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+export default function Header({isLoggedIn, setIsLoggedIn}) {
 
     return (
         <header className='header'>
@@ -16,23 +14,20 @@ export default function Header() {
                 <div className='btn-container'>
                     <article>
                         <Icon className='icon' icon='ic:baseline-notifications' color='#3a53b7' />
-                        <p>Notificaciones</p>
                     </article>
                     <article>
                         <Icon className='icon' icon='entypo:suitcase' color='#3a53b7' />
-                        <p>Oportunidades</p>
                     </article>
                     <article>
 
                         <Dropdown>
                             <Dropdown.Toggle id='dropdown-basic' className='dropdownToggle'>
                                 <Icon className='icon' icon='bi:person-circle' color='#3a53b7' />
-                                <p>Perfil</p>
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href='#/action-1'>Ver perfil</Dropdown.Item>
-                                <Dropdown.Item href='#/action-2'>Cerrar sesión</Dropdown.Item>
+                                <Dropdown.Item><Link to='/profile'>Ver perfil</Link></Dropdown.Item>
+                                <Dropdown.Item onClick={() => setIsLoggedIn(false)}>Cerrar sesión</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
 

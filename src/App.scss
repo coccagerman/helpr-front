@@ -56,5 +56,10 @@
 @import './components/profile/profileOrganizationContent/vacanciesSection/newVacancyRecordModal/newVacancyRecordModal.scss';
 @import './components/profile/profileOrganizationContent/vacanciesSection/editVacancyRecordModal/editVacancyRecordModal.scss';
 
+/* Search jobs */
+@import './components/searchJobs/searchJobs.scss';
+@import './components/searchJobs/searchForm/searchForm.scss';
+@import './components/searchJobs/jobRecord/jobRecord.scss';
+
 /* Job detail */
 @import './components/jobDetail/jobDetail.scss';
