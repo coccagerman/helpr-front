@@ -14,15 +14,18 @@
 
 /* Register page */
 @import './components/registerPage/registerPage.scss';
+@import './components/registerPage/registerPageModal/registerPageModal.scss';
 
 /* Login page */
 @import './components/loginPage/loginPage.scss';
+@import './components/loginPage/loginPageModal/loginPageModal.scss';
 
 /* Profile section */
 @import './components/profile/profile.scss';
 
 /* Profile - Volunteer */
 @import './components/profile/profileVolunteerContent/profileVolunteerContent.scss';
+@import './components/profile/profileVolunteerContent/titleRecordModal.scss';
 
 /* Profile - Volunteer - About */
 @import './components/profile/profileVolunteerContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
