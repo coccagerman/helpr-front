@@ -24,7 +24,7 @@ export default function AuthenticationContextProvider ({ children }) {
             const data = await response.json()
 
             if (data === 'Valid token') {
-                window.location = 'http://localhost:3002/profile'
+                window.location = 'http://localhost:3000/profile'
             }
         }
     }
@@ -46,10 +46,10 @@ export default function AuthenticationContextProvider ({ children }) {
             const data = await response.json()
 
             if (data !== 'Valid token') {
-                window.location.href = 'http://localhost:3002/login'
+                window.location.href = 'http://localhost:3000/login'
             }
         } else {
-            window.location.href = 'http://localhost:3002/login'
+            window.location.href = 'http://localhost:3000/login'
         }
     }
 

@@ -14,8 +14,6 @@ export default function Profile() {
         fetchProfileData()
     }, [])
 
-    console.log(profileData)
-
     return (
         <section className='profile'>
             { profileData ? 

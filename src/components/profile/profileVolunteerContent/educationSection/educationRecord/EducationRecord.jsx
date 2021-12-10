@@ -1,9 +1,9 @@
 import { Icon } from '@iconify/react'
 import { useState } from 'react'
-import EditEducationRecordModal from '../editEducationRecordModal/EditEducationRecordModal'
-import DeleteEducationRecordModal from '../deleteEducationRecordModal/DeleteEducationRecordModal'
+import EditEducationRecordModal from './editEducationRecordModal/EditEducationRecordModal'
+import DeleteEducationRecordModal from './deleteEducationRecordModal/DeleteEducationRecordModal'
 
-export default function EducationRecord({record, deleteEducationRecord}) {
+export default function EducationRecord({record}) {
 
     const [showEditEducationRecordModal, setShowEditEducationRecordModal] = useState(false)
     const [showDeleteEducationRecordModal, setShowDeleteEducationRecordModal] = useState(false)
@@ -38,17 +38,18 @@ export default function EducationRecord({record, deleteEducationRecord}) {
                 <div className='horizontal-division'>
                     <div className='record-data'>
                         <h3>Fecha inicio:</h3>
-                        <p>{record.beginDate}</p>
+                        <p>{new Date(record.beginDate).toISOString().slice(0, 10)}</p>
+                        
                     </div>
                     <div className='record-data'>
                         <h3>Fecha fin:</h3>
-                        <p>{record.endDate}</p>
+                        <p>{new Date(record.endDate).toISOString().slice(0, 10)}</p>
                     </div>
                 </div>
             </div>
 
             <EditEducationRecordModal showEditEducationRecordModal={showEditEducationRecordModal} setShowEditEducationRecordModal={setShowEditEducationRecordModal} record={record} />
-            <DeleteEducationRecordModal showDeleteEducationRecordModal={showDeleteEducationRecordModal} setShowDeleteEducationRecordModal={setShowDeleteEducationRecordModal} record={record} deleteEducationRecord={deleteEducationRecord} />
+            <DeleteEducationRecordModal showDeleteEducationRecordModal={showDeleteEducationRecordModal} setShowDeleteEducationRecordModal={setShowDeleteEducationRecordModal} record={record} />
         </article>
     )
 }

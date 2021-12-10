@@ -1,14 +1,26 @@
 import Modal from 'react-bootstrap/Modal'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import ProfileContext from '../../../../../../context/ProfileContext'
 
 export default function EditEducationRecordModal({showEditEducationRecordModal, setShowEditEducationRecordModal, record}) {
 
+    const { editEducationOrExperienceRecord } = useContext(ProfileContext)
+
     const [institution, setInstitution] = useState(record.institution)
     const [title, setTitle] = useState(record.title)
-    const [beginDate, setBeginDate] = useState(record.beginDate)
-    const [endDate, setEndDate] = useState(record.endDate)
+    const [beginDate, setBeginDate] = useState(new Date(record.beginDate).toISOString().slice(0, 10))
+    const [endDate, setEndDate] = useState(new Date(record.endDate).toISOString().slice(0, 10))
     const [clasification, setClasification] = useState(record.clasification)
     const [state, setState] = useState(record.state)
+
+    const cancelUnsavedChanges = () => {
+        setInstitution(record.institution)
+        setTitle(record.title)
+        setBeginDate(new Date(record.beginDate).toISOString().slice(0, 10))
+        setEndDate(new Date(record.endDate).toISOString().slice(0, 10))
+        setClasification(record.clasification)
+        setState(record.state)
+    }
 
     return (
         <Modal show={showEditEducationRecordModal} onHide={() => setShowEditEducationRecordModal(false)} className='editEducationRecordModal'>
@@ -30,7 +42,7 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
 
                         <div className='input-container'>
                             <label htmlFor='beginDate'>Fecha de inicio</label>
-                            <input type='date' name='beginDate' value={beginDate} required onChange={e => setBeginDate(e.target.value)}/>
+                            <input type='date' name='beginDate' value={beginDate} required onChange={e => {setBeginDate(e.target.value)}}/>
                         </div>
 
                         <div className='input-container'>
@@ -61,17 +73,22 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
                     </form>
             </Modal.Body>
             <Modal.Footer>
-                <button className='btn btn-secondary' onClick={() => setShowEditEducationRecordModal(false)}>Cancelar</button>
-                <button className='btn btn-primary' onClick={() => {
-                        record.institution = institution
-                        record.title = title
-                        record.beginDate = beginDate
-                        record.endDate = endDate
-                        record.clasification = clasification
-                        record.state = state
+                <button className='btn btn-secondary' onClick={() => {
+                        cancelUnsavedChanges()
                         setShowEditEducationRecordModal(false)
-                    }
-                }>Guardar</button>                
+                    }}>Cancelar</button>
+                <button className='btn btn-primary' onClick={() => {
+                        editEducationOrExperienceRecord('education', 'edit', {
+                            recordId: record._id,
+                            institution: institution,
+                            title: title,
+                            beginDate: beginDate,
+                            endDate: endDate,
+                            clasification: clasification,
+                            state: state
+                        })
+                        setShowEditEducationRecordModal(false)
+                    }}>Guardar</button>                
             </Modal.Footer>
         </Modal>
     )

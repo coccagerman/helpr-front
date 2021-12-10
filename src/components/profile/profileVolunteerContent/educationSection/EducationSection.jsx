@@ -1,25 +1,16 @@
 import { Icon } from '@iconify/react'
-import { useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
+import ProfileContext from '../../../../context/ProfileContext'
 import EducationRecord from './educationRecord/EducationRecord'
 import NewEducationRecordModal from './newEducationRecordModal/NewEducationRecordModal'
 
 export default function EducationSection() {
 
-    const [educationRecords, setEducationRecords] = useState([
-        {
-            institution: 'UBA',
-            title: 'Ingeniero civil',
-            beginDate: '2014-02-09',
-            endDate: '2019-02-09',
-            clasification: 'Ciencias exactas',
-            state: 'Completo'
-        }
-    ])
-
-    const addNewEducationRecord = recordToAdd => setEducationRecords([...educationRecords, recordToAdd])
-    const deleteEducationRecord = recordToDelete => setEducationRecords(educationRecords.filter(record => (record !== recordToDelete)))
+    const { fetchEducationRecords, educationRecords } = useContext(ProfileContext)
 
     const [showNewEducationRecordModal, setShowNewEducationRecordModal] = useState(false)
+
+    useEffect(() => fetchEducationRecords(), [])
 
     return (
         <div className='education profileSection'>
@@ -28,13 +19,13 @@ export default function EducationSection() {
                 <Icon icon='akar-icons:plus' color='#406bc8' className='icon' onClick={() => setShowNewEducationRecordModal(true)}/>
             </div>
 
-            {educationRecords.length > 0 ? 
-                educationRecords.map((record, i) => <EducationRecord record={record} key={i} deleteEducationRecord={deleteEducationRecord} />)
+            {(educationRecords && educationRecords.length > 0) ? 
+                educationRecords.map((record, i) => <EducationRecord record={record} key={i} />)
                 :
                 'Aún no has cargado registros de educación.'
             }
             
-            <NewEducationRecordModal showNewEducationRecordModal={showNewEducationRecordModal} setShowNewEducationRecordModal={setShowNewEducationRecordModal} addNewEducationRecord={addNewEducationRecord} educationRecords={educationRecords}/>
+            <NewEducationRecordModal showNewEducationRecordModal={showNewEducationRecordModal} setShowNewEducationRecordModal={setShowNewEducationRecordModal} />
         </div>
     )
 }
