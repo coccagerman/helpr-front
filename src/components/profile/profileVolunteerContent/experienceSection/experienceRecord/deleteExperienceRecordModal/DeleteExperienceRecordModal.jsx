@@ -1,6 +1,11 @@
 import Modal from 'react-bootstrap/Modal'
+import { useContext } from 'react'
+import ProfileContext from '../../../../../../context/ProfileContext'
 
-export default function DeleteExperienceRecordModal({showDeleteExperienceRecordModal, setShowDeleteExperienceRecordModal, record, deleteExperienceRecord}) {
+export default function DeleteExperienceRecordModal({showDeleteExperienceRecordModal, setShowDeleteExperienceRecordModal, record}) {
+
+    const { editEducationOrExperienceRecord } = useContext(ProfileContext)
+
     return (
         <div className='experienceRecordModal'>
             <Modal show={showDeleteExperienceRecordModal} onHide={() => setShowDeleteExperienceRecordModal(false)}>
@@ -11,9 +16,11 @@ export default function DeleteExperienceRecordModal({showDeleteExperienceRecordM
                 <Modal.Footer>
                     <button className="btn btn-secondary" onClick={() => setShowDeleteExperienceRecordModal(false)}>Cancelar</button>
                     <button className="btn btn-red" onClick={() => {
-                            deleteExperienceRecord(record)
-                            setShowDeleteExperienceRecordModal(false)
-                        }}>Eliminar</button>
+                        editEducationOrExperienceRecord('experience', 'delete', {
+                            recordId: record._id
+                        })
+                        setShowDeleteExperienceRecordModal(false)
+                    }}>Eliminar</button>
                 </Modal.Footer>
             </Modal>
         </div>

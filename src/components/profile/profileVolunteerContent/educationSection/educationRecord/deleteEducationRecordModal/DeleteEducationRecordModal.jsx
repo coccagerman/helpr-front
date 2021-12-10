@@ -16,11 +16,11 @@ export default function DeleteEducationRecordModal({showDeleteEducationRecordMod
                 <Modal.Footer>
                     <button className="btn btn-secondary" onClick={() => setShowDeleteEducationRecordModal(false)}>Cancelar</button>
                     <button className="btn btn-red" onClick={() => {
-                            editEducationOrExperienceRecord('education', 'delete', {
-                                recordId: record._id
-                            })
-                            setShowDeleteEducationRecordModal(false)
-                        }}>Eliminar</button>
+                        editEducationOrExperienceRecord('education', 'delete', {
+                            recordId: record._id
+                        })
+                        setShowDeleteEducationRecordModal(false)
+                    }}>Eliminar</button>
                 </Modal.Footer>
             </Modal>
         </div>

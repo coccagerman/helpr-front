@@ -28,67 +28,67 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
                 <Modal.Title>Editar registro de educación</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <form action='' method='post'>
+                <form>
 
-                        <div className='input-container'>
-                            <label htmlFor='institution'>Institución</label>
-                            <input type='text' name='institution' defaultValue={institution} required onChange={e => setInstitution(e.target.value)}/>
-                        </div>
+                    <div className='input-container'>
+                        <label htmlFor='institution'>Institución</label>
+                        <input type='text' name='institution' defaultValue={institution} required onChange={e => setInstitution(e.target.value)}/>
+                    </div>
 
-                        <div className='input-container'>
-                            <label htmlFor='title'>Título</label>
-                            <input type='text' name='title' defaultValue={title} required onChange={e => setTitle(e.target.value)}/>
-                        </div>
+                    <div className='input-container'>
+                        <label htmlFor='title'>Título</label>
+                        <input type='text' name='title' defaultValue={title} required onChange={e => setTitle(e.target.value)}/>
+                    </div>
 
-                        <div className='input-container'>
-                            <label htmlFor='beginDate'>Fecha de inicio</label>
-                            <input type='date' name='beginDate' value={beginDate} required onChange={e => {setBeginDate(e.target.value)}}/>
-                        </div>
+                    <div className='input-container'>
+                        <label htmlFor='beginDate'>Fecha de inicio</label>
+                        <input type='date' name='beginDate' defaultValue={beginDate} required onChange={e => {setBeginDate(e.target.value)}}/>
+                    </div>
 
-                        <div className='input-container'>
-                            <label htmlFor='endDate'>Fecha fin</label>
-                            <input type='date' name='endDate' defaultValue={endDate} required onChange={e => setEndDate(e.target.value)}/>
-                        </div>
+                    <div className='input-container'>
+                        <label htmlFor='endDate'>Fecha fin</label>
+                        <input type='date' name='endDate' defaultValue={endDate} required onChange={e => setEndDate(e.target.value)}/>
+                    </div>
 
-                        <div className='input-container'>
-                            <label htmlFor='clasification'>Clasificación</label>
-                            <select name='clasification' defaultValue={clasification} required onChange={e => setClasification(e.target.value)}>
-                                <option value='Ciencias sociales'>Ciencias sociales</option>
-                                <option value='Ciencias exactas'>Ciencias exactas</option>
-                                <option value='Ciencias naturales'>Ciencias naturales</option>
-                                <option value='Ciencias económicas'>Ciencias económicas</option>
-                                <option value='Otro'>Otro</option>
-                            </select>
-                        </div>
+                    <div className='input-container'>
+                        <label htmlFor='clasification'>Clasificación</label>
+                        <select name='clasification' defaultValue={clasification} required onChange={e => setClasification(e.target.value)}>
+                            <option value='Ciencias sociales'>Ciencias sociales</option>
+                            <option value='Ciencias exactas'>Ciencias exactas</option>
+                            <option value='Ciencias naturales'>Ciencias naturales</option>
+                            <option value='Ciencias económicas'>Ciencias económicas</option>
+                            <option value='Otro'>Otro</option>
+                        </select>
+                    </div>
 
-                        <div className='input-container'>
-                            <label htmlFor='state'>Estado</label>
-                            <select name='state' defaultValue={state} required onChange={e => setState(e.target.value)}>
-                                <option value='Completo'>Completo</option>
-                                <option value='Abandonado'>Abandonado</option>
-                                <option value='En curso'>En curso</option>
-                            </select>
-                        </div>
+                    <div className='input-container'>
+                        <label htmlFor='state'>Estado</label>
+                        <select name='state' defaultValue={state} required onChange={e => setState(e.target.value)}>
+                            <option value='Completo'>Completo</option>
+                            <option value='Abandonado'>Abandonado</option>
+                            <option value='En curso'>En curso</option>
+                        </select>
+                    </div>
 
-                    </form>
+                </form>
             </Modal.Body>
             <Modal.Footer>
                 <button className='btn btn-secondary' onClick={() => {
-                        cancelUnsavedChanges()
-                        setShowEditEducationRecordModal(false)
-                    }}>Cancelar</button>
+                    cancelUnsavedChanges()
+                    setShowEditEducationRecordModal(false)
+                }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                        editEducationOrExperienceRecord('education', 'edit', {
-                            recordId: record._id,
-                            institution: institution,
-                            title: title,
-                            beginDate: beginDate,
-                            endDate: endDate,
-                            clasification: clasification,
-                            state: state
-                        })
-                        setShowEditEducationRecordModal(false)
-                    }}>Guardar</button>                
+                    editEducationOrExperienceRecord('education', 'edit', {
+                        recordId: record._id,
+                        institution,
+                        title,
+                        beginDate,
+                        endDate,
+                        clasification,
+                        state
+                    })
+                    setShowEditEducationRecordModal(false)
+                }}>Guardar</button>                
             </Modal.Footer>
         </Modal>
     )

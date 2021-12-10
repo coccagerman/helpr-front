@@ -1,13 +1,24 @@
 import Modal from 'react-bootstrap/Modal'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import ProfileContext from '../../../../../context/ProfileContext'
 
-export default function NewExperienceRecordModal({showNewExperienceRecordModal, setShowNewExperienceRecordModal, addNewExperienceRecord}) {
+export default function NewExperienceRecordModal({showNewExperienceRecordModal, setShowNewExperienceRecordModal}) {
+
+    const { editEducationOrExperienceRecord } = useContext(ProfileContext)
 
     const [position, setPosition] = useState(null)
     const [company, setCompany] = useState(null)
     const [beginDate, setBeginDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
     const [description, setDescription] = useState(null)
+
+    const cancelUnsavedChanges = () => {
+        setPosition(null)
+        setCompany(null)
+        setBeginDate(null)
+        setEndDate(null)
+        setDescription(null)
+    }
 
     return (
         <Modal show={showNewExperienceRecordModal} onHide={() => setShowNewExperienceRecordModal(false)} className='newExperienceRecordModal'>
@@ -19,45 +30,46 @@ export default function NewExperienceRecordModal({showNewExperienceRecordModal, 
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
-                        <input type='text' name='position' onChange={e => setPosition(e.target.value)}/>
+                        <input type='text' name='position' required onChange={e => setPosition(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='company'>Empresa</label>
-                        <input type='text' name='company' onChange={e => setCompany(e.target.value)}/>
+                        <input type='text' name='company' required onChange={e => setCompany(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='beginDate'>Fecha de inicio</label>
-                        <input type='date' name='beginDate' onChange={e => setBeginDate(e.target.value)}/>
+                        <input type='date' name='beginDate' required onChange={e => setBeginDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='endDate'>Fecha fin</label>
-                        <input type='date' name='endDate' onChange={e => setEndDate(e.target.value)}/>
+                        <input type='date' name='endDate' required onChange={e => setEndDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='description'>Descripción</label>
-                        <input type='text' name='description' onChange={e => setDescription(e.target.value)}/>
+                        <input type='text' name='description' required onChange={e => setDescription(e.target.value)}/>
                     </div>
 
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <button className='btn btn-secondary' onClick={() => setShowNewExperienceRecordModal(false)}>Cancelar</button>
+                <button className='btn btn-secondary' onClick={() => {
+                    cancelUnsavedChanges()
+                    setShowNewExperienceRecordModal(false)
+                }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                        addNewExperienceRecord({
-                            position,
-                            company,
-                            beginDate,
-                            endDate,
-                            description
-                        })
-                        setShowNewExperienceRecordModal(false)
-                    }
-                }>Guardar</button>
-
+                    editEducationOrExperienceRecord('experience', 'add', {
+                        position,
+                        company,
+                        beginDate,
+                        endDate,
+                        description
+                    })
+                    setShowNewExperienceRecordModal(false)
+                }}>Guardar</button>
             </Modal.Footer>
         </Modal>
     )

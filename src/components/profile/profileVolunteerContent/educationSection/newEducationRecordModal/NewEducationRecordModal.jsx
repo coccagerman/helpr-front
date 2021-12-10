@@ -13,6 +13,15 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
     const [clasification, setClasification] = useState('Ciencias sociales')
     const [state, setState] = useState('Completo')
 
+    const cancelUnsavedChanges = () => {
+        setInstitution(null)
+        setTitle(null)
+        setBeginDate(null)
+        setEndDate(null)
+        setClasification('Ciencias sociales')
+        setState('Completo')
+    }
+
     return (
         <Modal show={showNewEducationRecordModal} onHide={() => setShowNewEducationRecordModal(false)} className='newEducationRecordModal'>
             <Modal.Header closeButton>
@@ -64,20 +73,21 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <button className='btn btn-secondary' onClick={() => setShowNewEducationRecordModal(false)}>Cancelar</button>
+                <button className='btn btn-secondary' onClick={() => {
+                    cancelUnsavedChanges()
+                    setShowNewEducationRecordModal(false)
+                }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                        editEducationOrExperienceRecord('education', 'add', {
-                            institution: institution,
-                            title: title,
-                            beginDate: beginDate,
-                            endDate: endDate,
-                            clasification: clasification,
-                            state: state
-                        })
-                        setShowNewEducationRecordModal(false)
-                    }
-                }>Guardar</button>
-
+                    editEducationOrExperienceRecord('education', 'add', {
+                        institution,
+                        title,
+                        beginDate,
+                        endDate,
+                        clasification,
+                        state
+                    })
+                    setShowNewEducationRecordModal(false)
+                }}>Guardar</button>
             </Modal.Footer>
         </Modal>
     )

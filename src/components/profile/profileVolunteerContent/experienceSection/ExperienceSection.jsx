@@ -1,26 +1,16 @@
 import { Icon } from '@iconify/react'
-import { useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
+import ProfileContext from '../../../../context/ProfileContext'
 import ExperienceRecord from './experienceRecord/ExperienceRecord'
 import NewExperienceRecordModal from './newExperienceRecordModal/NewExperienceRecordModal'
 
 export default function ExperienceSection() {
 
-    /* This will be replaced with db data and db calls. */
-    const [experienceRecords, setExperienceRecords] = useState([
-        {
-            position: 'Front end developer',
-            company: 'Avature',
-            beginDate: '2014-02-09',
-            endDate: 'Actualidad',
-            description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio odit blanditiis numquam velit mollitia, pariatur quam impedit deserunt earum corporis laboriosam magni provident minus nam incidunt nulla.'
-        }
-    ])
-    /*  */
-
-    const addNewExperienceRecord = recordToAdd => setExperienceRecords([...experienceRecords, recordToAdd])
-    const deleteExperienceRecord = recordToDelete => setExperienceRecords(experienceRecords.filter(record => (record !== recordToDelete)))
+    const { fetchExperienceRecords, experienceRecords } = useContext(ProfileContext)
 
     const [showNewExperienceRecordModal, setShowNewExperienceRecordModal] = useState(false)
+
+    useEffect(() => fetchExperienceRecords(), [])
 
     return (
         <div className='experience profileSection'>
@@ -31,13 +21,13 @@ export default function ExperienceSection() {
                 }}/>
             </div>
             
-            {experienceRecords.length > 0 ? 
-                experienceRecords.map((record, i) => <ExperienceRecord record={record} key={i} deleteExperienceRecord={deleteExperienceRecord} />)
+            {(experienceRecords && experienceRecords.length > 0)? 
+                experienceRecords.map(record => <ExperienceRecord record={record} key={record._id} />)
                 :
                 'Aún no has cargado registros de experiencia.'
             }
 
-            <NewExperienceRecordModal showNewExperienceRecordModal={showNewExperienceRecordModal} setShowNewExperienceRecordModal={setShowNewExperienceRecordModal} addNewExperienceRecord={addNewExperienceRecord} />
+            <NewExperienceRecordModal showNewExperienceRecordModal={showNewExperienceRecordModal} setShowNewExperienceRecordModal={setShowNewExperienceRecordModal} />
         </div>
     )
 }

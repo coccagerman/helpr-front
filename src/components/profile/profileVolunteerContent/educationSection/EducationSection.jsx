@@ -20,7 +20,7 @@ export default function EducationSection() {
             </div>
 
             {(educationRecords && educationRecords.length > 0) ? 
-                educationRecords.map((record, i) => <EducationRecord record={record} key={i} />)
+                educationRecords.map(record => <EducationRecord record={record} key={record._id} />)
                 :
                 'Aún no has cargado registros de educación.'
             }

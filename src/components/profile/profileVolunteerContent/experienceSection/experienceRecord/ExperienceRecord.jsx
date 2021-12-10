@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
 import { useState } from 'react'
-import EditExperienceRecordModal from '../editExperienceRecordModal/EditExperienceRecordModal'
-import DeleteExperienceRecordModal from '../deleteExperienceRecordModal/DeleteExperienceRecordModal'
+import EditExperienceRecordModal from './editExperienceRecordModal/EditExperienceRecordModal'
+import DeleteExperienceRecordModal from './deleteExperienceRecordModal/DeleteExperienceRecordModal'
 
 export default function ExperienceRecord({ record, deleteExperienceRecord }) {
 
@@ -11,13 +11,8 @@ export default function ExperienceRecord({ record, deleteExperienceRecord }) {
     return (
         <article className='experienceRecord'>
             <div className='icon-container'>
-                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => {
-                    setShowEditExperienceRecordModal(true)
-                }} />
-
-                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => {
-                    setShowDeleteExperienceRecordModal(true)
-                }} />
+                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEditExperienceRecordModal(true)} />
+                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowDeleteExperienceRecordModal(true)} />
             </div>
 
             <div className='horizontal-container'>
@@ -34,11 +29,11 @@ export default function ExperienceRecord({ record, deleteExperienceRecord }) {
                 <div className='horizontal-division'>
                     <div className='record-data'>
                         <h3>Fecha inicio:</h3>
-                        <p>{record.beginDate}</p>
+                        <p>{new Date(record.beginDate).toISOString().slice(0, 10)}</p>
                     </div>
                     <div className='record-data'>
                         <h3>Fecha fin:</h3>
-                        <p>{record.endDate}</p>
+                        <p>{new Date(record.endDate).toISOString().slice(0, 10)}</p>
                     </div>
                 </div>
             </div>
@@ -49,7 +44,7 @@ export default function ExperienceRecord({ record, deleteExperienceRecord }) {
             </div>
 
             <EditExperienceRecordModal showEditExperienceRecordModal={showEditExperienceRecordModal} setShowEditExperienceRecordModal={setShowEditExperienceRecordModal} record={record} />
-            <DeleteExperienceRecordModal showDeleteExperienceRecordModal={showDeleteExperienceRecordModal} setShowDeleteExperienceRecordModal={setShowDeleteExperienceRecordModal} record={record} deleteExperienceRecord={deleteExperienceRecord} />
+            <DeleteExperienceRecordModal showDeleteExperienceRecordModal={showDeleteExperienceRecordModal} setShowDeleteExperienceRecordModal={setShowDeleteExperienceRecordModal} record={record} />
         </article>
     )
 }
