@@ -1,16 +1,12 @@
 import { Icon } from '@iconify/react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import ProfileContext from '../../../../context/ProfileContext'
 import InterestRecord from './interestRecord/InterestRecord'
 import NewInterestRecordModal from './newInterestRecordModal/NewInterestRecordModal'
 
 export default function InterestsSection() {
 
-    const [interestRecords, setInterestRecords] = useState([
-        'Deportes', 'Educación', 'Tecnología'
-    ])
-
-    const addNewInterestRecord = recordToAdd => setInterestRecords([...interestRecords, recordToAdd])
-    const deleteInterestRecord = recordToDelete => setInterestRecords(interestRecords.filter(record => (record !== recordToDelete)))
+    const { profileData } = useContext(ProfileContext)
 
     const [showNewInterestRecordModal, setShowNewInterestRecordModal] = useState(false)
 
@@ -22,14 +18,14 @@ export default function InterestsSection() {
             </div>
 
             <div className='interests-container'>
-            {interestRecords.length > 0 ? 
-                interestRecords.map((record, i) => <InterestRecord record={record} key={i} deleteInterestRecord={deleteInterestRecord} />)
+            {(profileData.interests && profileData.interests.length > 0) ? 
+                profileData.interests.map((record, i) => <InterestRecord record={record} key={i} />)
                 :
                 'Aún no has cargado registros de intereses.'
             }
             </div>
 
-            <NewInterestRecordModal showNewInterestRecordModal={showNewInterestRecordModal} setShowNewInterestRecordModal={setShowNewInterestRecordModal} addNewInterestRecord={addNewInterestRecord} />
+            <NewInterestRecordModal showNewInterestRecordModal={showNewInterestRecordModal} setShowNewInterestRecordModal={setShowNewInterestRecordModal} />
         </div>
     )
 }

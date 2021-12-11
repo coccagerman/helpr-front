@@ -8,6 +8,7 @@ export default function ProfileContextProvider ({ children }) {
     const [educationRecords, setEducationRecords] = useState(null)
     const [experienceRecords, setExperienceRecords] = useState(null)
 
+    /* Fetch general profile data */
     const fetchProfileData = async () => {
         if (!profileData) {
             let accessToken = localStorage.getItem('accessToken')
@@ -26,7 +27,8 @@ export default function ProfileContextProvider ({ children }) {
         }
     }
 
-    const editUserRecord = async (fieldToEdit, fieldData) => {
+    /* Edit general profile data */
+    const editUserRecord = async (fieldToEdit, fieldData, queryType) => {
         let accessToken = localStorage.getItem('accessToken')
 
         const editionResponse = await fetch('http://localhost:3001/profile', {
@@ -38,7 +40,8 @@ export default function ProfileContextProvider ({ children }) {
             },
             body: JSON.stringify({
                 'fieldToEdit': fieldToEdit,
-                'fieldData': fieldData
+                'fieldData': fieldData,
+                'queryType': queryType
             })
         })
 
@@ -60,6 +63,7 @@ export default function ProfileContextProvider ({ children }) {
         }
     }
 
+    /* Fetch education data */
     const fetchEducationRecords = async () => {
         if (!educationRecords) {
             let accessToken = localStorage.getItem('accessToken')
@@ -78,6 +82,7 @@ export default function ProfileContextProvider ({ children }) {
         }
     }
 
+    /* Fetch experience data */
     const fetchExperienceRecords = async () => {
         if (!educationRecords) {
             let accessToken = localStorage.getItem('accessToken')
@@ -96,6 +101,7 @@ export default function ProfileContextProvider ({ children }) {
         }
     }
 
+    /* Edit education or experience data */
     const editEducationOrExperienceRecord = async (fieldToEdit, queryType, fieldData) => {
         let accessToken = localStorage.getItem('accessToken')
 

@@ -26,13 +26,13 @@ export default function AboutRecordModal({showAboutRecordModal, setShowAboutReco
             </Modal.Body>
             <Modal.Footer>
                 <button className='btn btn-secondary' onClick={() => {
-                        setAbout(profileData.about)
-                        setShowAboutRecordModal(false)
-                    }}>Cancelar</button>
+                    setAbout(profileData.about)
+                    setShowAboutRecordModal(false)
+                }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                        editUserRecord('about', about)
-                        setShowAboutRecordModal(false)
-                    }}>Guardar</button>
+                    editUserRecord('about', about)
+                    setShowAboutRecordModal(false)
+                }}>Guardar</button>
             </Modal.Footer>
         </Modal>
     )

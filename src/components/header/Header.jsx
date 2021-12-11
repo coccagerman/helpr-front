@@ -2,12 +2,13 @@ import Logo from '../../assets/logo.png'
 import { Icon } from '@iconify/react'
 import AuthenticationContext from '../../context/AuthenticationContext'
 import { useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown'
 
 export default function Header() {
 
     const { isLoggedIn, setIsLoggedIn, checkIfAuthenticatedAndChangeState } = useContext(AuthenticationContext)
+    const history = useHistory()
 
     useEffect(() => checkIfAuthenticatedAndChangeState(), [])
 
@@ -35,8 +36,9 @@ export default function Header() {
                                 <Dropdown.Item onClick={() => {
                                         setIsLoggedIn(false)
                                         localStorage.removeItem('accessToken')
+                                        history.push('/')
                                     }}>
-                                    <Link to='/'>Cerrar sesión</Link>
+                                    Cerrar sesión
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>

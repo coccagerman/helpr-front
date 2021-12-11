@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import DeleteInterestRecordModal from '../deleteInterestRecordModal/DeleteInterestRecordModal'
 
-export default function InterestRecord({record, deleteInterestRecord}) {
+export default function InterestRecord({record}) {
 
     const [showDeleteInterestRecordModal, setShowDeleteInterestRecordModal] = useState(false)
 
@@ -10,7 +10,7 @@ export default function InterestRecord({record, deleteInterestRecord}) {
             {record}
             <div className='deleteInterestRecord-btn' onClick={() => setShowDeleteInterestRecordModal(true)}>X</div>
 
-            <DeleteInterestRecordModal showDeleteInterestRecordModal={showDeleteInterestRecordModal} setShowDeleteInterestRecordModal={setShowDeleteInterestRecordModal} record={record} deleteInterestRecord={deleteInterestRecord} />
+            <DeleteInterestRecordModal showDeleteInterestRecordModal={showDeleteInterestRecordModal} setShowDeleteInterestRecordModal={setShowDeleteInterestRecordModal} record={record} />
         </article>
     )
 }
