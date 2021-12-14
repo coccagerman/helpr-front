@@ -23,7 +23,6 @@
 /* Profile - Volunteer */
 @import './components/profile/profileVolunteerContent/profileVolunteerContent.scss';
 @import './components/profile/profileVolunteerContent/titleRecordModal.scss';
-@import './components/profile/profileVolunteerContent/profilePictureModal.scss';
 
 /* Profile - Volunteer - About */
 @import './components/profile/profileVolunteerContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
@@ -48,11 +47,13 @@
 
 /* Profile - Organization */
 @import './components/profile/profileOrganizationContent/profileOrganizationContent.scss';
+@import './components/profile/profileOrganizationContent/titleRecordModal.scss';
+
 
 /* Profile - Organization - About */
 @import './components/profile/profileOrganizationContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
 
-/* Profile - Volunteer - Vacancies */
+/* Profile - Organization - Vacancies */
 @import './components/profile/profileOrganizationContent/vacanciesSection/vacancyRecord/vacancyRecord.scss';
 @import './components/profile/profileOrganizationContent/vacanciesSection/newVacancyRecordModal/newVacancyRecordModal.scss';
 @import './components/profile/profileOrganizationContent/vacanciesSection/editVacancyRecordModal/editVacancyRecordModal.scss';

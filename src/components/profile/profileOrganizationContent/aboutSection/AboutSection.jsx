@@ -1,22 +1,23 @@
 import { Icon } from '@iconify/react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import ProfileContext from '../../../../context/ProfileContext'
 import AboutRecordModal from './aboutRecordModal/AboutRecordModal'
 
 export default function AboutSection() {
 
-    const [AboutRecord, setAboutRecord] = useState(null)
+    const { profileData } = useContext(ProfileContext)
 
     const [showAboutRecordModal, setShowAboutRecordModal] = useState(false)
 
     return (
         <div className='about profileSection'>
             <div className='profileSection-header'>
-                <h2>Sobre la organización</h2>
+                <h2>Sobre mi</h2>
                 <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowAboutRecordModal(true)} />
             </div>
-            <p>{AboutRecord ? AboutRecord : 'Aún no completaste esta sección.'}</p>
+            <p>{profileData.about ? profileData.about : 'Aún no completaste esta sección.'}</p>
 
-            <AboutRecordModal showAboutRecordModal={showAboutRecordModal} setShowAboutRecordModal={setShowAboutRecordModal} AboutRecord={AboutRecord} setAboutRecord={setAboutRecord} />
+            <AboutRecordModal showAboutRecordModal={showAboutRecordModal} setShowAboutRecordModal={setShowAboutRecordModal} />
         </div>
     )
 }

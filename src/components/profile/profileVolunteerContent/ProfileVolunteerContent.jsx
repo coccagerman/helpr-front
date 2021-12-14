@@ -1,12 +1,15 @@
 import { useContext, useState } from 'react'
 import ProfileContext from '../../../context/ProfileContext'
+
 import TitleRecordModal from './TitleRecordModal'
 import ProfilePictureModal from './ProfilePictureModal'
+import ProfilePictureErrorModal from './ProfilePictureErrorModal'
 import AboutSection from './aboutSection/AboutSection'
 import EducationSection from './educationSection/EducationSection'
 import ExperienceSection from './experienceSection/ExperienceSection'
 import InterestsSection from './interestsSection/interestsSection'
 import RecommendationsSection from './recommendationsSection/RecommendationsSection'
+
 import { Icon } from '@iconify/react'
 import genericAvatar from '../../../assets/genericAvatar.jpeg'
 
@@ -42,6 +45,7 @@ export default function ProfileVolunteerContent() {
             <RecommendationsSection />
 
             <ProfilePictureModal showProfilePictureModal={showProfilePictureModal} setShowProfilePictureModal={setShowProfilePictureModal} />
+            <ProfilePictureErrorModal setShowProfilePictureModal={setShowProfilePictureModal} />
             <TitleRecordModal showTitleRecordModal={showTitleRecordModal} setShowTitleRecordModal={setShowTitleRecordModal} />
 
         </section>

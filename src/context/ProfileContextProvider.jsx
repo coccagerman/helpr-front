@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import ProfileContext from './ProfileContext'
 
@@ -8,6 +7,7 @@ export default function ProfileContextProvider ({ children }) {
     const [profilePicture, setProfilePicture] = useState(null)
     const [educationRecords, setEducationRecords] = useState(null)
     const [experienceRecords, setExperienceRecords] = useState(null)
+    const [showProfilePictureErrorModal, setShowProfilePictureErrorModal] = useState(false)
 
     /* Fetch general profile data */
     const fetchProfileData = async () => {
@@ -93,7 +93,8 @@ export default function ProfileContextProvider ({ children }) {
 
             const data = await response.json()
             setProfilePicture(data)
-        }
+        
+        } else setShowProfilePictureErrorModal(true)
     }
 
     /* Fetch profile picture */
@@ -190,7 +191,7 @@ export default function ProfileContextProvider ({ children }) {
     }
 
     return (
-        <ProfileContext.Provider value={{ profileData, profilePicture, educationRecords, experienceRecords, fetchProfileData, editUserRecord, fetchProfilePicture, editProfilePicture, fetchEducationRecords, fetchExperienceRecords, editEducationOrExperienceRecord }} >
+        <ProfileContext.Provider value={{ profileData, profilePicture, educationRecords, experienceRecords, fetchProfileData, editUserRecord, fetchProfilePicture, editProfilePicture, showProfilePictureErrorModal, setShowProfilePictureErrorModal, fetchEducationRecords, fetchExperienceRecords, editEducationOrExperienceRecord }} >
             {children}
         </ProfileContext.Provider>
     )

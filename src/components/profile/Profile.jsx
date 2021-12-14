@@ -18,7 +18,7 @@ export default function Profile() {
     return (
         <section className='profile'>
             { profileData ? 
-                profileData.accountType === 'volunteer' ? <ProfileVolunteerContent /> : <ProfileOrganizationContent/>
+                profileData.accountType === 'volunteer' ? <ProfileVolunteerContent/> : <ProfileOrganizationContent/>
                 : null
             }         
         </section>

@@ -1,6 +1,11 @@
 import Modal from 'react-bootstrap/Modal'
+import { useContext } from 'react'
+import ProfileContext from '../../../../../context/ProfileContext'
 
-export default function DeleteInterestRecordModal({showDeleteInterestRecordModal, setShowDeleteInterestRecordModal, record, deleteInterestRecord}) {
+export default function DeleteInterestRecordModal({showDeleteInterestRecordModal, setShowDeleteInterestRecordModal, record}) {
+
+    const { editUserRecord } = useContext(ProfileContext)
+
     return (
         <div className='interestRecordModal'>
             <Modal show={showDeleteInterestRecordModal} onHide={() => setShowDeleteInterestRecordModal(false)}>
@@ -11,9 +16,9 @@ export default function DeleteInterestRecordModal({showDeleteInterestRecordModal
                 <Modal.Footer>
                     <button className="btn btn-secondary" onClick={() => setShowDeleteInterestRecordModal(false)}>Cancelar</button>
                     <button className="btn btn-red" onClick={() => {
-                            deleteInterestRecord(record)
-                            setShowDeleteInterestRecordModal(false)
-                        }}>Eliminar</button>
+                        editUserRecord('interests', record, 'delete')
+                        setShowDeleteInterestRecordModal(false)
+                    }}>Eliminar</button>
                 </Modal.Footer>
             </Modal>
         </div>

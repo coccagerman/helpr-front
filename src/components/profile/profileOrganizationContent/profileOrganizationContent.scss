@@ -11,6 +11,7 @@
             width: 10rem;
             border-radius: 50%;
             border: $helpr-greyedText 2px solid;
+            cursor: pointer;
         }
 
         .nameAndTittle {
@@ -21,9 +22,18 @@
                 color: $helpr-purple;
             }
 
-            p {
-                font-size: 2rem;
-                color: $helpr-lightBlue;
+            .title-container {
+                display: flex;
+                align-items: center;
+                
+                p {
+                    font-size: 2rem;
+                    color: $helpr-lightBlue;
+                }
+
+                .icon {
+                    margin-bottom: 1rem;
+                }
             }
         }
     }
