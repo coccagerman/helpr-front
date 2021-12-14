@@ -5,6 +5,7 @@ import ProfileContext from './ProfileContext'
 export default function ProfileContextProvider ({ children }) {
 
     const [profileData, setProfileData] = useState(null)
+    const [profilePicture, setProfilePicture] = useState(null)
     const [educationRecords, setEducationRecords] = useState(null)
     const [experienceRecords, setExperienceRecords] = useState(null)
 
@@ -61,6 +62,55 @@ export default function ProfileContextProvider ({ children }) {
             setProfileData(data)
 
         }
+    }
+
+    /* Edit profile picture */
+    const editProfilePicture = async (profilePicture) => {
+        let accessToken = localStorage.getItem('accessToken')
+
+        const editionRresponse = await fetch('http://localhost:3001/profile/profilePicture', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': accessToken
+            },
+            body: JSON.stringify(profilePicture)
+        })
+
+        const editionData = await editionRresponse.json()
+        
+        if (editionData === 'Successful edition') {
+            
+            const response = await fetch('http://localhost:3001/profile/profilePicture', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': accessToken
+                }
+            })
+
+            const data = await response.json()
+            setProfilePicture(data)
+        }
+    }
+
+    /* Fetch profile picture */
+    const fetchProfilePicture = async () => {
+        let accessToken = localStorage.getItem('accessToken')
+
+        const response = await fetch('http://localhost:3001/profile/profilePicture', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': accessToken
+            }
+        })
+
+        const data = await response.json()
+        setProfilePicture(data)
     }
 
     /* Fetch education data */
@@ -140,7 +190,7 @@ export default function ProfileContextProvider ({ children }) {
     }
 
     return (
-        <ProfileContext.Provider value={{ profileData, educationRecords, experienceRecords, fetchProfileData, editUserRecord, fetchEducationRecords, fetchExperienceRecords, editEducationOrExperienceRecord }} >
+        <ProfileContext.Provider value={{ profileData, profilePicture, educationRecords, experienceRecords, fetchProfileData, editUserRecord, fetchProfilePicture, editProfilePicture, fetchEducationRecords, fetchExperienceRecords, editEducationOrExperienceRecord }} >
             {children}
         </ProfileContext.Provider>
     )

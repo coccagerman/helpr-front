@@ -1,27 +1,33 @@
 import { useContext, useState } from 'react'
 import ProfileContext from '../../../context/ProfileContext'
 import TitleRecordModal from './TitleRecordModal'
-import ProfilePic from '../../../assets/mockProfilePic.jpg'
+import ProfilePictureModal from './ProfilePictureModal'
 import AboutSection from './aboutSection/AboutSection'
 import EducationSection from './educationSection/EducationSection'
 import ExperienceSection from './experienceSection/ExperienceSection'
 import InterestsSection from './interestsSection/interestsSection'
 import RecommendationsSection from './recommendationsSection/RecommendationsSection'
+import { Icon } from '@iconify/react'
+import genericAvatar from '../../../assets/genericAvatar.jpeg'
 
 export default function ProfileVolunteerContent() {
 
-    const { profileData } = useContext(ProfileContext)
+    const { profileData, profilePicture } = useContext(ProfileContext)
 
     const [showTitleRecordModal, setShowTitleRecordModal] = useState(false)
+    const [showProfilePictureModal, setShowProfilePictureModal] = useState(false)
     
     return (
         <section className='profileVolunteerContent'>
 
             <div className='profileHeader'>
-                <img src={ProfilePic} alt='Profile' />
+                <img src={profilePicture ? profilePicture :  genericAvatar} alt='Profile' onClick={() => setShowProfilePictureModal(true)} />
                 <div className='nameAndTittle'>
                     <h1>{profileData.name}</h1>
-                    <p onClick={() => setShowTitleRecordModal(true)}>{profileData.title ? profileData.title : 'Aún no completaste este campo.'}</p>
+                    <div className='title-container'>
+                        <p>{profileData.title ? profileData.title : 'Aún no completaste este campo.'}</p>
+                        <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowTitleRecordModal(true)} />
+                    </div>
                 </div>
             </div>
 
@@ -35,6 +41,7 @@ export default function ProfileVolunteerContent() {
 
             <RecommendationsSection />
 
+            <ProfilePictureModal showProfilePictureModal={showProfilePictureModal} setShowProfilePictureModal={setShowProfilePictureModal} />
             <TitleRecordModal showTitleRecordModal={showTitleRecordModal} setShowTitleRecordModal={setShowTitleRecordModal} />
 
         </section>

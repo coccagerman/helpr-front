@@ -26,13 +26,13 @@ export default function TitleRecordModal({showTitleRecordModal, setShowTitleReco
                 </Modal.Body>
                 <Modal.Footer>
                     <button className='btn btn-secondary' onClick={() => {
-                            setTitle(profileData.title)
-                            setShowTitleRecordModal(false)
-                        }}>Cancelar</button>
+                        setTitle(profileData.title)
+                        setShowTitleRecordModal(false)
+                    }}>Cancelar</button>
                     <button className='btn btn-primary' onClick={() => {
-                            editUserRecord('title', title)
-                            setShowTitleRecordModal(false)
-                        }}>Guardar</button>
+                        editUserRecord('title', title)
+                        setShowTitleRecordModal(false)
+                    }}>Guardar</button>
                 </Modal.Footer>
             </Modal>
         </div>

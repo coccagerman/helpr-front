@@ -6,7 +6,7 @@ export default function NewInterestRecordModal({showNewInterestRecordModal, setS
 
     const { editUserRecord, profileData } = useContext(ProfileContext)
 
-    const possibleInterests = ['Arte', 'Economía', 'Educación', 'Data', 'Deportes', 'Idiomas', 'Marketing', 'Política', 'Tecnología']
+    const possibleInterests = ['Arte', 'Cultura', 'Data', 'Deportes', 'Economía', 'Educación', 'Idiomas', 'Marketing', 'Política', 'Tecnología']
     const availableInterests = possibleInterests.filter(item => !profileData.interests.includes(item))
 
     const [interest, setInterest] = useState(null)

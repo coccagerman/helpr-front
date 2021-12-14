@@ -7,11 +7,12 @@ import ProfileOrganizationContent from './profileOrganizationContent/ProfileOrga
 export default function Profile() {
 
     const { checkIfNotAuthenticatedAndRedirect } = useContext(AuthenticationContext)
-    const { fetchProfileData, profileData } = useContext(ProfileContext)
+    const { fetchProfileData, profileData, fetchProfilePicture } = useContext(ProfileContext)
 
     useEffect(() => {
         checkIfNotAuthenticatedAndRedirect()
         fetchProfileData()
+        fetchProfilePicture()
     }, [])
 
     return (

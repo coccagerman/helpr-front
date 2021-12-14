@@ -20,12 +20,10 @@
 @import './components/loginPage/loginPage.scss';
 @import './components/loginPage/loginPageModal/loginPageModal.scss';
 
-/* Profile section */
-@import './components/profile/profile.scss';
-
 /* Profile - Volunteer */
 @import './components/profile/profileVolunteerContent/profileVolunteerContent.scss';
 @import './components/profile/profileVolunteerContent/titleRecordModal.scss';
+@import './components/profile/profileVolunteerContent/profilePictureModal.scss';
 
 /* Profile - Volunteer - About */
 @import './components/profile/profileVolunteerContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
