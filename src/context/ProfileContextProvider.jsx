@@ -7,6 +7,7 @@ export default function ProfileContextProvider ({ children }) {
     const [profilePicture, setProfilePicture] = useState(null)
     const [educationRecords, setEducationRecords] = useState(null)
     const [experienceRecords, setExperienceRecords] = useState(null)
+    const [vacanciesRecords, setVacanciesRecords] = useState(null)
     const [showProfilePictureErrorModal, setShowProfilePictureErrorModal] = useState(false)
 
     /* Fetch general profile data */
@@ -152,6 +153,25 @@ export default function ProfileContextProvider ({ children }) {
         }
     }
 
+    /* Fetch experience data */
+    const fetchVacanciesRecords = async () => {
+        let accessToken = localStorage.getItem('accessToken')
+
+        if (!vacanciesRecords) {
+            const response = await fetch('http://localhost:3001/profile/vacanciesRecords', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': accessToken
+                }
+            })
+
+            const data = await response.json()
+            setVacanciesRecords(data)
+        }
+    }
+
     /* Edit education or experience data */
     const editEducationOrExperienceRecord = async (fieldToEdit, queryType, fieldData) => {
         let accessToken = localStorage.getItem('accessToken')
@@ -186,12 +206,65 @@ export default function ProfileContextProvider ({ children }) {
 
             const data = await response.json()
             fieldToEdit === 'education' ? setEducationRecords(data) : setExperienceRecords(data)
+        }
+    }
+
+    /* Edit vacancies data */
+    const editVacanciesRecord = async (fieldToEdit, queryType, fieldData) => {
+        let accessToken = localStorage.getItem('accessToken')
+
+        const editionResponse = await fetch('http://localhost:3001/profile', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': accessToken
+            },
+            body: JSON.stringify({
+                'fieldToEdit': fieldToEdit,
+                'queryType': queryType,
+                'fieldData': fieldData
+            })
+        })
+
+        const editionData = await editionResponse.json()
+
+        if (editionData === 'Successful edition') {
             
+            const response = await fetch('http://localhost:3001/profile/vacanciesRecords', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': accessToken
+                }
+            })
+
+            const data = await response.json()
+            setVacanciesRecords(data)
         }
     }
 
     return (
-        <ProfileContext.Provider value={{ profileData, profilePicture, educationRecords, experienceRecords, fetchProfileData, editUserRecord, fetchProfilePicture, editProfilePicture, showProfilePictureErrorModal, setShowProfilePictureErrorModal, fetchEducationRecords, fetchExperienceRecords, editEducationOrExperienceRecord }} >
+        <ProfileContext.Provider value={{
+            profileData,
+            profilePicture,
+            educationRecords,
+            experienceRecords,
+            fetchProfileData,
+            editUserRecord,
+            fetchProfilePicture,
+            editProfilePicture,
+            showProfilePictureErrorModal,
+            setShowProfilePictureErrorModal,
+            fetchEducationRecords,
+            fetchExperienceRecords,
+            editEducationOrExperienceRecord,
+            editVacanciesRecord,
+            fetchVacanciesRecords,
+            vacanciesRecords,
+            setVacanciesRecords
+        }} >
             {children}
         </ProfileContext.Provider>
     )

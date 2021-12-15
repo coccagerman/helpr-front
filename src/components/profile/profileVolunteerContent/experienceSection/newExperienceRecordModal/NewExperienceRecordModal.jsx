@@ -21,7 +21,10 @@ export default function NewExperienceRecordModal({showNewExperienceRecordModal, 
     }
 
     return (
-        <Modal show={showNewExperienceRecordModal} onHide={() => setShowNewExperienceRecordModal(false)} className='newExperienceRecordModal'>
+        <Modal show={showNewExperienceRecordModal} className='newExperienceRecordModal' onHide={() => {
+            cancelUnsavedChanges()
+            setShowNewExperienceRecordModal(false)
+        }}>
             <Modal.Header closeButton>
                 <Modal.Title>Nuevo registro de experiencia</Modal.Title>
             </Modal.Header>

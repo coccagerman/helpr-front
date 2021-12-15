@@ -10,7 +10,7 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
     const [title, setTitle] = useState(null)
     const [beginDate, setBeginDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
-    const [clasification, setClasification] = useState('Ciencias sociales')
+    const [classification, setClassification] = useState('Ciencias sociales')
     const [state, setState] = useState('Completo')
 
     const cancelUnsavedChanges = () => {
@@ -18,12 +18,15 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
         setTitle(null)
         setBeginDate(null)
         setEndDate(null)
-        setClasification('Ciencias sociales')
+        setClassification('Ciencias sociales')
         setState('Completo')
     }
 
     return (
-        <Modal show={showNewEducationRecordModal} onHide={() => setShowNewEducationRecordModal(false)} className='newEducationRecordModal'>
+        <Modal show={showNewEducationRecordModal} className='newEducationRecordModal' onHide={() => {
+            cancelUnsavedChanges()
+            setShowNewEducationRecordModal(false)
+        }}>
             <Modal.Header closeButton>
                 <Modal.Title>Nuevo registro de educación</Modal.Title>
             </Modal.Header>
@@ -51,8 +54,8 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
                     </div>
 
                     <div className='input-container'>
-                        <label htmlFor='clasification'>Clasificación</label>
-                        <select name='clasification' required onChange={e => setClasification(e.target.value)}>
+                        <label htmlFor='classification'>Clasificación</label>
+                        <select name='classification' required onChange={e => setClassification(e.target.value)}>
                             <option value='Ciencias sociales'>Ciencias sociales</option>
                             <option value='Ciencias exactas'>Ciencias exactas</option>
                             <option value='Ciencias naturales'>Ciencias naturales</option>
@@ -83,7 +86,7 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
                         title,
                         beginDate,
                         endDate,
-                        clasification,
+                        classification,
                         state
                     })
                     setShowNewEducationRecordModal(false)

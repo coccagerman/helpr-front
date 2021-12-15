@@ -21,7 +21,10 @@ export default function EditExperienceRecordModal({showEditExperienceRecordModal
     }
 
     return (
-        <Modal show={showEditExperienceRecordModal} onHide={() => setShowEditExperienceRecordModal(false)} className='editExperienceRecordModal'>
+        <Modal show={showEditExperienceRecordModal} className='editExperienceRecordModal' onHide={() => {
+            cancelUnsavedChanges()
+            setShowEditExperienceRecordModal(false)
+        }}>
             <Modal.Header closeButton>
                 <Modal.Title>Editar registro de educación</Modal.Title>
             </Modal.Header>

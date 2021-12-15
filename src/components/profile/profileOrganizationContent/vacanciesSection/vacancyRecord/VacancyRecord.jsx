@@ -1,9 +1,9 @@
 import { Icon } from '@iconify/react'
 import { useState } from 'react'
-import EditVacancyRecordModal from '../editVacancyRecordModal/EditVacancyRecordModal'
-import DeleteVacancyRecordModal from '../deleteVacancyRecordModal/DeleteVacancyRecordModal'
+import EditVacancyRecordModal from './editVacancyRecordModal/EditVacancyRecordModal'
+import DeleteVacancyRecordModal from './deleteVacancyRecordModal/DeleteVacancyRecordModal'
 
-export default function VacancyRecord ({record, deleteVacancyRecord}) {
+export default function VacancyRecord ({record}) {
 
     const [showEditVacancyRecordModal, setShowEditVacancyRecordModal] = useState(false)
     const [showDeleteVacancyRecordModal, setShowDeleteVacancyRecordModal] = useState(false)
@@ -24,19 +24,19 @@ export default function VacancyRecord ({record, deleteVacancyRecord}) {
 
                     <div className='record-data'>
                         <h3>Clasificación:</h3>
-                        <p>{record.clasification}</p>
+                        <p>{record.classification}</p>
                     </div>
                 </div>
 
                 <div className='horizontal-division'>
                     <div className='record-data'>
                         <h3>Fecha inicio:</h3>
-                        <p>{record.beginDate}</p>
+                        <p>{new Date(record.beginDate).toISOString().slice(0, 10)}</p>
                     </div>
 
                     <div className='record-data'>
                         <h3>Fecha fin:</h3>
-                        <p>{record.endDate}</p>
+                        <p>{new Date(record.endDate).toISOString().slice(0, 10)}</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ export default function VacancyRecord ({record, deleteVacancyRecord}) {
             </div>
 
             <EditVacancyRecordModal showEditVacancyRecordModal={showEditVacancyRecordModal} setShowEditVacancyRecordModal={setShowEditVacancyRecordModal} record={record} />
-            <DeleteVacancyRecordModal showDeleteVacancyRecordModal={showDeleteVacancyRecordModal} setShowDeleteVacancyRecordModal={setShowDeleteVacancyRecordModal} record={record} deleteVacancyRecord={deleteVacancyRecord} />
+            <DeleteVacancyRecordModal showDeleteVacancyRecordModal={showDeleteVacancyRecordModal} setShowDeleteVacancyRecordModal={setShowDeleteVacancyRecordModal} record={record} />
         </article>
     )
 }

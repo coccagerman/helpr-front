@@ -27,7 +27,7 @@ export default function EducationRecord({record}) {
                     </div>
                     <div className='record-data'>
                         <h3>Clasificación:</h3>
-                        <p>{record.clasification}</p>
+                        <p>{record.classification}</p>
                     </div>
 
                     <div className='record-data'>

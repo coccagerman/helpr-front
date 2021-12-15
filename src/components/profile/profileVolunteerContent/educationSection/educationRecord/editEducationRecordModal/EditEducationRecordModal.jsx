@@ -10,7 +10,7 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
     const [title, setTitle] = useState(record.title)
     const [beginDate, setBeginDate] = useState(new Date(record.beginDate).toISOString().slice(0, 10))
     const [endDate, setEndDate] = useState(new Date(record.endDate).toISOString().slice(0, 10))
-    const [clasification, setClasification] = useState(record.clasification)
+    const [classification, setClassification] = useState(record.classification)
     const [state, setState] = useState(record.state)
 
     const cancelUnsavedChanges = () => {
@@ -18,12 +18,15 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
         setTitle(record.title)
         setBeginDate(new Date(record.beginDate).toISOString().slice(0, 10))
         setEndDate(new Date(record.endDate).toISOString().slice(0, 10))
-        setClasification(record.clasification)
+        setClassification(record.classification)
         setState(record.state)
     }
 
     return (
-        <Modal show={showEditEducationRecordModal} onHide={() => setShowEditEducationRecordModal(false)} className='editEducationRecordModal'>
+        <Modal show={showEditEducationRecordModal} className='editEducationRecordModal' onHide={() => {
+            cancelUnsavedChanges()
+            setShowEditEducationRecordModal(false)
+        }}>
             <Modal.Header closeButton>
                 <Modal.Title>Editar registro de educación</Modal.Title>
             </Modal.Header>
@@ -51,8 +54,8 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
                     </div>
 
                     <div className='input-container'>
-                        <label htmlFor='clasification'>Clasificación</label>
-                        <select name='clasification' defaultValue={clasification} required onChange={e => setClasification(e.target.value)}>
+                        <label htmlFor='classification'>Clasificación</label>
+                        <select name='classification' defaultValue={classification} required onChange={e => setClassification(e.target.value)}>
                             <option value='Ciencias sociales'>Ciencias sociales</option>
                             <option value='Ciencias exactas'>Ciencias exactas</option>
                             <option value='Ciencias naturales'>Ciencias naturales</option>
@@ -84,7 +87,7 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
                         title,
                         beginDate,
                         endDate,
-                        clasification,
+                        classification,
                         state
                     })
                     setShowEditEducationRecordModal(false)
