@@ -22,7 +22,10 @@ export default function ProfileOrganizationContent() {
         <section className='profileOrganizationContent'>
 
             <div className='profileHeader'>
-                <img src={profilePicture ? profilePicture :  genericAvatar} alt='Profile' onClick={() => setShowProfilePictureModal(true)} />
+                <div className='profilePicture-container'>
+                    <img src={profilePicture ? profilePicture :  genericAvatar} alt='Profile' onClick={() => setShowProfilePictureModal(true)} />
+                    <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowProfilePictureModal(true)} />
+                </div>
                 <div className='nameAndTittle'>
                     <h1>{profileData.name}</h1>
                     <div className='title-container'>
