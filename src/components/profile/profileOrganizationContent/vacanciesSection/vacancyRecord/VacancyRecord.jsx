@@ -19,36 +19,42 @@ export default function VacancyRecord ({record}) {
                 <div className='horizontal-division'>
                     <div className='record-data'>
                         <h3>Posición:</h3>
-                        <p>{record.position}</p>
+                        <p>{record.position ? record.position : null}</p>
                     </div>
 
                     <div className='record-data'>
                         <h3>Clasificación:</h3>
-                        <p>{record.classification}</p>
+                        <p>{record.classification ? record.classification : null}</p>
                     </div>
                 </div>
 
                 <div className='horizontal-division'>
                     <div className='record-data'>
-                        <h3>Fecha inicio:</h3>
-                        <p>{new Date(record.beginDate).toISOString().slice(0, 10)}</p>
+                        <h3>Fecha inicio del proyecto:</h3>
+                        <p>{record.beginDate ? new Date(record.beginDate).toISOString().slice(0, 10) : null}</p>
                     </div>
 
                     <div className='record-data'>
-                        <h3>Fecha fin:</h3>
-                        <p>{new Date(record.endDate).toISOString().slice(0, 10)}</p>
+                        <h3>Fecha fin del proyecto:</h3>
+                        <p>{record.endDate ? new Date(record.endDate).toISOString().slice(0, 10) : null}</p>
                     </div>
                 </div>
             </div>
 
             <div className='record-data'>
                 <h3>Detalle:</h3>
-                <p>{record.detail}</p>
+                <p>{record.detail ? record.detail : null}</p>
             </div>
 
             <div className='record-data'>
                 <h3>Requisitos:</h3>
-                <p>{record.requisites}</p>
+                <p>{record.requisites ? record.requisites : null}</p>
+            </div>
+
+            <div className='record-data'>
+                <h3>Candidatos postulados:</h3>
+                <p>3</p>
+                <p>Ver candidatos</p>
             </div>
 
             <EditVacancyRecordModal showEditVacancyRecordModal={showEditVacancyRecordModal} setShowEditVacancyRecordModal={setShowEditVacancyRecordModal} record={record} />

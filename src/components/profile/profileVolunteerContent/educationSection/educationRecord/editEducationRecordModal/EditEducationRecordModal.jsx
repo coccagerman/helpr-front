@@ -31,6 +31,8 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
                 <Modal.Title>Editar registro de educación</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <p>Por favor completá todos los campos.</p>
+
                 <form>
 
                     <div className='input-container'>
@@ -81,17 +83,18 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
                     setShowEditEducationRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    editEducationOrExperienceRecord('education', 'edit', {
-                        recordId: record._id,
-                        institution,
-                        title,
-                        beginDate,
-                        endDate,
-                        classification,
-                        state
-                    })
-                    setShowEditEducationRecordModal(false)
-                }}>Guardar</button>                
+                    if (institution && title && beginDate && endDate && classification && state) {
+                        editEducationOrExperienceRecord('education', 'edit', {
+                            recordId: record._id,
+                            institution,
+                            title,
+                            beginDate,
+                            endDate,
+                            classification,
+                            state
+                        })
+                        setShowEditEducationRecordModal(false)
+                }}}>Guardar</button>                
             </Modal.Footer>
         </Modal>
     )

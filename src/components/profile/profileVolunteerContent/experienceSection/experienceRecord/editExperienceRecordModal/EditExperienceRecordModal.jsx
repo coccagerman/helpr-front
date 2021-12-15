@@ -29,6 +29,8 @@ export default function EditExperienceRecordModal({showEditExperienceRecordModal
                 <Modal.Title>Editar registro de educación</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <p>Por favor completá todos los campos.</p>
+                
                 <form>
 
                     <div className='input-container'>
@@ -64,16 +66,17 @@ export default function EditExperienceRecordModal({showEditExperienceRecordModal
                     cancelUnsavedChanges()
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
+                    if (position && company && beginDate && endDate && description){
                         editEducationOrExperienceRecord('experience', 'edit', {
-                        recordId: record._id,
-                        position,
-                        company,
-                        beginDate,
-                        endDate,
-                        description
-                    })
-                    setShowEditExperienceRecordModal(false)
-                }}>Guardar</button>                
+                            recordId: record._id,
+                            position,
+                            company,
+                            beginDate,
+                            endDate,
+                            description
+                        })
+                        setShowEditExperienceRecordModal(false)
+                }}}>Guardar</button>                
             </Modal.Footer>
         </Modal>
     )

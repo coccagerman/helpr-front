@@ -28,6 +28,8 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
                 <Modal.Title>Nueva vacante disponible</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <p>Por favor completá todos los campos.</p>
+
                 <form>
 
                     <div className='input-container'>
@@ -36,12 +38,12 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
                     </div>
 
                     <div className='input-container'>
-                        <label htmlFor='beginDate'>Fecha de inicio</label>
+                        <label htmlFor='beginDate'>Fecha de inicio del proyecto</label>
                         <input type='date' name='beginDate' required onChange={e => setBeginDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
-                        <label htmlFor='endDate'>Fecha fin</label>
+                        <label htmlFor='endDate'>Fecha fin  del proyecto</label>
                         <input type='date' name='endDate' required onChange={e => setEndDate(e.target.value)}/>
                     </div>
 
@@ -77,16 +79,17 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
                     setShowNewVacancyRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    editVacanciesRecord('vacancies', 'add', {
-                        position,
-                        beginDate,
-                        endDate,
-                        classification,
-                        detail,
-                        requisites
-                    })
-                    setShowNewVacancyRecordModal(false)
-                }}>Guardar</button>
+                    if (position && beginDate && endDate && classification && detail && requisites) {
+                        editVacanciesRecord('vacancies', 'add', {
+                            position,
+                            beginDate,
+                            endDate,
+                            classification,
+                            detail,
+                            requisites
+                        })
+                        setShowNewVacancyRecordModal(false)
+                }}}>Guardar</button>
             </Modal.Footer>
         </Modal>
     )

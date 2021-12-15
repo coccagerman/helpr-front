@@ -29,7 +29,9 @@ export default function NewExperienceRecordModal({showNewExperienceRecordModal, 
                 <Modal.Title>Nuevo registro de experiencia</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <form action='' method='post'>
+                <p>Por favor completá todos los campos.</p>
+                
+                <form>
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
@@ -64,15 +66,16 @@ export default function NewExperienceRecordModal({showNewExperienceRecordModal, 
                     setShowNewExperienceRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    editEducationOrExperienceRecord('experience', 'add', {
-                        position,
-                        company,
-                        beginDate,
-                        endDate,
-                        description
-                    })
-                    setShowNewExperienceRecordModal(false)
-                }}>Guardar</button>
+                    if (position && company && beginDate && endDate && description){
+                        editEducationOrExperienceRecord('experience', 'add', {
+                            position,
+                            company,
+                            beginDate,
+                            endDate,
+                            description
+                        })
+                        setShowNewExperienceRecordModal(false)
+                }}}>Guardar</button>
             </Modal.Footer>
         </Modal>
     )

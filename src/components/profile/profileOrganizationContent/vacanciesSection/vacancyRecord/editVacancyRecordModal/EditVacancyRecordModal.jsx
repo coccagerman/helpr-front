@@ -31,6 +31,8 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
                 <Modal.Title>Editar registro de educación</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <p>Por favor completá todos los campos.</p>
+
                 <form>
 
                     <div className='input-container'>
@@ -39,12 +41,12 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
                     </div>
 
                     <div className='input-container'>
-                        <label htmlFor='beginDate'>Fecha de inicio</label>
+                        <label htmlFor='beginDate'>Fecha de inicio del proyecto</label>
                         <input type='date' name='beginDate' defaultValue={beginDate} required onChange={e => setBeginDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
-                        <label htmlFor='endDate'>Fecha fin</label>
+                        <label htmlFor='endDate'>Fecha fin del proyecto</label>
                         <input type='date' name='endDate' defaultValue={endDate} required onChange={e => setEndDate(e.target.value)}/>
                     </div>
 
@@ -80,17 +82,18 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
                     setShowEditVacancyRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    editVacanciesRecord('vacancies', 'edit', {
-                        recordId: record._id,
-                        position,
-                        beginDate,
-                        endDate,
-                        classification,
-                        detail,
-                        requisites
-                    })
-                    setShowEditVacancyRecordModal(false)
-                }}>Guardar</button>                
+                    if (position && beginDate && endDate && classification && detail && requisites) {
+                        editVacanciesRecord('vacancies', 'edit', {
+                            recordId: record._id,
+                            position,
+                            beginDate,
+                            endDate,
+                            classification,
+                            detail,
+                            requisites
+                        })
+                        setShowEditVacancyRecordModal(false)
+                }}}>Guardar</button>                
             </Modal.Footer>
         </Modal>
     )

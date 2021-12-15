@@ -6,10 +6,13 @@ import { FilePond, registerPlugin } from 'react-filepond'
 import 'filepond/dist/filepond.min.css'
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
+
+import FilePondPluginImageCrop from 'filepond-plugin-image-crop'
+import FilePondPluginImageTransform from 'filepond-plugin-image-transform'
+
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginFileEncode)
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginImageCrop, FilePondPluginImageTransform, FilePondPluginFileEncode)
 
 export default function ProfilePictureModal({showProfilePictureModal, setShowProfilePictureModal}) {
 
@@ -36,6 +39,10 @@ export default function ProfilePictureModal({showProfilePictureModal, setShowPro
                     dropOnPage
                     name='profilePicture'
                     labelIdle='Arrastrá tu imagen o <span class="filepond--label-action">explorá tus archivos.</span>'
+                    allowImageExifOrientation={true}
+                    allowImageCrop={true}
+                    imageCropAspectRatio='1:1'
+                    allowImageTransform={true}
                 />
                 </Modal.Body>
                 <Modal.Footer>
