@@ -22,6 +22,15 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
         setRequisites(record.requisites)
     }
 
+    const todayDate = Date.now()
+    const todayDateFormated = new Date(todayDate).toISOString().slice(0, 10)
+    const tomorrow = new Date(todayDate)
+    const tomorrowDate = new Date(tomorrow).setDate(tomorrow.getDate() + 1)
+    const tomorrowDateFormated = new Date(tomorrowDate).toISOString().slice(0, 10)
+    const dayAfterBeginDate = new Date(beginDate)
+    const dayAfterBeginDateDate = new Date(dayAfterBeginDate).setDate(dayAfterBeginDate.getDate() + 1)
+    const dayAfterBeginDateDateFormated = new Date(dayAfterBeginDateDate).toISOString().slice(0, 10)
+
     return (
         <Modal show={showEditVacancyRecordModal} className='editVacancyRecordModal' onHide={() => {
             cancelUnsavedChanges()
@@ -37,17 +46,17 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
-                        <input type='text' name='position' defaultValue={position} required onChange={e => setPosition(e.target.value)}/>
+                        <input type='text' name='position' defaultValue={position} maxlength='80' required onChange={e => setPosition(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='beginDate'>Fecha de inicio del proyecto</label>
-                        <input type='date' name='beginDate' defaultValue={beginDate} required onChange={e => setBeginDate(e.target.value)}/>
+                        <input type='date' name='beginDate' defaultValue={beginDate} min={todayDateFormated} required onChange={e => setBeginDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='endDate'>Fecha fin del proyecto</label>
-                        <input type='date' name='endDate' defaultValue={endDate} required onChange={e => setEndDate(e.target.value)}/>
+                        <input type='date' name='endDate' defaultValue={endDate} min={beginDate ? dayAfterBeginDateDateFormated : tomorrowDateFormated} required onChange={e => setEndDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
@@ -66,12 +75,12 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
 
                     <div className='input-container'>
                         <label htmlFor='detail'>Detalle de tareas</label>
-                        <textarea rows="5" cols="50" type='text' name='detail' defaultValue={detail} required onChange={e => setDetail(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='detail' defaultValue={detail} maxlength='1000' required onChange={e => setDetail(e.target.value)} />
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='requisites'>Requisitos</label>
-                        <textarea rows="5" cols="50" type='text' name='requisites' defaultValue={requisites} required onChange={e => setRequisites(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='requisites' defaultValue={requisites} maxlength='1000' required onChange={e => setRequisites(e.target.value)} />
                     </div>
 
                 </form>
@@ -82,7 +91,7 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
                     setShowEditVacancyRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    if (position && beginDate && endDate && classification && detail && requisites) {
+                    if (position && beginDate && endDate && classification && detail && requisites && endDate > beginDate) {
                         editVacanciesRecord('vacancies', 'edit', {
                             recordId: record._id,
                             position,

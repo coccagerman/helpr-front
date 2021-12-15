@@ -20,6 +20,15 @@ export default function EditExperienceRecordModal({showEditExperienceRecordModal
         setDescription(record.description)
     }
 
+    const todayDate = Date.now()
+    const todayDateFormated = new Date(todayDate).toISOString().slice(0, 10)
+    const dayAfterBeginDate = new Date(beginDate)
+    const dayAfterBeginDateDate = new Date(dayAfterBeginDate).setDate(dayAfterBeginDate.getDate() + 1)
+    const dayAfterBeginDateDateFormated = new Date(dayAfterBeginDateDate).toISOString().slice(0, 10)
+    const dayBeforeEndDate = new Date(endDate)
+    const dayBeforeEndDateDate = new Date(dayBeforeEndDate).setDate(dayBeforeEndDate.getDate() - 1)
+    const dayBeforeEndDateDateFormated = new Date(dayBeforeEndDateDate).toISOString().slice(0, 10)
+
     return (
         <Modal show={showEditExperienceRecordModal} className='editExperienceRecordModal' onHide={() => {
             cancelUnsavedChanges()
@@ -35,27 +44,27 @@ export default function EditExperienceRecordModal({showEditExperienceRecordModal
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
-                        <input type='text' name='position' defaultValue={position} required onChange={e => setPosition(e.target.value)}/>
+                        <input type='text' name='position' defaultValue={position} maxlength='100' required onChange={e => setPosition(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='company'>Empresa</label>
-                        <input type='text' name='company' defaultValue={company} required onChange={e => setCompany(e.target.value)}/>
+                        <input type='text' name='company' defaultValue={company} maxlength='100' required onChange={e => setCompany(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='beginDate'>Fecha de inicio</label>
-                        <input type='date' name='beginDate' defaultValue={beginDate} required onChange={e => setBeginDate(e.target.value)}/>
+                        <input type='date' name='beginDate' defaultValue={beginDate} max={endDate ? dayBeforeEndDateDateFormated : todayDateFormated} required onChange={e => setBeginDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='endDate'>Fecha fin</label>
-                        <input type='date' name='endDate' defaultValue={endDate} required onChange={e => setEndDate(e.target.value)}/>
+                        <input type='date' name='endDate' defaultValue={endDate} min={beginDate ? dayAfterBeginDateDateFormated : null} required onChange={e => setEndDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='description'>Descripción</label>
-                        <input type='text' name='description' defaultValue={description} required onChange={e => setDescription(e.target.value)}/>
+                        <input type='text' name='description' defaultValue={description} maxlength='2000' required onChange={e => setDescription(e.target.value)}/>
                     </div>
 
                 </form>
@@ -66,7 +75,7 @@ export default function EditExperienceRecordModal({showEditExperienceRecordModal
                     cancelUnsavedChanges()
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    if (position && company && beginDate && endDate && description){
+                    if (position && company && beginDate && endDate && description && endDate > beginDate){
                         editEducationOrExperienceRecord('experience', 'edit', {
                             recordId: record._id,
                             position,

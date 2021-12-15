@@ -22,6 +22,13 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
         setState('Completo')
     }
 
+    const dayAfterBeginDate = new Date(beginDate)
+    const dayAfterBeginDateDate = new Date(dayAfterBeginDate).setDate(dayAfterBeginDate.getDate() + 1)
+    const dayAfterBeginDateDateFormated = new Date(dayAfterBeginDateDate).toISOString().slice(0, 10)
+    const dayBeforeEndDate = new Date(endDate)
+    const dayBeforeEndDateDate = new Date(dayBeforeEndDate).setDate(dayBeforeEndDate.getDate() - 1)
+    const dayBeforeEndDateDateFormated = new Date(dayBeforeEndDateDate).toISOString().slice(0, 10)
+
     return (
         <Modal show={showNewEducationRecordModal} className='newEducationRecordModal' onHide={() => {
             cancelUnsavedChanges()
@@ -37,22 +44,22 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
 
                     <div className='input-container'>
                         <label htmlFor='institution'>Institución</label>
-                        <input type='text' name='institution' required onChange={e => setInstitution(e.target.value)}/>
+                        <input type='text' name='institution' maxlength='100' required onChange={e => setInstitution(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='title'>Título</label>
-                        <input type='text' name='title' required onChange={e => setTitle(e.target.value)}/>
+                        <input type='text' name='title' maxlength='100' required onChange={e => setTitle(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='beginDate'>Fecha de inicio</label>
-                        <input type='date' name='beginDate' required onChange={e => setBeginDate(e.target.value)}/>
+                        <input type='date' name='beginDate' required max={endDate ? dayBeforeEndDateDateFormated : null} onChange={e => setBeginDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='endDate'>Fecha fin</label>
-                        <input type='date' name='endDate' required onChange={e => setEndDate(e.target.value)}/>
+                        <input type='date' name='endDate' required min={beginDate ? dayAfterBeginDateDateFormated : null} onChange={e => setEndDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
@@ -83,7 +90,7 @@ export default function NewEducationRecordModal({showNewEducationRecordModal, se
                     setShowNewEducationRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    if (institution && title && beginDate && endDate && classification && state) {
+                    if (institution && title && beginDate && endDate && classification && state && endDate > beginDate) {
                         editEducationOrExperienceRecord('education', 'add', {
                             institution,
                             title,

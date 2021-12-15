@@ -22,6 +22,18 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
         setRequisites(null)
     }
 
+    const todayDate = Date.now()
+    const todayDateFormated = new Date(todayDate).toISOString().slice(0, 10)
+    const tomorrow = new Date(todayDate)
+    const tomorrowDate = new Date(tomorrow).setDate(tomorrow.getDate() + 1)
+    const tomorrowDateFormated = new Date(tomorrowDate).toISOString().slice(0, 10)
+    const dayAfterBeginDate = new Date(beginDate)
+    const dayAfterBeginDateDate = new Date(dayAfterBeginDate).setDate(dayAfterBeginDate.getDate() + 1)
+    const dayAfterBeginDateDateFormated = new Date(dayAfterBeginDateDate).toISOString().slice(0, 10)
+    const dayBeforeEndDate = new Date(endDate)
+    const dayBeforeEndDateDate = new Date(dayBeforeEndDate).setDate(dayBeforeEndDate.getDate() - 1)
+    const dayBeforeEndDateDateFormated = new Date(dayBeforeEndDateDate).toISOString().slice(0, 10)
+
     return (
         <Modal show={showNewVacancyRecordModal} onHide={() => setShowNewVacancyRecordModal(false)} className='newVacancyRecordModal'>
             <Modal.Header closeButton>
@@ -34,17 +46,17 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
-                        <input type='text' name='position' required onChange={e => setPosition(e.target.value)}/>
+                        <input type='text' name='position' maxlength='80' required onChange={e => setPosition(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='beginDate'>Fecha de inicio del proyecto</label>
-                        <input type='date' name='beginDate' required onChange={e => setBeginDate(e.target.value)}/>
+                        <input type='date' name='beginDate' required min={todayDateFormated} max={endDate ? dayBeforeEndDateDateFormated : null} onChange={e => setBeginDate(e.target.value)}/>
                     </div>
-
+                    
                     <div className='input-container'>
                         <label htmlFor='endDate'>Fecha fin  del proyecto</label>
-                        <input type='date' name='endDate' required onChange={e => setEndDate(e.target.value)}/>
+                        <input type='date' name='endDate' required min={beginDate ? dayAfterBeginDateDateFormated : tomorrowDateFormated} onChange={e => setEndDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
@@ -63,12 +75,12 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
 
                     <div className='input-container'>
                         <label htmlFor='detail'>Detalle de tareas</label>
-                        <textarea rows="5" cols="50" type='text' name='detail' required onChange={e => setDetail(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='detail' maxlength='1000' required onChange={e => setDetail(e.target.value)} />
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='requisites'>Requisitos</label>
-                        <textarea rows="5" cols="50" type='text' name='requisites' required onChange={e => setRequisites(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='requisites' maxlength='1000' required onChange={e => setRequisites(e.target.value)} />
                     </div>
 
                 </form>
@@ -79,7 +91,7 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
                     setShowNewVacancyRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    if (position && beginDate && endDate && classification && detail && requisites) {
+                    if (position && beginDate && endDate && classification && detail && requisites && endDate > beginDate) {
                         editVacanciesRecord('vacancies', 'add', {
                             position,
                             beginDate,

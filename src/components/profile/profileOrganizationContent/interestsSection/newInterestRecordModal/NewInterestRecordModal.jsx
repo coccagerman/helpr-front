@@ -11,6 +11,13 @@ export default function NewInterestRecordModal({showNewInterestRecordModal, setS
 
     const [interest, setInterest] = useState(null)
 
+    /* Temporary fix - Styles on CSS files not rendering on this field */
+    const inputStyle = {
+        width: '100%',
+        margin: '1rem 0',
+        padding: '.25rem'
+    }
+
     return (
         <Modal show={showNewInterestRecordModal} onHide={() => setShowNewInterestRecordModal(false)} className='newInterestRecordModal'>
             <Modal.Header closeButton>
@@ -21,7 +28,7 @@ export default function NewInterestRecordModal({showNewInterestRecordModal, setS
 
                     <div className='input-container'>
                         <label htmlFor='interest'>Detallar tus intereses ayudará a que los candidatos puedan entender mejor tu perfil y conocer el tipo de oportunidades que ofreces.</label>
-                        <select name='interest' id='interest' required onChange={e => setInterest(e.target.value)}>
+                        <select name='interest' id='interest' required style={inputStyle} onChange={e => setInterest(e.target.value)}>
                             <option value=''></option>
                             {availableInterests.map((interest, i) => <option value={interest} key={i}>{interest}</option>)}
                         </select>
