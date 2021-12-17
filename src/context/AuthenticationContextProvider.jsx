@@ -8,10 +8,17 @@ export default function AuthenticationContextProvider ({ children }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     /* Function that redirects the user from landingPage, login or register pages when already logged in. */
-    const checkIfAlreadyAuthenticatedAndRedirect = async () => {
-        let accessToken = localStorage.getItem('accessToken')
-        if (accessToken) {
+    const checkIfAlreadyAuthenticatedAndRedirect = async (urlJwt) => {
+        let accessToken
 
+        if (urlJwt) {
+            accessToken = urlJwt
+            localStorage.setItem('accessToken', urlJwt)
+        } else {
+            accessToken = localStorage.getItem('accessToken')
+        }
+
+        if (accessToken) {
             const response = await fetch('http://localhost:3001/users/validateToken', {
                 method: 'GET',
                 headers: {
@@ -31,7 +38,7 @@ export default function AuthenticationContextProvider ({ children }) {
 
     /* Function that redirects the user from private pages when not logged in. */
     const checkIfNotAuthenticatedAndRedirect = async () => {
-        let accessToken = localStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
         if (accessToken) {
 
             const response = await fetch('http://localhost:3001/users/validateToken', {
@@ -55,7 +62,7 @@ export default function AuthenticationContextProvider ({ children }) {
 
     /* Function checks if user is authenticated and changes global state. */
     const checkIfAuthenticatedAndChangeState = async () => {
-        let accessToken = localStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
         if (accessToken) {
 
             const response = await fetch('http://localhost:3001/users/validateToken', {

@@ -44,12 +44,12 @@ export default function NewExperienceRecordModal({showNewExperienceRecordModal, 
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
-                        <input type='text' name='position' maxlength='100' required onChange={e => setPosition(e.target.value)}/>
+                        <input type='text' name='position' maxLength='100' required onChange={e => setPosition(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='company'>Empresa</label>
-                        <input type='text' name='company' maxlength='100' required onChange={e => setCompany(e.target.value)}/>
+                        <input type='text' name='company' maxLength='100' required onChange={e => setCompany(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
@@ -64,7 +64,7 @@ export default function NewExperienceRecordModal({showNewExperienceRecordModal, 
 
                     <div className='input-container'>
                         <label htmlFor='description'>Descripción</label>
-                        <input type='text' name='description' maxlength='2000' required onChange={e => setDescription(e.target.value)}/>
+                        <input type='text' name='description' maxLength='2000' required onChange={e => setDescription(e.target.value)}/>
                     </div>
 
                 </form>

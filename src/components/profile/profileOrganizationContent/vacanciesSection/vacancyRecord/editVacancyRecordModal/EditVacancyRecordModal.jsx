@@ -46,7 +46,7 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
-                        <input type='text' name='position' defaultValue={position} maxlength='80' required onChange={e => setPosition(e.target.value)}/>
+                        <input type='text' name='position' defaultValue={position} maxLength='80' required onChange={e => setPosition(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
@@ -75,12 +75,12 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
 
                     <div className='input-container'>
                         <label htmlFor='detail'>Detalle de tareas</label>
-                        <textarea rows="5" cols="50" type='text' name='detail' defaultValue={detail} maxlength='1000' required onChange={e => setDetail(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='detail' defaultValue={detail} maxLength='1000' required onChange={e => setDetail(e.target.value)} />
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='requisites'>Requisitos</label>
-                        <textarea rows="5" cols="50" type='text' name='requisites' defaultValue={requisites} maxlength='1000' required onChange={e => setRequisites(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='requisites' defaultValue={requisites} maxLength='1000' required onChange={e => setRequisites(e.target.value)} />
                     </div>
 
                 </form>

@@ -78,10 +78,14 @@ export default function LoginPage() {
                     <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
                     <p>Ingresá con Google</p>
                 </article>
-                <article>
-                    <Icon className='icon' icon='akar-icons:facebook-fill' color='#406bc8'/>
-                    <p>Ingresá con Facebook</p>
-                </article>
+
+                <a href='http://localhost:3001/users/facebooklogin'>
+                    <article>
+                        <Icon className='icon' icon='akar-icons:facebook-fill' color='#406bc8'/>
+                        <p>Ingresá con Facebook</p>
+                    </article>
+                </a>
+
                 <article>
                     <Icon className='icon' icon='ant-design:twitter-circle-filled' color='#406bc8'/>
                     <p>Ingresá con Twitter</p>

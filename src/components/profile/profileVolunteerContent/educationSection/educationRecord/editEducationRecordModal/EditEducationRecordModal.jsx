@@ -44,12 +44,12 @@ export default function EditEducationRecordModal({showEditEducationRecordModal, 
 
                     <div className='input-container'>
                         <label htmlFor='institution'>Institución</label>
-                        <input type='text' name='institution' defaultValue={institution} maxlength='100' required onChange={e => setInstitution(e.target.value)}/>
+                        <input type='text' name='institution' defaultValue={institution} maxLength='100' required onChange={e => setInstitution(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='title'>Título</label>
-                        <input type='text' name='title' defaultValue={title} maxlength='100' required onChange={e => setTitle(e.target.value)}/>
+                        <input type='text' name='title' defaultValue={title} maxLength='100' required onChange={e => setTitle(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>

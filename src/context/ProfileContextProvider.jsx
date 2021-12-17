@@ -13,7 +13,7 @@ export default function ProfileContextProvider ({ children }) {
     /* Fetch general profile data */
     const fetchProfileData = async () => {
         if (!profileData) {
-            let accessToken = localStorage.getItem('accessToken')
+            const accessToken = localStorage.getItem('accessToken')
 
             const response = await fetch('http://localhost:3001/profile', {
                 method: 'GET',
@@ -31,7 +31,7 @@ export default function ProfileContextProvider ({ children }) {
 
     /* Edit general profile data */
     const editUserRecord = async (fieldToEdit, fieldData, queryType) => {
-        let accessToken = localStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
 
         const editionResponse = await fetch('http://localhost:3001/profile', {
             method: 'PUT',
@@ -67,7 +67,7 @@ export default function ProfileContextProvider ({ children }) {
 
     /* Edit profile picture */
     const editProfilePicture = async (profilePicture) => {
-        let accessToken = localStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
 
         const editionRresponse = await fetch('http://localhost:3001/profile/profilePicture', {
             method: 'POST',
@@ -100,7 +100,7 @@ export default function ProfileContextProvider ({ children }) {
 
     /* Fetch profile picture */
     const fetchProfilePicture = async () => {
-        let accessToken = localStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
 
         const response = await fetch('http://localhost:3001/profile/profilePicture', {
             method: 'GET',
@@ -118,7 +118,7 @@ export default function ProfileContextProvider ({ children }) {
     /* Fetch education data */
     const fetchEducationRecords = async () => {
         if (!educationRecords) {
-            let accessToken = localStorage.getItem('accessToken')
+            const accessToken = localStorage.getItem('accessToken')
 
             const response = await fetch('http://localhost:3001/profile/educationRecords', {
                 method: 'GET',
@@ -137,7 +137,7 @@ export default function ProfileContextProvider ({ children }) {
     /* Fetch experience data */
     const fetchExperienceRecords = async () => {
         if (!educationRecords) {
-            let accessToken = localStorage.getItem('accessToken')
+            const accessToken = localStorage.getItem('accessToken')
 
             const response = await fetch('http://localhost:3001/profile/experienceRecords', {
                 method: 'GET',
@@ -155,7 +155,7 @@ export default function ProfileContextProvider ({ children }) {
 
     /* Fetch experience data */
     const fetchVacanciesRecords = async () => {
-        let accessToken = localStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
 
         if (!vacanciesRecords) {
             const response = await fetch('http://localhost:3001/profile/vacanciesRecords', {
@@ -174,7 +174,7 @@ export default function ProfileContextProvider ({ children }) {
 
     /* Edit education or experience data */
     const editEducationOrExperienceRecord = async (fieldToEdit, queryType, fieldData) => {
-        let accessToken = localStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
 
         const editionResponse = await fetch('http://localhost:3001/profile', {
             method: 'PUT',
@@ -211,7 +211,7 @@ export default function ProfileContextProvider ({ children }) {
 
     /* Edit vacancies data */
     const editVacanciesRecord = async (fieldToEdit, queryType, fieldData) => {
-        let accessToken = localStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
 
         const editionResponse = await fetch('http://localhost:3001/profile', {
             method: 'PUT',

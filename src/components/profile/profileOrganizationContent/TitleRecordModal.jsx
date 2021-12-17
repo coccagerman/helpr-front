@@ -27,7 +27,7 @@ export default function TitleRecordModal({showTitleRecordModal, setShowTitleReco
                     <form>
                         <div className='input-container'>
                             <label htmlFor='about'>El titular aparecerá en tu perfil debajo de tu nombre. Aprovecha este espacio para presentarte brevemente como organización o persona. Por ejemplo: "Agencia de marketing digital" o "Ingeniero de software".</label>
-                            <input type='text' className='textarea' name='about' defaultValue={profileData.title} style={inputStyle} maxlength='100' onChange={e => setTitle(e.target.value)}/>
+                            <input type='text' className='textarea' name='about' defaultValue={profileData.title} style={inputStyle} maxLength='100' onChange={e => setTitle(e.target.value)}/>
                         </div>
                     </form>    
                 </Modal.Body>

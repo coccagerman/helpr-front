@@ -46,7 +46,7 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
-                        <input type='text' name='position' maxlength='80' required onChange={e => setPosition(e.target.value)}/>
+                        <input type='text' name='position' maxLength='80' required onChange={e => setPosition(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
@@ -75,12 +75,12 @@ export default function NewVacancyRecordModal({showNewVacancyRecordModal, setSho
 
                     <div className='input-container'>
                         <label htmlFor='detail'>Detalle de tareas</label>
-                        <textarea rows="5" cols="50" type='text' name='detail' maxlength='1000' required onChange={e => setDetail(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='detail' maxLength='1000' required onChange={e => setDetail(e.target.value)} />
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='requisites'>Requisitos</label>
-                        <textarea rows="5" cols="50" type='text' name='requisites' maxlength='1000' required onChange={e => setRequisites(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='requisites' maxLength='1000' required onChange={e => setRequisites(e.target.value)} />
                     </div>
 
                 </form>
