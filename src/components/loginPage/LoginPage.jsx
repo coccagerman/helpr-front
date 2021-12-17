@@ -74,22 +74,27 @@ export default function LoginPage() {
             <h2>O ingresá con alguna de estas opciones:</h2>
 
             <div className='loginMethods'>
-                <article>
-                    <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
-                    <p>Ingresá con Google</p>
-                </article>
+                {/* <a href='http://localhost:3001/users/googleAuth'> */}
+                    <article>
+                        <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
+                        <p>Ingresá con Google</p>
+                    </article>
+                {/* </a> */}
 
-                <a href='http://localhost:3001/users/facebooklogin'>
+                <a href='http://localhost:3001/users/facebookAuth'>
                     <article>
                         <Icon className='icon' icon='akar-icons:facebook-fill' color='#406bc8'/>
                         <p>Ingresá con Facebook</p>
                     </article>
                 </a>
 
-                <article>
-                    <Icon className='icon' icon='ant-design:twitter-circle-filled' color='#406bc8'/>
-                    <p>Ingresá con Twitter</p>
-                </article>
+                <a href='http://localhost:3001/users/twitterAuth'>
+                    <article>
+                        <Icon className='icon' icon='ant-design:twitter-circle-filled' color='#406bc8'/>
+                        <p>Ingresá con Twitter</p>
+                    </article>
+                </a>
+
             </div>
 
             <LoginPageModal showLoginPageModal={showLoginPageModal} setShowLoginPageModal={setShowLoginPageModal} />

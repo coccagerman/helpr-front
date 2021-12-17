@@ -116,22 +116,27 @@ export default function RegisterPage() {
             <h2>O registrate con alguna de estas opciones:</h2>
 
             <div className='registerMethods'>
-                <article>
-                    <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
-                    <p>Registrate con Google</p>
-                </article>
+                {/* <a href='http://localhost:3001/users/googleAuth'> */}
+                    <article>
+                        <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
+                        <p>Registrate con Google</p>
+                    </article>
+                {/* </a> */}
 
-                <a href='http://localhost:3001/users/facebooklogin'>
+                <a href='http://localhost:3001/users/facebookAuth'>
                     <article>
                         <Icon className='icon' icon='akar-icons:facebook-fill' color='#406bc8'/>
                         <p>Registrate con Facebook</p>
                     </article>
                 </a>
                 
-                <article>
-                    <Icon className='icon' icon='ant-design:twitter-circle-filled' color='#406bc8'/>
-                    <p>Registrate con Twitter</p>
-                </article>
+                <a href='http://localhost:3001/users/twitterAuth'>
+                    <article>
+                        <Icon className='icon' icon='ant-design:twitter-circle-filled' color='#406bc8'/>
+                        <p>Registrate con Twitter</p>
+                    </article>
+                </a>
+
             </div>
 
             <RegisterPageModal showRegisterPageModal={showRegisterPageModal} setShowRegisterPageModal={setShowRegisterPageModal} registerPageModalMessage={registerPageModalMessage} registerPageModalTypeSuccess={registerPageModalTypeSuccess} />
