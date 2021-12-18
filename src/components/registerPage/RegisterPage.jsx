@@ -116,12 +116,12 @@ export default function RegisterPage() {
             <h2>O registrate con alguna de estas opciones:</h2>
 
             <div className='registerMethods'>
-                {/* <a href='http://localhost:3001/users/googleAuth'> */}
+                <a href='http://localhost:3001/users/googleAuth'>
                     <article>
                         <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
                         <p>Registrate con Google</p>
                     </article>
-                {/* </a> */}
+                </a>
 
                 <a href='http://localhost:3001/users/facebookAuth'>
                     <article>

@@ -74,12 +74,12 @@ export default function LoginPage() {
             <h2>O ingresá con alguna de estas opciones:</h2>
 
             <div className='loginMethods'>
-                {/* <a href='http://localhost:3001/users/googleAuth'> */}
+                <a href='http://localhost:3001/users/googleAuth'>
                     <article>
                         <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
                         <p>Ingresá con Google</p>
                     </article>
-                {/* </a> */}
+                </a>
 
                 <a href='http://localhost:3001/users/facebookAuth'>
                     <article>
