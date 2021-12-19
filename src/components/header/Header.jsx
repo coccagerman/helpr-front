@@ -22,7 +22,9 @@ export default function Header() {
                         <Icon className='icon' icon='ic:baseline-notifications' color='#3a53b7' />
                     </article>
                     <article>
-                        <Icon className='icon' icon='entypo:suitcase' color='#3a53b7' />
+                        <Link to='/searchJobs'>
+                            <Icon className='icon' icon='entypo:suitcase' color='#3a53b7' />
+                        </Link>
                     </article>
                     <article>
 

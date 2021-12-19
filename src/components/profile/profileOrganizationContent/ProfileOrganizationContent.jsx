@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import ProfileContext from '../../../context/ProfileContext'
 
 import AboutSection from './aboutSection/AboutSection'
-import VacanciesSection from './vacanciesSection/VacanciesSection'
+import JobsSection from './jobsSection/JobsSection'
 import InterestsSection from './interestsSection/interestsSection'
 import TitleRecordModal from './TitleRecordModal'
 import ProfilePictureModal from './ProfilePictureModal'
@@ -37,7 +37,7 @@ export default function ProfileOrganizationContent() {
 
             <AboutSection />
 
-            <VacanciesSection />
+            <JobsSection />
 
             <InterestsSection />
 

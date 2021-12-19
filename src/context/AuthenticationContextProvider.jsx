@@ -31,7 +31,7 @@ export default function AuthenticationContextProvider ({ children }) {
             const data = await response.json()
 
             if (data === 'Valid token') {
-                window.location = 'http://localhost:3000/profile'
+                window.location = 'http://localhost:3000/selectAccountType'
             }
         }
     }

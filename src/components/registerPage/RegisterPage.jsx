@@ -73,7 +73,7 @@ export default function RegisterPage() {
             <h1>Creá tu cuenta en Helpr!</h1>
 
             <div className='horizontal-division'>
-                <form action='http://localhost:3001/users/register' method='POST'>
+                <form>
                     <article className='input-container'>
                         <label htmlFor='name'>Nombre</label>
                         <input type='text' id='name' name='name' required onChange={e => setName(e.target.value)}/>

@@ -1,25 +1,25 @@
 import Modal from 'react-bootstrap/Modal'
 import { useContext, useState } from 'react'
-import ProfileContext from '../../../../../../context/ProfileContext'
+import ProfileContext from '../../../../../context/ProfileContext'
 
-export default function EditVacancyRecordModal({showEditVacancyRecordModal, setShowEditVacancyRecordModal, record}) {
+export default function NewJobRecordModal({showNewJobRecordModal, setShowNewJobRecordModal}) {
 
-    const { editVacanciesRecord } = useContext(ProfileContext)
+    const { editJobsRecord } = useContext(ProfileContext)
 
-    const [position, setPosition] = useState(record.position)
-    const [beginDate, setBeginDate] = useState(record.beginDate)
-    const [endDate, setEndDate] = useState(record.endDate)
-    const [classification, setClassification] = useState(record.classification)
-    const [detail, setDetail] = useState(record.detail)
-    const [requisites, setRequisites] = useState(record.requisites)
-
+    const [position, setPosition] = useState(null)
+    const [beginDate, setBeginDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
+    const [classification, setClassification] = useState('Desarrollo de software')
+    const [detail, setDetail] = useState(null)
+    const [requisites, setRequisites] = useState(null)
+    
     const cancelUnsavedChanges = () => {
-        setPosition(record.position)
-        setBeginDate(new Date(record.beginDate).toISOString().slice(0, 10))
-        setEndDate(new Date(record.endDate).toISOString().slice(0, 10))
-        setClassification(record.classification)
-        setDetail(record.detail)
-        setRequisites(record.requisites)
+        setPosition(null)
+        setBeginDate(null)
+        setEndDate(null)
+        setClassification('Desarrollo de software')
+        setDetail(null)
+        setRequisites(null)
     }
 
     const todayDate = Date.now()
@@ -30,14 +30,14 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
     const dayAfterBeginDate = new Date(beginDate)
     const dayAfterBeginDateDate = new Date(dayAfterBeginDate).setDate(dayAfterBeginDate.getDate() + 1)
     const dayAfterBeginDateDateFormated = new Date(dayAfterBeginDateDate).toISOString().slice(0, 10)
+    const dayBeforeEndDate = new Date(endDate)
+    const dayBeforeEndDateDate = new Date(dayBeforeEndDate).setDate(dayBeforeEndDate.getDate() - 1)
+    const dayBeforeEndDateDateFormated = new Date(dayBeforeEndDateDate).toISOString().slice(0, 10)
 
     return (
-        <Modal show={showEditVacancyRecordModal} className='editVacancyRecordModal' onHide={() => {
-            cancelUnsavedChanges()
-            setShowEditVacancyRecordModal(false)
-        }}>
+        <Modal show={showNewJobRecordModal} onHide={() => setShowNewJobRecordModal(false)} className='newJobRecordModal'>
             <Modal.Header closeButton>
-                <Modal.Title>Editar registro de educación</Modal.Title>
+                <Modal.Title>Nueva vacante disponible</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <p>Por favor completá todos los campos.</p>
@@ -46,22 +46,22 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
 
                     <div className='input-container'>
                         <label htmlFor='position'>Posición</label>
-                        <input type='text' name='position' defaultValue={position} maxLength='80' required onChange={e => setPosition(e.target.value)}/>
+                        <input type='text' name='position' maxLength='80' required onChange={e => setPosition(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='beginDate'>Fecha de inicio del proyecto</label>
-                        <input type='date' name='beginDate' defaultValue={beginDate} min={todayDateFormated} required onChange={e => setBeginDate(e.target.value)}/>
+                        <input type='date' name='beginDate' required min={todayDateFormated} max={endDate ? dayBeforeEndDateDateFormated : null} onChange={e => setBeginDate(e.target.value)}/>
                     </div>
-
+                    
                     <div className='input-container'>
-                        <label htmlFor='endDate'>Fecha fin del proyecto</label>
-                        <input type='date' name='endDate' defaultValue={endDate} min={beginDate ? dayAfterBeginDateDateFormated : tomorrowDateFormated} required onChange={e => setEndDate(e.target.value)}/>
+                        <label htmlFor='endDate'>Fecha fin  del proyecto</label>
+                        <input type='date' name='endDate' required min={beginDate ? dayAfterBeginDateDateFormated : tomorrowDateFormated} onChange={e => setEndDate(e.target.value)}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='classification'>Clasificación</label>
-                        <select name='classification' defaultValue={classification} required onChange={e => setClassification(e.target.value)}>
+                        <select name='classification' required onChange={e => setClassification(e.target.value)}>
                             <option value='Desarrollo de software'>Desarrollo de software</option>
                             <option value='Diseño e ilustración'>Diseño e ilustración</option>
                             <option value='Educación'>Educación</option>
@@ -75,12 +75,12 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
 
                     <div className='input-container'>
                         <label htmlFor='detail'>Detalle de tareas</label>
-                        <textarea rows="5" cols="50" type='text' name='detail' defaultValue={detail} maxLength='1000' required onChange={e => setDetail(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='detail' maxLength='1000' required onChange={e => setDetail(e.target.value)} />
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor='requisites'>Requisitos</label>
-                        <textarea rows="5" cols="50" type='text' name='requisites' defaultValue={requisites} maxLength='1000' required onChange={e => setRequisites(e.target.value)} />
+                        <textarea rows="5" cols="50" type='text' name='requisites' maxLength='1000' required onChange={e => setRequisites(e.target.value)} />
                     </div>
 
                 </form>
@@ -88,12 +88,11 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
             <Modal.Footer>
                 <button className='btn btn-secondary' onClick={() => {
                     cancelUnsavedChanges()
-                    setShowEditVacancyRecordModal(false)
+                    setShowNewJobRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
                     if (position && beginDate && endDate && classification && detail && requisites && endDate > beginDate) {
-                        editVacanciesRecord('vacancies', 'edit', {
-                            recordId: record._id,
+                        editJobsRecord('jobs', 'add', {
                             position,
                             beginDate,
                             endDate,
@@ -101,8 +100,8 @@ export default function EditVacancyRecordModal({showEditVacancyRecordModal, setS
                             detail,
                             requisites
                         })
-                        setShowEditVacancyRecordModal(false)
-                }}}>Guardar</button>                
+                        setShowNewJobRecordModal(false)
+                }}}>Guardar</button>
             </Modal.Footer>
         </Modal>
     )

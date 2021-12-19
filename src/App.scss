@@ -20,6 +20,9 @@
 @import './components/loginPage/loginPage.scss';
 @import './components/loginPage/loginPageModal/loginPageModal.scss';
 
+/* Select account type */
+@import './components/selectAccountType/selectAccountType.scss';
+
 /* Profile - Volunteer */
 @import './components/profile/profileVolunteerContent/profileVolunteerContent.scss';
 @import './components/profile/profileVolunteerContent/titleRecordModal.scss';
@@ -53,10 +56,10 @@
 /* Profile - Organization - About */
 @import './components/profile/profileOrganizationContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
 
-/* Profile - Organization - Vacancies */
-@import './components/profile/profileOrganizationContent/vacanciesSection/vacancyRecord/vacancyRecord.scss';
-@import './components/profile/profileOrganizationContent/vacanciesSection/newVacancyRecordModal/newVacancyRecordModal.scss';
-@import './components/profile/profileOrganizationContent/vacanciesSection/vacancyRecord/editVacancyRecordModal/editVacancyRecordModal.scss';
+/* Profile - Organization - Jobs */
+@import './components/profile/profileOrganizationContent/jobsSection/jobRecord/jobRecord.scss';
+@import './components/profile/profileOrganizationContent/jobsSection/newJobRecordModal/newJobRecordModal.scss';
+@import './components/profile/profileOrganizationContent/jobsSection/jobRecord/editJobRecordModal/editJobRecordModal.scss';
 
 /* Search jobs */
 @import './components/searchJobs/searchJobs.scss';

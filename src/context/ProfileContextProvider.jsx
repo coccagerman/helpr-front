@@ -7,7 +7,7 @@ export default function ProfileContextProvider ({ children }) {
     const [profilePicture, setProfilePicture] = useState(null)
     const [educationRecords, setEducationRecords] = useState(null)
     const [experienceRecords, setExperienceRecords] = useState(null)
-    const [vacanciesRecords, setVacanciesRecords] = useState(null)
+    const [jobsRecords, setJobsRecords] = useState(null)
     const [showProfilePictureErrorModal, setShowProfilePictureErrorModal] = useState(false)
 
     /* Fetch general profile data */
@@ -60,8 +60,10 @@ export default function ProfileContextProvider ({ children }) {
             })
 
             const data = await response.json()
-            setProfileData(data)
-
+            setProfileData(data) 
+            return true
+        } else {
+            return false
         }
     }
 
@@ -153,12 +155,12 @@ export default function ProfileContextProvider ({ children }) {
         }
     }
 
-    /* Fetch experience data */
-    const fetchVacanciesRecords = async () => {
+    /* Fetch job records */
+    const fetchJobsRecords = async () => {
         const accessToken = localStorage.getItem('accessToken')
 
-        if (!vacanciesRecords) {
-            const response = await fetch('http://localhost:3001/profile/vacanciesRecords', {
+        if (!jobsRecords) {
+            const response = await fetch('http://localhost:3001/profile/JobRecords', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -168,7 +170,7 @@ export default function ProfileContextProvider ({ children }) {
             })
 
             const data = await response.json()
-            setVacanciesRecords(data)
+            setJobsRecords(data)
         }
     }
 
@@ -209,8 +211,8 @@ export default function ProfileContextProvider ({ children }) {
         }
     }
 
-    /* Edit vacancies data */
-    const editVacanciesRecord = async (fieldToEdit, queryType, fieldData) => {
+    /* Edit jobs data */
+    const editJobsRecord = async (fieldToEdit, queryType, fieldData) => {
         const accessToken = localStorage.getItem('accessToken')
 
         const editionResponse = await fetch('http://localhost:3001/profile', {
@@ -231,7 +233,7 @@ export default function ProfileContextProvider ({ children }) {
 
         if (editionData === 'Successful edition') {
             
-            const response = await fetch('http://localhost:3001/profile/vacanciesRecords', {
+            const response = await fetch('http://localhost:3001/profile/jobRecords', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -241,7 +243,7 @@ export default function ProfileContextProvider ({ children }) {
             })
 
             const data = await response.json()
-            setVacanciesRecords(data)
+            setJobsRecords(data)
         }
     }
 
@@ -260,10 +262,10 @@ export default function ProfileContextProvider ({ children }) {
             fetchEducationRecords,
             fetchExperienceRecords,
             editEducationOrExperienceRecord,
-            editVacanciesRecord,
-            fetchVacanciesRecords,
-            vacanciesRecords,
-            setVacanciesRecords
+            editJobsRecord,
+            fetchJobsRecords,
+            jobsRecords,
+            setJobsRecords
         }} >
             {children}
         </ProfileContext.Provider>

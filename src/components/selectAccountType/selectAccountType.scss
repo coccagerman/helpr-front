@@ -1,0 +1,13 @@
+.selectAccountType {
+    padding: 12rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.2rem;
+        margin: 2rem 0;
+    }
+}

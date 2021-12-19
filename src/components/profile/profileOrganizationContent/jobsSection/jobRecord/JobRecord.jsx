@@ -1,18 +1,18 @@
 import { Icon } from '@iconify/react'
 import { useState } from 'react'
-import EditVacancyRecordModal from './editVacancyRecordModal/EditVacancyRecordModal'
-import DeleteVacancyRecordModal from './deleteVacancyRecordModal/DeleteVacancyRecordModal'
+import EditJobRecordModal from './editJobRecordModal/EditJobRecordModal'
+import DeleteJobRecordModal from './deleteJobRecordModal/DeleteJobRecordModal'
 
-export default function VacancyRecord ({record}) {
+export default function JobRecord ({record}) {
 
-    const [showEditVacancyRecordModal, setShowEditVacancyRecordModal] = useState(false)
-    const [showDeleteVacancyRecordModal, setShowDeleteVacancyRecordModal] = useState(false)
+    const [showEditJobRecordModal, setShowEditJobRecordModal] = useState(false)
+    const [showDeleteJobRecordModal, setShowDeleteJobRecordModal] = useState(false)
 
     return (
-        <article className='vacancyRecord'>
+        <article className='jobRecord'>
             <div className='icon-container'>
-                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEditVacancyRecordModal(true)} />
-                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowDeleteVacancyRecordModal(true)} />
+                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEditJobRecordModal(true)} />
+                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowDeleteJobRecordModal(true)} />
             </div>
 
             <div className='horizontal-container'>
@@ -57,8 +57,8 @@ export default function VacancyRecord ({record}) {
                 <p>Ver candidatos</p>
             </div>
 
-            <EditVacancyRecordModal showEditVacancyRecordModal={showEditVacancyRecordModal} setShowEditVacancyRecordModal={setShowEditVacancyRecordModal} record={record} />
-            <DeleteVacancyRecordModal showDeleteVacancyRecordModal={showDeleteVacancyRecordModal} setShowDeleteVacancyRecordModal={setShowDeleteVacancyRecordModal} record={record} />
+            <EditJobRecordModal showEditJobRecordModal={showEditJobRecordModal} setShowEditJobRecordModal={setShowEditJobRecordModal} record={record} />
+            <DeleteJobRecordModal showDeleteJobRecordModal={showDeleteJobRecordModal} setShowDeleteJobRecordModal={setShowDeleteJobRecordModal} record={record} />
         </article>
     )
 }

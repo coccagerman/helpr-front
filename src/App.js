@@ -6,6 +6,7 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import LandingPage from './components/landingPage/LandingPage'
 import RegisterPage from './components/registerPage/RegisterPage'
+import SelectAccountType from './components/selectAccountType/SelectAccountType'
 import LoginPage from './components/loginPage/LoginPage'
 import Profile from './components/profile/Profile'
 import SearchJobs from './components/searchJobs/SearchJobs'
@@ -43,6 +44,10 @@ export default function App() {
           <ProfileContextProvider>
             <Route path='/profile'>
               <Profile/>
+            </Route>
+
+            <Route path='/selectAccountType'>
+              <SelectAccountType/>
             </Route>
           </ProfileContextProvider>
 
