@@ -7,32 +7,20 @@ export default function NewJobRecordModal({showNewJobRecordModal, setShowNewJobR
     const { editJobsRecord } = useContext(ProfileContext)
 
     const [position, setPosition] = useState(null)
-    const [beginDate, setBeginDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
+    const [hourDedication, setHourDedication] = useState('Part time')
+    const [projectDuration, setProjectDuration] = useState('Menos de 3 días')
     const [classification, setClassification] = useState('Desarrollo de software')
     const [detail, setDetail] = useState(null)
     const [requisites, setRequisites] = useState(null)
     
     const cancelUnsavedChanges = () => {
         setPosition(null)
-        setBeginDate(null)
-        setEndDate(null)
+        setHourDedication('Part time')
+        setProjectDuration('Menos de 3 días')
         setClassification('Desarrollo de software')
         setDetail(null)
         setRequisites(null)
     }
-
-    const todayDate = Date.now()
-    const todayDateFormated = new Date(todayDate).toISOString().slice(0, 10)
-    const tomorrow = new Date(todayDate)
-    const tomorrowDate = new Date(tomorrow).setDate(tomorrow.getDate() + 1)
-    const tomorrowDateFormated = new Date(tomorrowDate).toISOString().slice(0, 10)
-    const dayAfterBeginDate = new Date(beginDate)
-    const dayAfterBeginDateDate = new Date(dayAfterBeginDate).setDate(dayAfterBeginDate.getDate() + 1)
-    const dayAfterBeginDateDateFormated = new Date(dayAfterBeginDateDate).toISOString().slice(0, 10)
-    const dayBeforeEndDate = new Date(endDate)
-    const dayBeforeEndDateDate = new Date(dayBeforeEndDate).setDate(dayBeforeEndDate.getDate() - 1)
-    const dayBeforeEndDateDateFormated = new Date(dayBeforeEndDateDate).toISOString().slice(0, 10)
 
     return (
         <Modal show={showNewJobRecordModal} onHide={() => setShowNewJobRecordModal(false)} className='newJobRecordModal'>
@@ -50,13 +38,22 @@ export default function NewJobRecordModal({showNewJobRecordModal, setShowNewJobR
                     </div>
 
                     <div className='input-container'>
-                        <label htmlFor='beginDate'>Fecha de inicio del proyecto</label>
-                        <input type='date' name='beginDate' required min={todayDateFormated} max={endDate ? dayBeforeEndDateDateFormated : null} onChange={e => setBeginDate(e.target.value)}/>
+                        <label htmlFor='hourDedication'>Dedicación horaria</label>
+                        <select name='hourDedication' required onChange={e => setHourDedication(e.target.value)}>
+                            <option value='Part time'>Part time</option>
+                            <option value='Full time'>Full time</option>
+                        </select>
                     </div>
-                    
+
                     <div className='input-container'>
-                        <label htmlFor='endDate'>Fecha fin  del proyecto</label>
-                        <input type='date' name='endDate' required min={beginDate ? dayAfterBeginDateDateFormated : tomorrowDateFormated} onChange={e => setEndDate(e.target.value)}/>
+                        <label htmlFor='projectDuration'>Duración del proyecto</label>
+                        <select name='projectDuration' required onChange={e => setProjectDuration(e.target.value)}>
+                            <option value='Menos de 3 días'>Menos de 3 días</option>
+                            <option value='De 4 a 10 días'>De 4 a 10 días</option>
+                            <option value='De 11 a 20 días'>De 11 a 20 días</option>
+                            <option value='De 21 a 3 meses'>De 21 a 3 meses</option>
+                            <option value='Más de 3 meses'>Más de 3 meses</option>
+                        </select>
                     </div>
 
                     <div className='input-container'>
@@ -91,11 +88,12 @@ export default function NewJobRecordModal({showNewJobRecordModal, setShowNewJobR
                     setShowNewJobRecordModal(false)
                 }}>Cancelar</button>
                 <button className='btn btn-primary' onClick={() => {
-                    if (position && beginDate && endDate && classification && detail && requisites && endDate > beginDate) {
+                    if (position && hourDedication && projectDuration && classification && detail && requisites) {
                         editJobsRecord('jobs', 'add', {
+                            publishedDate: Date.now(),
                             position,
-                            beginDate,
-                            endDate,
+                            hourDedication,
+                            projectDuration,
                             classification,
                             detail,
                             requisites

@@ -1,22 +1,23 @@
 import { Link } from 'react-router-dom'
 
-export default function JobRecord() {
-
+export default function JobRecord({record}) {
+    console.log(record)
     return (
-        <article className='jobRecord'>
-            <h2>Front end developer</h2>
-            <h3>MercadoPrivado</h3>
+        <article className='jobRecord-searchResult'>
+            <h2>{record.position}</h2>
+            <h3>{record.publisher.name}</h3>
 
             <div className='horizontalDivision'>
                 <div className='details'>
-                    <p><span>Clasificación:</span> Desarrollo de software</p>
-                    <p><span>Dedicación horaria:</span> Part time</p>
-                    <p><span>Duración del proyecto:</span> 3 semanas</p>
-                    <p><span>Fecha de publicación:</span> 24/11/2021</p>
+                    <p><span>Clasificación:</span> {record.classification}</p>
+                    <p><span>Dedicación horaria:</span> {record.hourDedication}</p>
+                    <p><span>Duración del proyecto:</span> {record.projectDuration}</p>
+                    <p><span>Fecha de publicación:</span> {new Date(record.publishedDate).toISOString().slice(0, 10)}</p>
                 </div>
 
-                <Link to='/jobDetail'><button className='btn btn-secondary'>Postular</button></Link>
+                <Link to={`/jobDetail/${record._id}`}><button className='btn btn-secondary'>Postular</button></Link>
             </div>
         </article>
     )
 }
+

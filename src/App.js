@@ -29,7 +29,7 @@ export default function App() {
             <SearchJobs/>
           </Route>
 
-          <Route path='/jobDetail'>
+          <Route path='/jobDetail/:jobRecordId'>
             <JobDetail/>
           </Route>
 

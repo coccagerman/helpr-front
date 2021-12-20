@@ -1,8 +1,7 @@
 export default function SearchForm() {
 
     return (
-        <form>
-
+        <form className='searchForm'>
             <div className='form-input nameSearch'>
                 <label htmlFor='name'>Nombre de posición u organización</label>
                 <input type='text' />
@@ -47,11 +46,11 @@ export default function SearchForm() {
                     <label htmlFor='projectDuration'>Duración del proyecto</label>
                     <select name='projectDuration' id='projectDuration'>
                         <option value=''></option>
-                        <option value='partTime'>Menos de 3 días</option>
-                        <option value='fullTime'>De 4 a 10 días</option>
-                        <option value='fullTime'>De 11 a 20 días</option>
-                        <option value='fullTime'>De 21 a 3 meses</option>
-                        <option value='fullTime'>Más de 3 meses</option>
+                        <option value='Menos de 3 días'>Menos de 3 días</option>
+                        <option value='De 4 a 10 días'>De 4 a 10 días</option>
+                        <option value='De 11 a 20 días'>De 11 a 20 días</option>
+                        <option value='De 21 a 3 meses'>De 21 a 3 meses</option>
+                        <option value='Más de 3 meses'>Más de 3 meses</option>
                     </select>
                 </div>
 
@@ -74,7 +73,6 @@ export default function SearchForm() {
             </div>
 
             <button type='submit' className='btn btn-primary'>Buscar</button>
-
         </form>
     )
 }

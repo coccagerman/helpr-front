@@ -30,13 +30,18 @@ export default function JobRecord ({record}) {
 
                 <div className='horizontal-division'>
                     <div className='record-data'>
-                        <h3>Fecha inicio del proyecto:</h3>
-                        <p>{record.beginDate ? new Date(record.beginDate).toISOString().slice(0, 10) : null}</p>
+                        <h3>Fecha de publicación:</h3>
+                        <p>{record.publishedDate ? new Date(record.publishedDate).toISOString().slice(0, 10) : null}</p>
                     </div>
 
                     <div className='record-data'>
-                        <h3>Fecha fin del proyecto:</h3>
-                        <p>{record.endDate ? new Date(record.endDate).toISOString().slice(0, 10) : null}</p>
+                        <h3>Dedicación horaria:</h3>
+                        <p>{record.hourDedication ? record.hourDedication : null}</p>
+                    </div>
+
+                    <div className='record-data'>
+                        <h3>Duración del proyecto:</h3>
+                        <p>{record.projectDuration ? record.projectDuration : null}</p>
                     </div>
                 </div>
             </div>
@@ -51,10 +56,10 @@ export default function JobRecord ({record}) {
                 <p>{record.requisites ? record.requisites : null}</p>
             </div>
 
-            <div className='record-data'>
+            <div className='record-data candidates'>
                 <h3>Candidatos postulados:</h3>
-                <p>3</p>
-                <p>Ver candidatos</p>
+                <p>3 (FIX ME - TEMPORARY MOCK)</p>
+                <a href='#'>Ver candidatos</a>
             </div>
 
             <EditJobRecordModal showEditJobRecordModal={showEditJobRecordModal} setShowEditJobRecordModal={setShowEditJobRecordModal} record={record} />

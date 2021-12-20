@@ -1,10 +1,11 @@
 .jobRecord {
 background-color: $helpr-lightGreyBackground;
-padding: 2rem;
+padding: 2rem !important;
 margin: 1rem 0;
 border-radius: 1rem;
 position: relative;
 width: 100% !important;
+cursor: default !important;
 
     .icon-container {
         display: flex;
@@ -20,10 +21,6 @@ width: 100% !important;
     }
 
     .horizontal-container {
-        display: flex;
-        justify-content: space-between;
-        width: 80%;
-
         .horizontal-division {
             .record-data {
                 display: flex;
@@ -43,6 +40,7 @@ width: 100% !important;
 
     .record-data {
         align-items: center;
+        text-align: center;
         margin-top: 1rem;
         
         h3 {
@@ -50,6 +48,16 @@ width: 100% !important;
         }
         p {
             margin: 0;
+        }
+    }
+
+    .candidates {
+        display: flex;
+        align-items: center;
+
+        p, a {
+            margin: 0 1rem;
+            font-size: 1.15rem;
         }
     }
 }

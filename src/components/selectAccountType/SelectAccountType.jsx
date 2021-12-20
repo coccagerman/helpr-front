@@ -13,7 +13,7 @@ export default function SelectAccountType() {
 
     useEffect(() => {
         fetchProfileData()
-        // checkIfAlreadyHasAccountTypeAndRedirect()
+        checkIfAlreadyHasAccountTypeAndRedirect()
     }, [])
 
     return (
