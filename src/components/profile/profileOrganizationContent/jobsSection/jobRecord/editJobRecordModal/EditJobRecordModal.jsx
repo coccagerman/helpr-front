@@ -54,7 +54,7 @@ export default function EditJobRecordModal({showEditJobRecordModal, setShowEditJ
                             <option value='Menos de 3 días'>Menos de 3 días</option>
                             <option value='De 4 a 10 días'>De 4 a 10 días</option>
                             <option value='De 11 a 20 días'>De 11 a 20 días</option>
-                            <option value='De 21 a 3 meses'>De 21 a 3 meses</option>
+                            <option value='De 21 días a 3 meses'>De 21 días a 3 meses</option>
                             <option value='Más de 3 meses'>Más de 3 meses</option>
                         </select>
                     </div>

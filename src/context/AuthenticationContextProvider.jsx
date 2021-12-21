@@ -31,7 +31,22 @@ export default function AuthenticationContextProvider ({ children }) {
             const data = await response.json()
 
             if (data === 'Valid token') {
-                window.location = 'http://localhost:3000/selectAccountType'
+                /* We validate if the user already has an account type. */
+                /* If yes, we redirect to profile page. If not, we redirect to selectAccountType page. */
+                /* This step is necesary since social network auth doesn't include account type selection. */
+                const accountTypeResponse = await fetch('http://localhost:3001/profile/userGetByToken', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': accessToken
+                    }
+                })
+
+                const accountTypeData = await accountTypeResponse.json()
+
+                if (accountTypeData.accountType) window.location = 'http://localhost:3000/profile'
+                else window.location = 'http://localhost:3000/selectAccountType'
             }
         }
     }

@@ -1,33 +1,41 @@
+import { useEffect, useState, useContext } from 'react'
+import AuthenticationContext from '../../context/AuthenticationContext'
 import SearchForm from './searchForm/SearchForm'
 import JobRecord from './jobRecord/JobRecord'
-import { useEffect, useState } from 'react'
 
 export default function SearchJobs() {
+
+    const { checkIfNotAuthenticatedAndRedirect } = useContext(AuthenticationContext)
 
     const [jobSearchResults, setJobSearchResults] = useState([])
 
     const fetchJobSearchResults = async () => {
-        const accessToken = localStorage.getItem('accessToken')
+        if (!jobSearchResults) {
+            const accessToken = localStorage.getItem('accessToken')
 
-        const response = await fetch('http://localhost:3001/jobs', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'authorization': accessToken
-            }
-        })
+            const response = await fetch('http://localhost:3001/jobs', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': accessToken
+                }
+            })
 
-        const data = await response.json()
-        setJobSearchResults(data)
+            const data = await response.json()
+            setJobSearchResults(data)
+        }
     }
 
-    useEffect(() => fetchJobSearchResults(), [])
+    useEffect(() => {
+        checkIfNotAuthenticatedAndRedirect()
+        fetchJobSearchResults()
+    }, [])
 
     return (
         <section className='searchJobs'>
 
-            <SearchForm />
+            <SearchForm setJobSearchResults={setJobSearchResults} />
             {jobSearchResults.map(record => <JobRecord record={record} key={record._id} />)}
 
         </section>
