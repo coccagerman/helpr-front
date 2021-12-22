@@ -4,8 +4,9 @@
 
     .titleAndPublisher {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: baseline;
+        align-items: center;
 
         h1 {
             font-size: 4rem;

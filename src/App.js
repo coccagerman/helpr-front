@@ -15,46 +15,49 @@ import JobDetail from './components/jobDetail/JobDetail'
 export default function App() {
 
   return (
-    <AuthenticationContextProvider>
-      <Router>
-        <Header/>
+    <ProfileContextProvider>
+      <AuthenticationContextProvider>
 
-        <Switch>
-    
-          <Route path='/' exact>
-            <LandingPage/>
-          </Route>
 
-          <Route path='/searchJobs'>
-            <SearchJobs/>
-          </Route>
+        <Router>
+          <Header/>
 
-          <Route path='/jobDetail/:jobRecordId'>
-            <JobDetail/>
-          </Route>
-
-          <Route path='/register' >
-            <RegisterPage/>
-          </Route>
-
-          <Route path='/login' >
-            <LoginPage/>
-          </Route>
-
-          <ProfileContextProvider>
-            <Route path='/profile'>
-              <Profile/>
+          <Switch>
+      
+            <Route path='/' exact>
+              <LandingPage/>
             </Route>
 
-            <Route path='/selectAccountType'>
-              <SelectAccountType/>
+            <Route path='/searchJobs'>
+              <SearchJobs/>
             </Route>
-          </ProfileContextProvider>
 
-        </Switch>
+            <Route path='/jobDetail/:jobRecordId'>
+              <JobDetail/>
+            </Route>
 
-        <Footer/>
-      </Router>
-    </AuthenticationContextProvider>
+            <Route path='/register' >
+              <RegisterPage/>
+            </Route>
+
+            <Route path='/login' >
+              <LoginPage/>
+            </Route>
+
+              <Route path='/profile'>
+                <Profile/>
+              </Route>
+
+              <Route path='/selectAccountType'>
+                <SelectAccountType/>
+              </Route>
+
+          </Switch>
+
+          <Footer/>
+        </Router>
+
+      </AuthenticationContextProvider>
+    </ProfileContextProvider>
   )
 }

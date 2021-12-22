@@ -1,15 +1,16 @@
-import { useRef, useState, useEffect } from 'react'
+// import { useRef, useState, useEffect } from 'react'
 
 export default function Footer() {
 
-    const ref = useRef()
-    const [footerBottomDistance, setFooterBottomDistance] = useState(0)
+    // const ref = useRef()
+    // const [footerBottomDistance, setFooterBottomDistance] = useState(0)
 
     // FIX - Conditional styling for footer so it always renders at the bottom independent of the page content
     // useEffect(() => setFooterBottomDistance(window.innerHeight - ref.current.getBoundingClientRect().bottom))
 
     return (
-        <footer className={footerBottomDistance > 0 ? 'stickyFooter' : 'footer'} ref={ref}>
+        // <footer className={footerBottomDistance > 0 ? 'stickyFooter' : 'footer'} ref={ref}>
+        <footer className='footer'>
             <div className='footer-div'>
                 <p>Sobre nosotros</p>
                 <p>Contactanos</p>

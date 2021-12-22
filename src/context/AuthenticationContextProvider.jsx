@@ -1,8 +1,12 @@
 
 import { useState } from 'react'
 import AuthenticationContext from './AuthenticationContext'
+import { useContext } from 'react'
+import ProfileContext from './ProfileContext'
 
 export default function AuthenticationContextProvider ({ children }) {
+
+    const { profileData } = useContext(ProfileContext)
 
     /* Global state that is used to conditionally show components when user is logged in or not. */
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -97,8 +101,61 @@ export default function AuthenticationContextProvider ({ children }) {
         }
     }
 
+    /* Function that redirects volunteer users from pages only for organizations. */
+    const checkIfNotOrganizationAndRedirect = async () => {
+        const accessToken = localStorage.getItem('accessToken')
+        if (accessToken) {
+            if (!profileData) {
+                const response = await fetch('http://localhost:3001/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'authorization': accessToken
+                    }
+                })
+
+                const data = await response.json()
+
+                if (data.accountType !== 'organization') window.location.href = 'http://localhost:3000/'
+
+            } else { if (profileData.accountType !== 'organization') window.location.href = 'http://localhost:3000/' }
+        } else window.location.href = 'http://localhost:3000/login'
+    }
+
+    /* Function that redirects organization users from pages only for volunteers. */
+    const checkIfNotVolunteerAndRedirect = async () => {
+        const accessToken = localStorage.getItem('accessToken')
+        if (accessToken) {
+            if (!profileData) {
+
+                const response = await fetch('http://localhost:3001/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'authorization': accessToken
+                    }
+                })
+
+                const data = await response.json()
+
+                if (data.accountType !== 'valunteer') window.location.href = 'http://localhost:3000/'
+
+            } else { if (profileData.accountType !== 'volunteer') window.location.href = 'http://localhost:3000/' }
+        } else window.location.href = 'http://localhost:3000/login'
+    }
+
     return (
-        <AuthenticationContext.Provider value={{ isLoggedIn, setIsLoggedIn, checkIfAlreadyAuthenticatedAndRedirect, checkIfNotAuthenticatedAndRedirect, checkIfAuthenticatedAndChangeState }} >
+        <AuthenticationContext.Provider value={{
+            isLoggedIn,
+            setIsLoggedIn,
+            checkIfAlreadyAuthenticatedAndRedirect,
+            checkIfNotAuthenticatedAndRedirect,
+            checkIfAuthenticatedAndChangeState,
+            checkIfNotOrganizationAndRedirect,
+            checkIfNotVolunteerAndRedirect
+            }} >
             {children}
         </AuthenticationContext.Provider>
     )

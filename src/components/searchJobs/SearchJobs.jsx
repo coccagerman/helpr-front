@@ -1,11 +1,13 @@
 import { useEffect, useState, useContext } from 'react'
 import AuthenticationContext from '../../context/AuthenticationContext'
+import ProfileContext from '../../context/ProfileContext'
 import SearchForm from './searchForm/SearchForm'
 import JobRecord from './jobRecord/JobRecord'
 
 export default function SearchJobs() {
 
-    const { checkIfNotAuthenticatedAndRedirect } = useContext(AuthenticationContext)
+    const { checkIfNotAuthenticatedAndRedirect, checkIfNotVolunteerAndRedirect } = useContext(AuthenticationContext)
+    const { profileData } = useContext(ProfileContext)
 
     const [jobSearchResults, setJobSearchResults] = useState(null)
 
@@ -29,6 +31,7 @@ export default function SearchJobs() {
 
     useEffect(() => {
         checkIfNotAuthenticatedAndRedirect()
+        checkIfNotVolunteerAndRedirect()
         fetchJobSearchResults()
     }, [])
 
@@ -36,7 +39,8 @@ export default function SearchJobs() {
         <section className='searchJobs'>
 
             <SearchForm setJobSearchResults={setJobSearchResults} />
-            {jobSearchResults && jobSearchResults.map(record => <JobRecord record={record} key={record._id} />)}
+    
+            {jobSearchResults && jobSearchResults.map(record => <JobRecord record={record} key={record._id} alreadyApplied={ profileData.appliedJobs.indexOf(record._id) !== -1 } />)}
 
         </section>
     )

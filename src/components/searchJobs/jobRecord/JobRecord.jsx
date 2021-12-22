@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
-export default function JobRecord({record}) {
-    console.log(record)
+export default function JobRecord({record, alreadyApplied}) {
+
     return (
         <article className='jobRecord-searchResult'>
             <h2>{record.position}</h2>
@@ -15,7 +15,11 @@ export default function JobRecord({record}) {
                     <p><span>Fecha de publicación:</span> {new Date(record.publishedDate).toISOString().slice(0, 10)}</p>
                 </div>
 
-                <Link to={`/jobDetail/${record._id}`}><button className='btn btn-secondary'>Postular</button></Link>
+                {alreadyApplied ? 
+                    <button className='btn btn-primary' disabled>Ya aplicaste a esta vacante</button>
+                    :
+                    <Link to={`/jobDetail/${record._id}`}><button className='btn btn-secondary'>Postular</button></Link>
+                }
             </div>
         </article>
     )
