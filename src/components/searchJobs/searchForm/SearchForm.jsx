@@ -8,14 +8,16 @@ export default function SearchForm({ setJobSearchResults }) {
     const [publishedDate, setPublishedDate] = useState(null)
     const [hourDedication, sethourDedication] = useState(null)
     const [projectDuration, setProjectDuration] = useState(null)
-    const [publisherInterestsSearch, setPublisherInterestsSearch] = useState(null)
-
-    /* FIX - implementar filtros por fecha de publicación e intereses del publicante */
+    const [publisherInterests, setPublisherInterests] = useState(null)
 
     const fetchJobSearchResultsWithParams = async searchParams => {
         const accessToken = localStorage.getItem('accessToken')
         /* We only keep in searchParamsObject the properties that !null */
         for (let key in searchParams) {if (!searchParams[key]) delete searchParams[key]}
+
+        const requestBody = {searchParams: searchParams}
+        if (publisherInterests) requestBody.searchPublisherInterestsParam = publisherInterests
+        if (publishedDate) requestBody.searchPublishedDateParam = publishedDate
 
         const response = await fetch('http://localhost:3001/jobs/searchJobsWithParams', {
             method: 'PUT',
@@ -24,18 +26,11 @@ export default function SearchForm({ setJobSearchResults }) {
                 'Content-Type': 'application/json',
                 'authorization': accessToken
             },
-            body: JSON.stringify({'searchParams': searchParams})
+            body: JSON.stringify(requestBody)
         })
 
         const data = await response.json()
         setJobSearchResults(data)
-        
-        console.log('response')
-        console.log(response)
-        console.log('data')
-        console.log(data)
-        console.log('searchParams')
-        console.log(searchParams)
     }
 
     return (
@@ -65,6 +60,7 @@ export default function SearchForm({ setJobSearchResults }) {
                     <label htmlFor='publishedDate'>Fecha de publicación</label>
                     <select name='publishedDate' id='publishedDate' defaultValue={publishedDate} onChange={e => setPublishedDate(e.target.value)}>
                         <option value=''></option>
+                        <option value='1'>Ayer</option>
                         <option value='3'>Últimos 3 días</option>
                         <option value='7'>Últimos 7 días</option>
                         <option value='15'>Últimos 15 días</option>
@@ -95,7 +91,7 @@ export default function SearchForm({ setJobSearchResults }) {
 
                 <div className='form-input'>
                     <label htmlFor='publisherInterests'>Intereses del publicante</label>
-                    <select name='publisherInterests' id='publisherInterests' defaultValue={publisherInterestsSearch} onChange={e => setPublisherInterestsSearch(e.target.value)}>
+                    <select name='publisherInterests' id='publisherInterests' defaultValue={publisherInterests} onChange={e => setPublisherInterests(e.target.value)}>
                         <option value=''></option>
                         <option value='Arte'>Arte</option>
                         <option value='Cultura'>Cultura</option>
@@ -114,12 +110,9 @@ export default function SearchForm({ setJobSearchResults }) {
             <button type='submit' className='btn btn-primary' onClick={e => {
                 e.preventDefault()
                 fetchJobSearchResultsWithParams({
-                    position,
                     classification,
-                    publishedDate,
                     hourDedication,
-                    projectDuration,
-                    publisherInterestsSearch
+                    projectDuration
                 })
             }}>Buscar</button>
         </form>

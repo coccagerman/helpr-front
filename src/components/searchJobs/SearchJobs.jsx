@@ -7,7 +7,7 @@ export default function SearchJobs() {
 
     const { checkIfNotAuthenticatedAndRedirect } = useContext(AuthenticationContext)
 
-    const [jobSearchResults, setJobSearchResults] = useState([])
+    const [jobSearchResults, setJobSearchResults] = useState(null)
 
     const fetchJobSearchResults = async () => {
         if (!jobSearchResults) {
@@ -36,7 +36,7 @@ export default function SearchJobs() {
         <section className='searchJobs'>
 
             <SearchForm setJobSearchResults={setJobSearchResults} />
-            {jobSearchResults.map(record => <JobRecord record={record} key={record._id} />)}
+            {jobSearchResults && jobSearchResults.map(record => <JobRecord record={record} key={record._id} />)}
 
         </section>
     )
