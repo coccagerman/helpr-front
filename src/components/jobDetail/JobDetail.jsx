@@ -8,7 +8,7 @@ export default function JobDetail() {
 
     const { jobRecordId } = useParams()
     const { checkIfNotAuthenticatedAndRedirect, checkIfNotVolunteerAndRedirect } = useContext(AuthenticationContext)
-    const { profileData } = useContext(ProfileContext)
+    const { profileData, fetchProfileData } = useContext(ProfileContext)
 
     const [jobDetailData, setJobDetailData] = useState([])
     const [showApplicationSuccessModal, setShowApplicationSuccessModal] = useState(false)
@@ -29,16 +29,18 @@ export default function JobDetail() {
         const data = await response.json()
         setJobDetailData(data)
 
-        let previousApplicationsCheck = 0
+        if (profileData) {
+            let previousApplicationsCheck = 0
 
-        data.candidates.forEach(candidate => {
-          if (candidate._id === profileData._id) {
-            previousApplicationsCheck++
-            return
-          }
-        })
+            data.candidates.forEach(candidate => {
+            if (candidate._id === profileData._id) {
+                previousApplicationsCheck++
+                return
+            }
+            })
 
-        if (previousApplicationsCheck > 0) setuserHasAlreadyApplied(true)
+            if (previousApplicationsCheck > 0) setuserHasAlreadyApplied(true)
+        }
     }
 
     const sendApplication = async () => {
@@ -64,6 +66,7 @@ export default function JobDetail() {
     useEffect(() => {
         checkIfNotAuthenticatedAndRedirect()
         checkIfNotVolunteerAndRedirect()
+        fetchProfileData()
         fetchJobDetailData()
     }, [])
 

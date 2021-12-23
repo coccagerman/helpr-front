@@ -18,7 +18,6 @@ export default function App() {
     <ProfileContextProvider>
       <AuthenticationContextProvider>
 
-
         <Router>
           <Header/>
 

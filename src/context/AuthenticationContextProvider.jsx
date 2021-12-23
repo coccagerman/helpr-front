@@ -140,7 +140,7 @@ export default function AuthenticationContextProvider ({ children }) {
 
                 const data = await response.json()
 
-                if (data.accountType !== 'valunteer') window.location.href = 'http://localhost:3000/'
+                if (data.accountType !== 'volunteer') window.location.href = 'http://localhost:3000/'
 
             } else { if (profileData.accountType !== 'volunteer') window.location.href = 'http://localhost:3000/' }
         } else window.location.href = 'http://localhost:3000/login'

@@ -7,7 +7,7 @@ import JobRecord from './jobRecord/JobRecord'
 export default function SearchJobs() {
 
     const { checkIfNotAuthenticatedAndRedirect, checkIfNotVolunteerAndRedirect } = useContext(AuthenticationContext)
-    const { profileData } = useContext(ProfileContext)
+    const { profileData, fetchProfileData } = useContext(ProfileContext)
 
     const [jobSearchResults, setJobSearchResults] = useState(null)
 
@@ -32,6 +32,7 @@ export default function SearchJobs() {
     useEffect(() => {
         checkIfNotAuthenticatedAndRedirect()
         checkIfNotVolunteerAndRedirect()
+        fetchProfileData()
         fetchJobSearchResults()
     }, [])
 
