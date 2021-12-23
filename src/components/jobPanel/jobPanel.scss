@@ -1,0 +1,53 @@
+.jobPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0;
+
+    .titleAndSearchForm {
+        text-align: center;
+        background-color: $helpr-lightGreyBackground;
+        border-radius: .5rem;
+        padding: 2rem 5rem;
+
+        .appliedCandidates {
+            font-size: 1.25rem;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .inputs-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .formInput {
+                    margin: 0 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: left;
+
+                    input, select {
+                        padding: .25rem;
+                    }
+                }
+            }
+
+            .btn {
+                margin-top: 2rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .jobPanel {
+
+    }
+}

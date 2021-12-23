@@ -58,9 +58,10 @@ export default function JobRecord ({record}) {
 
             <div className='record-data candidates'>
                 <h3>Candidatos postulados:</h3>
-                <p>3 (FIX ME - TEMPORARY MOCK)</p>
-                <a href='#'>Ver candidatos</a>
+                <p>{record.candidates ? record.candidates.length : null}</p>
+                {(record.candidates && record.candidates.length > 0) ? <a href={`/jobPanel/${record._id}`}>Ver candidatos</a> : null}
             </div>
+            
 
             <EditJobRecordModal showEditJobRecordModal={showEditJobRecordModal} setShowEditJobRecordModal={setShowEditJobRecordModal} record={record} />
             <DeleteJobRecordModal showDeleteJobRecordModal={showDeleteJobRecordModal} setShowDeleteJobRecordModal={setShowDeleteJobRecordModal} record={record} />

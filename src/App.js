@@ -11,6 +11,7 @@ import LoginPage from './components/loginPage/LoginPage'
 import Profile from './components/profile/Profile'
 import SearchJobs from './components/searchJobs/SearchJobs'
 import JobDetail from './components/jobDetail/JobDetail'
+import JobPanel from './components/jobPanel/JobPanel'
 
 export default function App() {
 
@@ -43,13 +44,17 @@ export default function App() {
               <LoginPage/>
             </Route>
 
-              <Route path='/profile'>
-                <Profile/>
-              </Route>
+            <Route path='/profile'>
+              <Profile/>
+            </Route>
 
-              <Route path='/selectAccountType'>
-                <SelectAccountType/>
-              </Route>
+            <Route path='/selectAccountType'>
+              <SelectAccountType/>
+            </Route>
+
+            <Route path='/jobPanel/:jobRecordId'>
+              <JobPanel/>
+            </Route>
 
           </Switch>
 

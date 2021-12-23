@@ -247,6 +247,15 @@ export default function ProfileContextProvider ({ children }) {
         }
     }
 
+    /* Function that resets all global states after logout */
+    const cleanStateAfterLogout = () => {
+        setProfileData(null)
+        setProfilePicture(null)
+        setEducationRecords(null)
+        setExperienceRecords(null)
+        setJobsRecords(null)
+    }
+
     return (
         <ProfileContext.Provider value={{
             profileData,
@@ -254,6 +263,7 @@ export default function ProfileContextProvider ({ children }) {
             educationRecords,
             experienceRecords,
             fetchProfileData,
+            cleanStateAfterLogout,
             editUserRecord,
             fetchProfilePicture,
             editProfilePicture,

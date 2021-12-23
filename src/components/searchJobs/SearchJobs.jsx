@@ -40,8 +40,14 @@ export default function SearchJobs() {
         <section className='searchJobs'>
 
             <SearchForm setJobSearchResults={setJobSearchResults} />
-    
-            {jobSearchResults && jobSearchResults.map(record => <JobRecord record={record} key={record._id} alreadyApplied={ profileData.appliedJobs.indexOf(record._id) !== -1 } />)}
+
+            {profileData ?
+                <>
+                    {jobSearchResults && jobSearchResults.map(record => <JobRecord record={record} key={record._id} alreadyApplied={ profileData.appliedJobs.indexOf(record._id) !== -1 } />)}
+                </>
+                :
+                null
+            }
 
         </section>
     )

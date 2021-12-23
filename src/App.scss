@@ -68,3 +68,8 @@
 
 /* Job detail */
 @import './components/jobDetail/jobDetail.scss';
+
+/* Job panel */
+@import './components/jobPanel/jobPanel.scss';
+@import './components/jobPanel/candidateRecord/candidateRecord.scss';
+@import './components/jobPanel/candidateRecord/candidateDetailModal/candidateDetailModal.scss';

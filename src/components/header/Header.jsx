@@ -9,7 +9,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 export default function Header() {
 
     const { isLoggedIn, setIsLoggedIn, checkIfAuthenticatedAndChangeState } = useContext(AuthenticationContext)
-    const { profileData } = useContext(ProfileContext)
+    const { profileData, cleanStateAfterLogout } = useContext(ProfileContext)
 
     const history = useHistory()
 
@@ -58,6 +58,7 @@ export default function Header() {
                                     <Link to='/profile'>Ver perfil</Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
+                                        cleanStateAfterLogout()
                                         setIsLoggedIn(false)
                                         localStorage.removeItem('accessToken')
                                         history.push('/')
