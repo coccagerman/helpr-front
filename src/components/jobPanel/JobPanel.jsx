@@ -7,6 +7,8 @@ export default function JobPanel() {
     const { jobRecordId } = useParams()
     const [jobDetailData, setJobDetailData] = useState(null)
 
+    const [candidateStateSearchParam, setCandidateStateSearchParam] = useState('Todos')
+
     const fetchJobDetailData = async () => {
         const accessToken = localStorage.getItem('accessToken')
 
@@ -50,7 +52,7 @@ export default function JobPanel() {
                                 
                                 <div className='formInput'>
                                     <label htmlFor='state'>Estado</label>
-                                    <select name='state' id='state'>
+                                    <select name='state' id='state' onChange={e => setCandidateStateSearchParam(e.target.value)}>
                                         <option value='Todos'>Todos</option>
                                         <option value='Pendiente de revisión'>Pendiente de revisión</option>
                                         <option value='Rechazado'>Rechazado</option>
@@ -64,8 +66,11 @@ export default function JobPanel() {
 
                     <div className='candidates-container'>
                         {(jobDetailData.candidates && jobDetailData.candidates.length > 0) ?
+                            candidateStateSearchParam !== 'Todos' ?
+                            jobDetailData.candidates.filter(candidate => candidate.state === candidateStateSearchParam).map(candidate => <CandidateRecord key={candidate.id} candidate={candidate} jobRecordId={jobRecordId} fetchJobDetailData={fetchJobDetailData} />)
+                            :
                             jobDetailData.candidates.map(candidate => <CandidateRecord key={candidate.id} candidate={candidate} jobRecordId={jobRecordId} fetchJobDetailData={fetchJobDetailData} />)
-                            : null
+                        : null
                         }
                     </div>
                 </>
