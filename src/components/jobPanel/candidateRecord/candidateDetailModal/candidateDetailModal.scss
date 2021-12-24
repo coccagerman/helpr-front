@@ -20,8 +20,45 @@
         .nameAndTitle {
             display: flex;
             flex-direction: column;
+        }   
+    }
+
+    .modalContentSection {
+        margin: 1rem 0;
+        .record-data {
+            display: flex;
+            align-items: baseline;
+
+            h4 {
+                margin-right: .3rem;
+                font-size: 1.2rem;
+            }
         }
 
-        
+        .education-container, .experience-container {
+            display: flex;
+
+            .horizontal-division-leftSide {
+                margin-right: 1rem;
+            }
+        }
+
+        .experience-record, .education-record {
+            background-color: $helpr-lightGreyBackground;
+            border-radius: .5rem;
+            padding: .5rem .5rem;
+        }
+
+        .interests-container {
+            display: flex;
+            flex-direction: row;
+
+            .interest-record {
+                background-color: $helpr-lightGreyBackground;
+                border-radius: .5rem;
+                padding: .25rem;
+                margin: .5rem;
+            }
+        }
     }
 }

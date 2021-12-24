@@ -1,9 +1,30 @@
 import { useState } from 'react'
 import CandidateDetailModal from './candidateDetailModal/candidateDetailModal'
 
-export default function CandidateRecord ({candidate}) {
+export default function CandidateRecord ({candidate, jobRecordId, fetchJobDetailData}) {
 
     const [showCandidateDetailModal, setShowCandidateDetailModal] = useState(false)
+
+    const rejectOrReconsiderCandidate = async (jobRecordId, candidateId, queryType) => {
+        const accessToken = localStorage.getItem('accessToken')
+
+        const response = await fetch(`http://localhost:3001/jobs/rejectOrReconsiderCandidate`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': accessToken
+            },
+            body : JSON.stringify({
+                jobRecordId,
+                candidateId,
+                queryType
+            })
+        })
+
+        const data = await response.json()
+        if (data === 'Successful edition') fetchJobDetailData()
+    }
 
     return (
         <article className='candidateRecord'>
@@ -13,9 +34,13 @@ export default function CandidateRecord ({candidate}) {
 
             <button className='btn btn-primary' onClick={() => setShowCandidateDetailModal(true)}>Ver</button>
             <button className='btn btn-secondary'>Contactar</button>
-            <button className='btn btn-red'>Rechazar</button>
+            {candidate.state === 'Pendiente de revisión' ?
+                <button className='btn btn-red' onClick={() => rejectOrReconsiderCandidate(jobRecordId, candidate.id, 'reject')}>Rechazar</button>
+                :
+                <button className='btn btn-tertiary' onClick={() => rejectOrReconsiderCandidate(jobRecordId, candidate.id, 'reconsider')}>Reconsiderar</button>
+            }
 
-            <CandidateDetailModal showCandidateDetailModal={showCandidateDetailModal} setShowCandidateDetailModal={setShowCandidateDetailModal} candidateId={candidate.id} />
+            <CandidateDetailModal showCandidateDetailModal={showCandidateDetailModal} setShowCandidateDetailModal={setShowCandidateDetailModal} candidateId={candidate.id} candidateState={candidate.state} rejectOrReconsiderCandidate={rejectOrReconsiderCandidate} jobRecordId={jobRecordId} />
         </article>
     )
 }

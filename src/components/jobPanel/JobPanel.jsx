@@ -64,7 +64,7 @@ export default function JobPanel() {
 
                     <div className='candidates-container'>
                         {(jobDetailData.candidates && jobDetailData.candidates.length > 0) ?
-                            jobDetailData.candidates.map(candidate => <CandidateRecord key={candidate.id} candidate={candidate} />)
+                            jobDetailData.candidates.map(candidate => <CandidateRecord key={candidate.id} candidate={candidate} jobRecordId={jobRecordId} fetchJobDetailData={fetchJobDetailData} />)
                             : null
                         }
                     </div>

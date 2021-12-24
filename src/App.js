@@ -12,6 +12,8 @@ import Profile from './components/profile/Profile'
 import SearchJobs from './components/searchJobs/SearchJobs'
 import JobDetail from './components/jobDetail/JobDetail'
 import JobPanel from './components/jobPanel/JobPanel'
+import ChatPanel from './components/chatPanel/ChatPanel'
+import ChatRoom from './components/chatRoom/ChatRoom'
 
 export default function App() {
 
@@ -54,6 +56,14 @@ export default function App() {
 
             <Route path='/jobPanel/:jobRecordId'>
               <JobPanel/>
+            </Route>
+
+            <Route path='/chatPanel'>
+              <ChatPanel/>
+            </Route>
+
+            <Route path='/chatRoom/:userId'>
+              <ChatRoom/>
             </Route>
 
           </Switch>
