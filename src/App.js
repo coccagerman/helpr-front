@@ -8,6 +8,7 @@ import LandingPage from './components/landingPage/LandingPage'
 import RegisterPage from './components/registerPage/RegisterPage'
 import SelectAccountType from './components/selectAccountType/SelectAccountType'
 import LoginPage from './components/loginPage/LoginPage'
+import MyProfile from './components/myProfile/MyProfile'
 import Profile from './components/profile/Profile'
 import SearchJobs from './components/searchJobs/SearchJobs'
 import JobDetail from './components/jobDetail/JobDetail'
@@ -46,7 +47,11 @@ export default function App() {
               <LoginPage/>
             </Route>
 
-            <Route path='/profile'>
+            <Route path='/myProfile'>
+              <MyProfile/>
+            </Route>
+
+            <Route path='/profile/:userId'>
               <Profile/>
             </Route>
 

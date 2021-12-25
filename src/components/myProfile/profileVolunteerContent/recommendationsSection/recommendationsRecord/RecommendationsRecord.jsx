@@ -1,6 +1,11 @@
+import { Icon } from '@iconify/react'
+
 export default function RecommendationsRecord() {
     return (
         <article className='recommendationsRecord'>
+            <div className='icon-container'>
+                <Icon icon='grommet-icons:form-view-hide' color='#406bc8' className='icon'/>
+            </div>
 
             <div className='horizontal-container'>
                 <div className='horizontal-division'>

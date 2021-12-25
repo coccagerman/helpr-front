@@ -1,39 +1,39 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
+import AuthenticationContext from '../../../context/AuthenticationContext'
 import ProfileContext from '../../../context/ProfileContext'
 
-import TitleRecordModal from './TitleRecordModal'
-import ProfilePictureModal from './ProfilePictureModal'
-import ProfilePictureErrorModal from './ProfilePictureErrorModal'
 import AboutSection from './aboutSection/AboutSection'
 import EducationSection from './educationSection/EducationSection'
 import ExperienceSection from './experienceSection/ExperienceSection'
 import InterestsSection from './interestsSection/interestsSection'
 import RecommendationsSection from './recommendationsSection/RecommendationsSection'
 
-import { Icon } from '@iconify/react'
 import genericAvatar from '../../../assets/genericAvatar.jpeg'
 
 export default function ProfileVolunteerContent() {
 
-    const { profileData, profilePicture } = useContext(ProfileContext)
+    const { userProfileData, userProfilePicture } = useContext(ProfileContext)
+    const { checkIfNotOrganizationAndRedirect } = useContext(AuthenticationContext)
 
-    const [showTitleRecordModal, setShowTitleRecordModal] = useState(false)
-    const [showProfilePictureModal, setShowProfilePictureModal] = useState(false)
-    
+    useEffect(() => checkIfNotOrganizationAndRedirect(), [])
+  
     return (
         <section className='profileVolunteerContent'>
 
             <div className='profileHeader'>
                 <div className='profilePicture-container'>
-                    <img src={profilePicture ? profilePicture :  genericAvatar} alt='Profile' onClick={() => setShowProfilePictureModal(true)} />
-                    <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowProfilePictureModal(true)} />
+                    <img src={userProfilePicture ? userProfilePicture :  genericAvatar} alt='Profile' />
                 </div>
                 <div className='nameAndTittle'>
-                    <h1>{profileData.name}</h1>
+                    <h1>{userProfileData.basic.name}</h1>
                     <div className='title-container'>
-                        <p>{profileData.title ? profileData.title : 'Aún no completaste este campo.'}</p>
-                        <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowTitleRecordModal(true)} />
+                        <p>{userProfileData.basic.title ? userProfileData.basic.title : null}</p>
                     </div>
+                    <Link to={`/chatroom/${userProfileData.basic._id}`}>
+                        <button className='btn btn-primary'>Contactar</button>
+                    </Link>
                 </div>
             </div>
 
@@ -46,10 +46,6 @@ export default function ProfileVolunteerContent() {
             <InterestsSection />
 
             <RecommendationsSection />
-
-            <ProfilePictureModal showProfilePictureModal={showProfilePictureModal} setShowProfilePictureModal={setShowProfilePictureModal} />
-            <ProfilePictureErrorModal setShowProfilePictureModal={setShowProfilePictureModal} />
-            <TitleRecordModal showTitleRecordModal={showTitleRecordModal} setShowTitleRecordModal={setShowTitleRecordModal} />
 
         </section>
     )

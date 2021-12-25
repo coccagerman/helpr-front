@@ -10,11 +10,15 @@ export default function ProfileContextProvider ({ children }) {
     const [jobsRecords, setJobsRecords] = useState(null)
     const [showProfilePictureErrorModal, setShowProfilePictureErrorModal] = useState(false)
 
-    /* Fetch general profile data */
-    const fetchProfileData = async () => {
-        if (!profileData) {
-            const accessToken = localStorage.getItem('accessToken')
+    const [userProfileData, setUserProfileData] = useState(null)
+    const [userProfilePicture, setUserProfilePicture] = useState(null)
 
+    /* Fetch general profile data */
+    /* If userId is provided info from that user is provided, else logged in user info is provided */
+    const fetchProfileData = async userId => {
+        const accessToken = localStorage.getItem('accessToken')
+
+        if (!userId) {
             const response = await fetch('http://localhost:3001/profile', {
                 method: 'GET',
                 headers: {
@@ -26,6 +30,20 @@ export default function ProfileContextProvider ({ children }) {
 
             const data = await response.json()
             setProfileData(data)
+
+        } else {
+            const response = await fetch(`http://localhost:3001/profile/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': accessToken
+                }
+            })
+
+            const data = await response.json()
+            console.log(data)
+            setUserProfileData(data)
         }
     }
 
@@ -101,20 +119,35 @@ export default function ProfileContextProvider ({ children }) {
     }
 
     /* Fetch profile picture */
-    const fetchProfilePicture = async () => {
+    /* If userId is provided picture from that user is provided, else logged in user picture is provided */
+    const fetchProfilePicture = async userId => {
         const accessToken = localStorage.getItem('accessToken')
 
-        const response = await fetch('http://localhost:3001/profile/profilePicture', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'authorization': accessToken
-            }
-        })
+        if (!userId) {
+            const response = await fetch('http://localhost:3001/profile/profilePicture', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': accessToken
+                }
+            })
 
-        const data = await response.json()
-        setProfilePicture(data)
+            const data = await response.json()
+            setProfilePicture(data)
+        } else {
+            const response = await fetch(`http://localhost:3001/profile/profilePicture/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': accessToken
+                }
+            })
+
+            const data = await response.json()
+            setUserProfilePicture(data)
+        }
     }
 
     /* Fetch education data */
@@ -259,7 +292,9 @@ export default function ProfileContextProvider ({ children }) {
     return (
         <ProfileContext.Provider value={{
             profileData,
+            userProfileData,
             profilePicture,
+            userProfilePicture,
             educationRecords,
             experienceRecords,
             fetchProfileData,

@@ -40,7 +40,7 @@ export default function LoginPage() {
             if (data.accessToken) {
                 localStorage.setItem('accessToken', `Bearer ${data.accessToken}`)
                 setIsLoggedIn(true)
-                return history.push('/profile')
+                return history.push('/myProfile')
             }
 
             setShowLoginPageModal(true)

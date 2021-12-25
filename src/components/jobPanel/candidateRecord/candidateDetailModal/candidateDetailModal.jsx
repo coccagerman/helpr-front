@@ -35,7 +35,7 @@ export default function CandidateDetailModal({showCandidateDetailModal, setShowC
                             <div className='modalHeader'>
                                 <img src={candidateData.basic.profilePicture ? candidateData.basic.profilePicture : genericAvatar} alt='Profile picture' />
                                 <div className='nameAndTitle'>
-                                    <h1>{candidateData.basic.name ? candidateData.basic.name : null}</h1>
+                                    <Link to={`/profile/${candidateId}`}><h1>{candidateData.basic.name ? candidateData.basic.name : null}</h1></Link>
                                     <h2>{candidateData.basic.title ? candidateData.basic.title : null}</h2>
                                 </div>
                             </div>

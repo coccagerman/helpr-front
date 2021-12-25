@@ -12,6 +12,7 @@ export default function EditJobRecordModal({showEditJobRecordModal, setShowEditJ
     const [classification, setClassification] = useState(record.classification)
     const [detail, setDetail] = useState(record.detail)
     const [requisites, setRequisites] = useState(record.requisites)
+    const [isJobActive, setIsJobActive] = useState(record.isJobActive)
 
     const cancelUnsavedChanges = () => {
         setPosition(record.position)
@@ -20,6 +21,7 @@ export default function EditJobRecordModal({showEditJobRecordModal, setShowEditJ
         setRequisites(record.requisites)
         setHourDedication(record.hourDedication)
         setProjectDuration(record.projectDuration)
+        setIsJobActive(record.isJobActive)
     }
 
     return (
@@ -83,6 +85,14 @@ export default function EditJobRecordModal({showEditJobRecordModal, setShowEditJ
                         <textarea rows="5" cols="50" type='text' name='requisites' defaultValue={requisites} maxLength='1000' required onChange={e => setRequisites(e.target.value)} />
                     </div>
 
+                    <div className='input-container'>
+                        <label htmlFor='state'>Estado de la vacante</label>
+                        <select name='state' defaultValue={isJobActive} required onChange={e => setIsJobActive(e.target.value)}>
+                            <option value={true}>Activa</option>
+                            <option value={false}>Inactiva</option>
+                        </select>
+                    </div>
+
                 </form>
             </Modal.Body>
             <Modal.Footer>
@@ -100,7 +110,8 @@ export default function EditJobRecordModal({showEditJobRecordModal, setShowEditJ
                             projectDuration,
                             classification,
                             detail,
-                            requisites
+                            requisites,
+                            isJobActive
                         })
                         setShowEditJobRecordModal(false)
                 }}}>Guardar</button>                

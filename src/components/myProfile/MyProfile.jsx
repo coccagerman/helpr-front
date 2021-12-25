@@ -1,27 +1,24 @@
 import { useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import AuthenticationContext from '../../context/AuthenticationContext'
 import ProfileContext from '../../context/ProfileContext'
 import ProfileVolunteerContent from './profileVolunteerContent/ProfileVolunteerContent'
 import ProfileOrganizationContent from './profileOrganizationContent/ProfileOrganizationContent'
 
-export default function Profile() {
+export default function MyProfile() {
 
     const { checkIfNotAuthenticatedAndRedirect } = useContext(AuthenticationContext)
-    const { fetchProfileData, userProfileData, fetchProfilePicture } = useContext(ProfileContext)
-
-    const { userId } = useParams()
+    const { fetchProfileData, profileData, fetchProfilePicture } = useContext(ProfileContext)
 
     useEffect(() => {
         checkIfNotAuthenticatedAndRedirect()
-        fetchProfileData(userId)
-        fetchProfilePicture(userId)
+        fetchProfileData()
+        fetchProfilePicture()
     }, [])
 
     return (
         <section className='profile'>
-            { userProfileData ? 
-                userProfileData.basic.accountType === 'volunteer' ? <ProfileVolunteerContent/> : <ProfileOrganizationContent/>
+            { profileData ? 
+                profileData.accountType === 'volunteer' ? <ProfileVolunteerContent/> : <ProfileOrganizationContent/>
                 : null
             }         
         </section>

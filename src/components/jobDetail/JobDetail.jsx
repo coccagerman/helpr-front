@@ -80,7 +80,7 @@ export default function JobDetail() {
             <>
                 <div className='titleAndPublisher'>
                     <h1>{jobDetailData.position ? jobDetailData.position : null}</h1>
-                    <h2>{jobDetailData.publisher ? <Link to={`/profile/${jobDetailData.publisher.id}`}>{jobDetailData.publisher.name}</Link> : null}</h2>
+                    <h2>{jobDetailData.publisher ? <Link to={`/profile/${jobDetailData.publisherId}`}>{jobDetailData.publisher.name}</Link> : null}</h2>
                 </div>
 
                 <div className='mainDetails'>

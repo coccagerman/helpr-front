@@ -1,7 +1,20 @@
-export default function ExperienceRecord({ record }) {
+import { Icon } from '@iconify/react'
+import { useState } from 'react'
+import EditExperienceRecordModal from './editExperienceRecordModal/EditExperienceRecordModal'
+import DeleteExperienceRecordModal from './deleteExperienceRecordModal/DeleteExperienceRecordModal'
+
+export default function ExperienceRecord({ record, deleteExperienceRecord }) {
+
+    const [showEditExperienceRecordModal, setShowEditExperienceRecordModal] = useState(false)
+    const [showDeleteExperienceRecordModal, setShowDeleteExperienceRecordModal] = useState(false)
 
     return (
         <article className='experienceRecord'>
+            <div className='icon-container'>
+                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEditExperienceRecordModal(true)} />
+                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowDeleteExperienceRecordModal(true)} />
+            </div>
+
             <div className='horizontal-container'>
                 <div className='horizontal-division'>
                     <div className='record-data'>
@@ -29,6 +42,9 @@ export default function ExperienceRecord({ record }) {
                 <h3>Descripción:</h3>
                 <p>{record.description ? record.description : null}</p>
             </div>
+
+            <EditExperienceRecordModal showEditExperienceRecordModal={showEditExperienceRecordModal} setShowEditExperienceRecordModal={setShowEditExperienceRecordModal} record={record} />
+            <DeleteExperienceRecordModal showDeleteExperienceRecordModal={showDeleteExperienceRecordModal} setShowDeleteExperienceRecordModal={setShowDeleteExperienceRecordModal} record={record} />
         </article>
     )
 }

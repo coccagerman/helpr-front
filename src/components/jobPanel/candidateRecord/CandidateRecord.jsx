@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import CandidateDetailModal from './candidateDetailModal/candidateDetailModal'
 
 export default function CandidateRecord ({candidate, jobRecordId, fetchJobDetailData}) {
@@ -33,7 +34,10 @@ export default function CandidateRecord ({candidate, jobRecordId, fetchJobDetail
             <p>{candidate.state ? `Estado: ${candidate.state}` : null}</p>
 
             <button className='btn btn-primary' onClick={() => setShowCandidateDetailModal(true)}>Ver</button>
-            <button className='btn btn-secondary'>Contactar</button>
+            <Link to={`/chatroom/${candidate.id}`}>
+                <button className='btn btn-primary'>Contactar</button>
+            </Link>
+
             {candidate.state === 'Pendiente de revisión' ?
                 <button className='btn btn-red' onClick={() => rejectOrReconsiderCandidate(jobRecordId, candidate.id, 'reject')}>Rechazar</button>
                 :

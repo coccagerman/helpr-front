@@ -1,7 +1,19 @@
+import { Icon } from '@iconify/react'
+import { useState } from 'react'
+import EditEducationRecordModal from './editEducationRecordModal/EditEducationRecordModal'
+import DeleteEducationRecordModal from './deleteEducationRecordModal/DeleteEducationRecordModal'
+
 export default function EducationRecord({record}) {
+
+    const [showEditEducationRecordModal, setShowEditEducationRecordModal] = useState(false)
+    const [showDeleteEducationRecordModal, setShowDeleteEducationRecordModal] = useState(false)
 
     return (
         <article className='educationRecord'>
+            <div className='icon-container'>
+                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEditEducationRecordModal(true)} />
+                <Icon icon="fluent:delete-24-filled" color='#406bc8' className='icon' onClick={() => setShowDeleteEducationRecordModal(true)} />
+            </div>
 
             <div className='horizontal-container'>
                 <div className='horizontal-division'>
@@ -36,6 +48,8 @@ export default function EducationRecord({record}) {
                 </div>
             </div>
 
+            <EditEducationRecordModal showEditEducationRecordModal={showEditEducationRecordModal} setShowEditEducationRecordModal={setShowEditEducationRecordModal} record={record} />
+            <DeleteEducationRecordModal showDeleteEducationRecordModal={showDeleteEducationRecordModal} setShowDeleteEducationRecordModal={setShowDeleteEducationRecordModal} record={record} />
         </article>
     )
 }

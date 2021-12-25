@@ -8,7 +8,7 @@ export default function SelectAccountType() {
     const { fetchProfileData, profileData, editUserRecord } = useContext(ProfileContext)
 
     const checkIfAlreadyHasAccountTypeAndRedirect = () => {
-        if (profileData && profileData.accountType) window.location = 'http://localhost:3000/profile'
+        if (profileData && profileData.accountType) window.location = 'http://localhost:3000/myProfile'
     }
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function SelectAccountType() {
             </article>
 
             <button className='btn btn-primary' onClick={() => {
-                if (editUserRecord('accountType', accountType)) window.location = 'http://localhost:3000/profile'
+                if (editUserRecord('accountType', accountType)) window.location = 'http://localhost:3000/myProfile'
             }}>Avanzar</button>
 
         </section>

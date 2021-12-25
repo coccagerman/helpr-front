@@ -24,42 +24,42 @@
 @import './components/selectAccountType/selectAccountType.scss';
 
 /* Profile - Volunteer */
-@import './components/profile/profileVolunteerContent/profileVolunteerContent.scss';
-@import './components/profile/profileVolunteerContent/titleRecordModal.scss';
+@import './components/myProfile/profileVolunteerContent/profileVolunteerContent.scss';
+@import './components/myProfile/profileVolunteerContent/titleRecordModal.scss';
 
 /* Profile - Volunteer - About */
-@import './components/profile/profileVolunteerContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
+@import './components/myProfile/profileVolunteerContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
 
 /* Profile - Volunteer - Education */
-@import './components/profile/profileVolunteerContent/educationSection/educationRecord/educationRecord.scss';
-@import './components/profile/profileVolunteerContent/educationSection/newEducationRecordModal/newEducationRecordModal.scss';
-@import './components/profile/profileVolunteerContent/educationSection/educationRecord/editEducationRecordModal/editEducationRecordModal.scss';
+@import './components/myProfile/profileVolunteerContent/educationSection/educationRecord/educationRecord.scss';
+@import './components/myProfile/profileVolunteerContent/educationSection/newEducationRecordModal/newEducationRecordModal.scss';
+@import './components/myProfile/profileVolunteerContent/educationSection/educationRecord/editEducationRecordModal/editEducationRecordModal.scss';
 
 /* Profile - Volunteer - Experience */
-@import './components/profile/profileVolunteerContent/experienceSection/experienceRecord/experienceRecord.scss';
-@import './components/profile/profileVolunteerContent/experienceSection/newExperienceRecordModal/newExperienceRecordModal.scss';
-@import './components/profile/profileVolunteerContent/experienceSection/experienceRecord/editExperienceRecordModal/editExperienceRecordModal.scss';
+@import './components/myProfile/profileVolunteerContent/experienceSection/experienceRecord/experienceRecord.scss';
+@import './components/myProfile/profileVolunteerContent/experienceSection/newExperienceRecordModal/newExperienceRecordModal.scss';
+@import './components/myProfile/profileVolunteerContent/experienceSection/experienceRecord/editExperienceRecordModal/editExperienceRecordModal.scss';
 
 /* Profile - Volunteer - Interests */
-@import './components/profile/profileVolunteerContent/interestsSection/interestsSection.scss';
-@import './components/profile/profileVolunteerContent/interestsSection/interestRecord/interestRecord.scss';
-@import './components/profile/profileVolunteerContent/interestsSection/newInterestRecordModal/newInterestRecordModal.scss';
+@import './components/myProfile/profileVolunteerContent/interestsSection/interestsSection.scss';
+@import './components/myProfile/profileVolunteerContent/interestsSection/interestRecord/interestRecord.scss';
+@import './components/myProfile/profileVolunteerContent/interestsSection/newInterestRecordModal/newInterestRecordModal.scss';
 
 /* Profile - Volunteer - Recommendations */
-@import './components/profile/profileVolunteerContent/recommendationsSection/recommendationsRecord/recommendationsRecord.scss';
+@import './components/myProfile/profileVolunteerContent/recommendationsSection/recommendationsRecord/recommendationsRecord.scss';
 
 /* Profile - Organization */
-@import './components/profile/profileOrganizationContent/profileOrganizationContent.scss';
-@import './components/profile/profileOrganizationContent/titleRecordModal.scss';
+@import './components/myProfile/profileOrganizationContent/profileOrganizationContent.scss';
+@import './components/myProfile/profileOrganizationContent/titleRecordModal.scss';
 
 
 /* Profile - Organization - About */
-@import './components/profile/profileOrganizationContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
+@import './components/myProfile/profileOrganizationContent/aboutSection/aboutRecordModal/aboutRecordModal.scss';
 
 /* Profile - Organization - Jobs */
-@import './components/profile/profileOrganizationContent/jobsSection/jobRecord/jobRecord.scss';
-@import './components/profile/profileOrganizationContent/jobsSection/newJobRecordModal/newJobRecordModal.scss';
-@import './components/profile/profileOrganizationContent/jobsSection/jobRecord/editJobRecordModal/editJobRecordModal.scss';
+@import './components/myProfile/profileOrganizationContent/jobsSection/jobRecord/jobRecord.scss';
+@import './components/myProfile/profileOrganizationContent/jobsSection/newJobRecordModal/newJobRecordModal.scss';
+@import './components/myProfile/profileOrganizationContent/jobsSection/jobRecord/editJobRecordModal/editJobRecordModal.scss';
 
 /* Search jobs */
 @import './components/searchJobs/searchJobs.scss';

@@ -49,7 +49,7 @@ export default function AuthenticationContextProvider ({ children }) {
 
                 const accountTypeData = await accountTypeResponse.json()
 
-                if (accountTypeData.accountType) window.location = 'http://localhost:3000/profile'
+                if (accountTypeData.accountType) window.location = 'http://localhost:3000/myProfile'
                 else window.location = 'http://localhost:3000/selectAccountType'
             }
         }

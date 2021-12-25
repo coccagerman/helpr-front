@@ -55,7 +55,7 @@ export default function Header() {
 
                             <Dropdown.Menu>
                                 <Dropdown.Item>
-                                    <Link to='/profile'>Ver perfil</Link>
+                                    <Link to='/myProfile'>Ver perfil</Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                         cleanStateAfterLogout()

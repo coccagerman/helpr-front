@@ -1,9 +1,19 @@
-import { Link } from 'react-router-dom'
+import { Icon } from '@iconify/react'
+import { useState } from 'react'
+import EditJobRecordModal from './editJobRecordModal/EditJobRecordModal'
+import DeleteJobRecordModal from './deleteJobRecordModal/DeleteJobRecordModal'
 
 export default function JobRecord ({record}) {
 
+    const [showEditJobRecordModal, setShowEditJobRecordModal] = useState(false)
+    const [showDeleteJobRecordModal, setShowDeleteJobRecordModal] = useState(false)
+
     return (
         <article className='jobRecord'>
+            <div className='icon-container'>
+                <Icon icon='bx:bxs-edit' color='#406bc8' className='icon' onClick={() => setShowEditJobRecordModal(true)} />
+                <Icon icon='fluent:delete-24-filled' color='#406bc8' className='icon' onClick={() => setShowDeleteJobRecordModal(true)} />
+            </div>
 
             <div className='horizontal-container'>
                 <div className='horizontal-division'>
@@ -51,8 +61,15 @@ export default function JobRecord ({record}) {
                 <p>{record.requisites ? record.requisites : null}</p>
             </div>
 
-            <Link to={`/jobDetail/${record._id}`}><button className='btn btn-secondary'>Postular</button></Link>
+            <div className='record-data candidates'>
+                <h3>Candidatos postulados:</h3>
+                <p>{record.candidates ? record.candidates.length : null}</p>
+                {(record.candidates && record.candidates.length > 0) ? <a href={`/jobPanel/${record._id}`}>Ver candidatos</a> : null}
+            </div>
+            
 
+            <EditJobRecordModal showEditJobRecordModal={showEditJobRecordModal} setShowEditJobRecordModal={setShowEditJobRecordModal} record={record} />
+            <DeleteJobRecordModal showDeleteJobRecordModal={showDeleteJobRecordModal} setShowDeleteJobRecordModal={setShowDeleteJobRecordModal} record={record} />
         </article>
     )
 }
