@@ -1,0 +1,12 @@
+.searchJobs {
+    .candidateRecord-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .emptySearch-msg {
+            margin: 10rem 0;
+        }
+    }
+}

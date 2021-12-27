@@ -66,6 +66,11 @@
 @import './components/searchJobs/searchForm/searchForm.scss';
 @import './components/searchJobs/jobRecord/jobRecord.scss';
 
+/* Search candidates */
+@import './components/searchCandidates/searchCandidates.scss';
+@import './components/searchCandidates/searchForm/searchForm.scss';
+@import './components/searchCandidates/candidateRecord/candidateRecord.scss';
+
 /* Job detail */
 @import './components/jobDetail/jobDetail.scss';
 

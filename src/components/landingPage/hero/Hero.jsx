@@ -5,7 +5,7 @@ export default function Hero() {
     return (
         <section className='hero'>
             <img src={Logo} alt='Logo.' className='helperLogo'/>
-
+            <p>Un portal para conectar ONGs y voluntarios</p>
             <div className='txtAndImg-container'>
                 <div className='txt'>
                     <article className='txt-organization'>
@@ -15,7 +15,7 @@ export default function Hero() {
                     
                     <article className='txt-volunteer'>
                         <h3>Sos voluntario?</h3>
-                        <p>Colaborá con organizaciones para adquirir experiencia laboral y/o apoyar proyectos sociales!</p>
+                        <p>Colaborá con organizaciones para adquirir experiencia laboral y apoyar proyectos sociales!</p>
                     </article>
                 </div>
 

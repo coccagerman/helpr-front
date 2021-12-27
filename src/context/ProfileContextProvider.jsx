@@ -42,7 +42,6 @@ export default function ProfileContextProvider ({ children }) {
             })
 
             const data = await response.json()
-            console.log(data)
             setUserProfileData(data)
         }
     }

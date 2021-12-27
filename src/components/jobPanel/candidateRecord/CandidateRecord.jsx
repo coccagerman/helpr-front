@@ -28,7 +28,7 @@ export default function CandidateRecord ({candidate, jobRecordId, fetchJobDetail
     }
 
     return (
-        <article className='candidateRecord'>
+        <article className='candidateRecord-jp'>
             <p className='name'>{candidate.name ? candidate.name : null}</p>
             <p className='title'>{candidate.title ? candidate.title : null}</p>
             <p>{candidate.state ? `Estado: ${candidate.state}` : null}</p>

@@ -11,6 +11,7 @@ import LoginPage from './components/loginPage/LoginPage'
 import MyProfile from './components/myProfile/MyProfile'
 import Profile from './components/profile/Profile'
 import SearchJobs from './components/searchJobs/SearchJobs'
+import SearchCandidates from './components/searchCandidates/SearchCandidates'
 import JobDetail from './components/jobDetail/JobDetail'
 import JobPanel from './components/jobPanel/JobPanel'
 import ChatPanel from './components/chatPanel/ChatPanel'
@@ -31,20 +32,16 @@ export default function App() {
               <LandingPage/>
             </Route>
 
-            <Route path='/searchJobs'>
-              <SearchJobs/>
-            </Route>
-
-            <Route path='/jobDetail/:jobRecordId'>
-              <JobDetail/>
-            </Route>
-
             <Route path='/register' >
               <RegisterPage/>
             </Route>
 
             <Route path='/login' >
               <LoginPage/>
+            </Route>
+
+            <Route path='/selectAccountType'>
+              <SelectAccountType/>
             </Route>
 
             <Route path='/myProfile'>
@@ -55,12 +52,20 @@ export default function App() {
               <Profile/>
             </Route>
 
-            <Route path='/selectAccountType'>
-              <SelectAccountType/>
+            <Route path='/searchJobs'>
+              <SearchJobs/>
+            </Route>
+
+            <Route path='/jobDetail/:jobRecordId'>
+              <JobDetail/>
             </Route>
 
             <Route path='/jobPanel/:jobRecordId'>
               <JobPanel/>
+            </Route>
+
+            <Route path='/searchCandidates'>
+              <SearchCandidates/>
             </Route>
 
             <Route path='/chatPanel'>

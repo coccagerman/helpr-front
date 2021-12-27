@@ -1,0 +1,42 @@
+.searchForm {
+    background-color: $helpr-lightGreyBackground;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 0;
+    margin: 1.5rem auto;
+    width: 80%;
+    border-radius: .5rem;
+
+    .form-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        label {
+            font-weight: 600;
+        }
+
+        input, select {
+            padding: .25rem;
+        }
+    }
+
+    .nameSearch {
+        width: 60%;
+    }
+
+    .secondaryInputs {
+        display: flex;
+        margin: 1rem 0;
+
+        .form-input {
+            margin: 0 2rem;
+        }
+    }
+
+    .btn {
+        margin-top: 1.5rem;
+    }
+}

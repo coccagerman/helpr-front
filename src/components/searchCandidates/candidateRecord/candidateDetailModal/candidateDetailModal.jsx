@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Modal from 'react-bootstrap/Modal'
 import genericAvatar from '../../../../assets/genericAvatar.jpeg'
 
-export default function CandidateDetailModal({showCandidateDetailModal, setShowCandidateDetailModal, candidateId, candidateState, rejectOrReconsiderCandidate, jobRecordId}) {
+export default function CandidateDetailModal({showCandidateDetailModal, setShowCandidateDetailModal, candidateId}) {
 
-    const [candidateData, setCandidateData] = useState(false)
+    const [candidateData, setCandidateData] = useState(null)
 
     const fetchCandidateData = async () => {
         const accessToken = localStorage.getItem('accessToken')
@@ -146,16 +146,6 @@ export default function CandidateDetailModal({showCandidateDetailModal, setShowC
                         <Link to={`/chatroom/${candidateData.basic._id}`}>
                             <button className='btn btn-primary'>Contactar</button>
                         </Link>
-                        {candidateState === 'Pendiente de revisión' ?
-                            <button className='btn btn-red' onClick={() => {
-                                rejectOrReconsiderCandidate(jobRecordId, candidateData.basic._id, 'reject')
-                                setShowCandidateDetailModal(false)
-                            }}>Rechazar</button>
-                            :
-                            <button className='btn btn-tertiary' onClick={() => {
-                                rejectOrReconsiderCandidate(jobRecordId, candidateData.basic._id, 'reconsider')
-                            }}>Reconsiderar</button>
-                        }
                     </Modal.Footer>
                 </>
                 :
