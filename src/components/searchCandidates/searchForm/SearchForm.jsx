@@ -1,34 +1,4 @@
-import { useState } from 'react'
-
-export default function SearchForm({ setCandidateSearchResults }) {
-
-    /* FIX - Name serch could be handled with elastic search? */
-    const [textSearch, setTextSearch] = useState(null)
-    const [educationClassification, setEducationClassification] = useState(null)
-    const [educationState, setEducationState] = useState(null)
-    const [interests, setInterests] = useState(null)
-
-    const fetchCandidateSearchResultsWithParams = async searchParams => {
-        const accessToken = localStorage.getItem('accessToken')
-        /* We only keep in searchParamsObject the properties that !null */
-        for (let key in searchParams) {if (!searchParams[key]) delete searchParams[key]}
-
-        let requestBody = !educationClassification && !educationState && !interests ? [] : {searchParams: searchParams}
-
-        const response = await fetch('http://localhost:3001/candidates/searchCandidatesWithParams', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'authorization': accessToken
-            },
-            body: JSON.stringify(requestBody)
-        })
-
-        const data = await response.json()
-        console.log(data)
-        setCandidateSearchResults(data)
-    }
+export default function SearchForm({ fetchCandidateSearchResults, textSearch, setTextSearch, educationClassification, setEducationClassification, educationState, setEducationState, interests, setInterests, resultsRecordsPerPage, setResultsRecordsPerPage}) {
 
     return (
         <form className='searchForm'>
@@ -78,11 +48,21 @@ export default function SearchForm({ setCandidateSearchResults }) {
                     </select>
                 </div>
 
+                <div className='form-input'>
+                    <label htmlFor='resultsPagination'>Resultados por página</label>
+                    <select name='resultsPagination' id='resultsPagination' defaultValue={resultsRecordsPerPage} onChange={e => setResultsRecordsPerPage(e.target.value)}>
+                        <option value='10'>10</option>
+                        <option value='25'>25</option>
+                        <option value='50'>50</option>
+                        <option value='100'>100</option>
+                    </select>
+                </div>
+
             </div>
 
             <button type='submit' className='btn btn-primary' onClick={e => {
                 e.preventDefault()
-                fetchCandidateSearchResultsWithParams({
+                fetchCandidateSearchResults({
                     educationClassification,
                     educationState,
                     interests
