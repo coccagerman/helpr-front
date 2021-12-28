@@ -15,9 +15,9 @@ export default function SearchCandidates() {
     const [educationClassification, setEducationClassification] = useState(null)
     const [educationState, setEducationState] = useState(null)
     const [interests, setInterests] = useState(null)
+
     const [resultsRecordsPerPage, setResultsRecordsPerPage] = useState(10)
     const [resultsPage, setResultsPage] = useState(1)
-
     const [resultsTotalPages, setResultsTotalPages] = useState(null)
     const [totalResults, setTotalResults] = useState(null)
     /* const [resultsNextPage, setResultsNextPage] = useState(null)
@@ -95,6 +95,7 @@ export default function SearchCandidates() {
                 setInterests={setInterests}
                 resultsRecordsPerPage={resultsRecordsPerPage}
                 setResultsRecordsPerPage={setResultsRecordsPerPage}
+                setResultsPage={setResultsPage}
             />
 
             <div className='candidateRecord-container'>

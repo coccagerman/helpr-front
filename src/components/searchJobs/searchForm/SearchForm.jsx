@@ -1,37 +1,6 @@
 import { useState } from 'react'
 
-export default function SearchForm({ setJobSearchResults }) {
-
-    /* FIX - Name serch could be handled with elastic search? */
-    const [position, setPosition] = useState(null)
-    const [classification, setClassification] = useState(null)
-    const [publishedDate, setPublishedDate] = useState(null)
-    const [hourDedication, sethourDedication] = useState(null)
-    const [projectDuration, setProjectDuration] = useState(null)
-    const [publisherInterests, setPublisherInterests] = useState(null)
-
-    const fetchJobSearchResultsWithParams = async searchParams => {
-        const accessToken = localStorage.getItem('accessToken')
-        /* We only keep in searchParamsObject the properties that !null */
-        for (let key in searchParams) {if (!searchParams[key]) delete searchParams[key]}
-
-        const requestBody = {searchParams: searchParams}
-        if (publisherInterests) requestBody.searchPublisherInterestsParam = publisherInterests
-        if (publishedDate) requestBody.searchPublishedDateParam = publishedDate
-
-        const response = await fetch('http://localhost:3001/jobs/searchJobsWithParams', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'authorization': accessToken
-            },
-            body: JSON.stringify(requestBody)
-        })
-
-        const data = await response.json()
-        setJobSearchResults(data)
-    }
+export default function SearchForm({ fetchJobSearchResults, position, setPosition, classification, setClassification, publishedDate, setPublishedDate, hourDedication, sethourDedication, projectDuration, setProjectDuration, publisherInterests, setPublisherInterests, resultsRecordsPerPage, setResultsRecordsPerPage, setResultsPage }) {
 
     return (
         <form className='searchForm'>
@@ -105,11 +74,22 @@ export default function SearchForm({ setJobSearchResults }) {
                         <option value='Tecnología'>Tecnología</option>
                     </select>
                 </div>
+
+                <div className='form-input'>
+                    <label htmlFor='resultsPagination'>Resultados por página</label>
+                    <select name='resultsPagination' id='resultsPagination' defaultValue={resultsRecordsPerPage} onChange={e => setResultsRecordsPerPage(e.target.value)}>
+                        <option value='10'>10</option>
+                        <option value='25'>25</option>
+                        <option value='50'>50</option>
+                        <option value='100'>100</option>
+                    </select>
+                </div>
             </div>
 
             <button type='submit' className='btn btn-primary' onClick={e => {
                 e.preventDefault()
-                fetchJobSearchResultsWithParams({
+                setResultsPage(1)
+                fetchJobSearchResults({
                     classification,
                     hourDedication,
                     projectDuration

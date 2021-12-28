@@ -1,3 +1,10 @@
 .searchJobs {
-    
+    .totalResults {
+        text-align: center;
+        margin: 1rem 0;
+    }
+    .emptySearch-msg {
+        text-align: center;
+        margin: 12rem 0;
+    }
 }

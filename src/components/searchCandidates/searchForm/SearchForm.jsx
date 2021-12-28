@@ -1,4 +1,4 @@
-export default function SearchForm({ fetchCandidateSearchResults, textSearch, setTextSearch, educationClassification, setEducationClassification, educationState, setEducationState, interests, setInterests, resultsRecordsPerPage, setResultsRecordsPerPage}) {
+export default function SearchForm({ fetchCandidateSearchResults, textSearch, setTextSearch, educationClassification, setEducationClassification, educationState, setEducationState, interests, setInterests, resultsRecordsPerPage, setResultsRecordsPerPage, setResultsPage}) {
 
     return (
         <form className='searchForm'>
@@ -62,6 +62,7 @@ export default function SearchForm({ fetchCandidateSearchResults, textSearch, se
 
             <button type='submit' className='btn btn-primary' onClick={e => {
                 e.preventDefault()
+                setResultsPage(1)
                 fetchCandidateSearchResults({
                     educationClassification,
                     educationState,
