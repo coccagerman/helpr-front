@@ -12,7 +12,7 @@ export default function AuthenticationContextProvider ({ children }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     /* Function that redirects the user from landingPage, login or register pages when already logged in. */
-    const checkIfAlreadyAuthenticatedAndRedirect = async (urlJwt) => {
+    const checkIfAlreadyAuthenticatedAndRedirect = async urlJwt => {
         let accessToken
 
         if (urlJwt) {

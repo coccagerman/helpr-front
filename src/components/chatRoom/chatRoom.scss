@@ -1,0 +1,57 @@
+.chatRoom {
+    .chatHeader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem 0;
+
+        img {
+            width: 5rem;
+            border-radius: 50%;
+            margin-left: 1rem;
+        }
+    }
+    .msgs-container {
+        background-color: $helpr-greyedText;
+        height: 77vh;
+        width: 100%;
+    }
+
+    .chatInput {
+        position: absolute;
+        bottom: 0;
+        background-color: $helpr-lightGreyBackground;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0;
+
+        input {
+            width: 60rem;
+            padding: .5rem;
+        }
+
+        button {
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .icon {
+                cursor: pointer;
+                padding: .5rem;
+                margin-left: 1.5rem;
+                font-size: 2.8rem;
+                border-radius: 50%;
+                transition: .3s;
+        
+                &:hover {
+                    background-color: $helpr-darkBlue;
+                    color: white !important;
+                }
+            }
+        }
+        
+    }
+}

@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.scss'
-import AuthenticationContextProvider from './context/AuthenticationContextProvider'
 import ProfileContextProvider from './context/ProfileContextProvider'
+import AuthenticationContextProvider from './context/AuthenticationContextProvider'
+import ChatContextProvider from './context/ChatContextProvider'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import LandingPage from './components/landingPage/LandingPage'
@@ -22,65 +23,67 @@ export default function App() {
   return (
     <ProfileContextProvider>
       <AuthenticationContextProvider>
+        <ChatContextProvider>
 
-        <Router>
-          <Header/>
+          <Router>
+            <Header/>
 
-          <Switch>
-      
-            <Route path='/' exact>
-              <LandingPage/>
-            </Route>
+            <Switch>
+        
+              <Route path='/' exact>
+                <LandingPage/>
+              </Route>
 
-            <Route path='/register' >
-              <RegisterPage/>
-            </Route>
+              <Route path='/register' >
+                <RegisterPage/>
+              </Route>
 
-            <Route path='/login' >
-              <LoginPage/>
-            </Route>
+              <Route path='/login' >
+                <LoginPage/>
+              </Route>
 
-            <Route path='/selectAccountType'>
-              <SelectAccountType/>
-            </Route>
+              <Route path='/selectAccountType'>
+                <SelectAccountType/>
+              </Route>
 
-            <Route path='/myProfile'>
-              <MyProfile/>
-            </Route>
+              <Route path='/myProfile'>
+                <MyProfile/>
+              </Route>
 
-            <Route path='/profile/:userId'>
-              <Profile/>
-            </Route>
+              <Route path='/profile/:userId'>
+                <Profile/>
+              </Route>
 
-            <Route path='/searchJobs'>
-              <SearchJobs/>
-            </Route>
+              <Route path='/searchJobs'>
+                <SearchJobs/>
+              </Route>
 
-            <Route path='/jobDetail/:jobRecordId'>
-              <JobDetail/>
-            </Route>
+              <Route path='/jobDetail/:jobRecordId'>
+                <JobDetail/>
+              </Route>
 
-            <Route path='/jobPanel/:jobRecordId'>
-              <JobPanel/>
-            </Route>
+              <Route path='/jobPanel/:jobRecordId'>
+                <JobPanel/>
+              </Route>
 
-            <Route path='/searchCandidates'>
-              <SearchCandidates/>
-            </Route>
+              <Route path='/searchCandidates'>
+                <SearchCandidates/>
+              </Route>
 
-            <Route path='/chatPanel'>
-              <ChatPanel/>
-            </Route>
+              <Route path='/chatPanel'>
+                <ChatPanel/>
+              </Route>
 
-            <Route path='/chatRoom/:userId'>
-              <ChatRoom/>
-            </Route>
+              <Route path='/chatRoom/:chatroomId'>
+                <ChatRoom/>
+              </Route>
 
-          </Switch>
+            </Switch>
 
-          <Footer/>
-        </Router>
-
+            <Footer/>
+          </Router>
+          
+        </ChatContextProvider>
       </AuthenticationContextProvider>
     </ProfileContextProvider>
   )

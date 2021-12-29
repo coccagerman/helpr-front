@@ -25,8 +25,10 @@ export default function Header() {
             {isLoggedIn ? 
                 <div className='btn-container'>
                     <article>
-                        <Icon className='icon' icon='ic:baseline-notifications' color='#3a53b7' />
-                        <p>Notificaciones</p>
+                        <Link to='/chatPanel'>
+                            <Icon className='icon' icon="jam:messages-f" color='#3a53b7'/>
+                            <p>Mensajes</p>
+                        </Link>
                     </article>
 
                     {profileData && profileData.accountType === 'volunteer' ?
