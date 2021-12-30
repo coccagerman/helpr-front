@@ -1,0 +1,22 @@
+.chatSnippet {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    color: black;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        background-color: $helpr-lightGreyBackground;
+        color: black;
+    }
+
+    img {
+        width: 3rem;
+        border-radius: 50%;
+        margin: 0 1rem;
+    }
+}

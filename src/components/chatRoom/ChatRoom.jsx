@@ -8,7 +8,6 @@ import genericAvatar from '../../assets/genericAvatar.jpeg'
 
 export default function ChatRoom () {
 
-    const [chatMsgs, setChatMsgs] = useState([])
     const [otherUser, setOtherUser] = useState(null)
 
     const { chatroomId } = useParams()

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import AuthenticationContext from '../../../context/AuthenticationContext'
 import ProfileContext from '../../../context/ProfileContext'
+import ChatContext from '../../../context/ChatContext'
 
 import AboutSection from './aboutSection/AboutSection'
 import EducationSection from './educationSection/EducationSection'
@@ -14,7 +15,8 @@ import genericAvatar from '../../../assets/genericAvatar.jpeg'
 
 export default function ProfileVolunteerContent() {
 
-    const { userProfileData, userProfilePicture } = useContext(ProfileContext)
+    const { profileData, userProfileData, userProfilePicture } = useContext(ProfileContext)
+    const { createNewChatRoom } = useContext(ChatContext)
     const { checkIfNotOrganizationAndRedirect } = useContext(AuthenticationContext)
 
     useEffect(() => checkIfNotOrganizationAndRedirect(), [])
@@ -31,9 +33,7 @@ export default function ProfileVolunteerContent() {
                     <div className='title-container'>
                         <p>{userProfileData.basic.title ? userProfileData.basic.title : null}</p>
                     </div>
-                    <Link to={`/chatroom/${userProfileData.basic._id}`}>
-                        <button className='btn btn-primary'>Contactar</button>
-                    </Link>
+                    <button className='btn btn-primary' onClick={() => createNewChatRoom([profileData._id, userProfileData.basic._id])}>Contactar</button>
                 </div>
             </div>
 

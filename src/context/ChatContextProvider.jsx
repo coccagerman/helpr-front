@@ -3,6 +3,8 @@ import { useState } from 'react'
 
 export default function ChatContextProvider ({ children }) {
 
+    const [allUserChatrooms, setAllUserChatrooms] = useState(null)
+    
     const [activeChatRoom, setActiveChatRoom] = useState(null)
     const [activeChatRoomMessages, setActiveChatRoomMessages] = useState([])
     const [activeChatRoomParticipants, setActiveChatRoomParticipants] = useState(null)
@@ -46,10 +48,29 @@ export default function ChatContextProvider ({ children }) {
         setActiveChatRoomParticipants(data.chatroomData.participants)
     }
 
+    const getAllUserChatRooms = async userId => {
+        const accessToken = localStorage.getItem('accessToken')
+
+        const response = await fetch(`http://localhost:3001/chat//getAllChatroomsFromUser/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': accessToken
+            }
+        })
+
+        const data = await response.json()
+        console.log(data)
+        setAllUserChatrooms(data)
+    }
+
     return (
         <ChatContext.Provider value={{
             createNewChatRoom,
             getMessagesFromChatRoom,
+            getAllUserChatRooms,
+            allUserChatrooms,
             activeChatRoom,
             activeChatRoomMessages,
             activeChatRoomParticipants

@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import ProfileContext from '../../../../context/ProfileContext'
+import ChatContext from '../../../../context/ChatContext'
 import { Link } from 'react-router-dom'
 import Modal from 'react-bootstrap/Modal'
 import genericAvatar from '../../../../assets/genericAvatar.jpeg'
@@ -6,6 +8,9 @@ import genericAvatar from '../../../../assets/genericAvatar.jpeg'
 export default function CandidateDetailModal({showCandidateDetailModal, setShowCandidateDetailModal, candidateId}) {
 
     const [candidateData, setCandidateData] = useState(null)
+
+    const { profileData } = useContext(ProfileContext)
+    const { createNewChatRoom } = useContext(ChatContext)
 
     const fetchCandidateData = async () => {
         const accessToken = localStorage.getItem('accessToken')
@@ -143,9 +148,7 @@ export default function CandidateDetailModal({showCandidateDetailModal, setShowC
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Link to={`/chatroom/${candidateData.basic._id}`}>
-                            <button className='btn btn-primary'>Contactar</button>
-                        </Link>
+                        <button className='btn btn-primary' onClick={() => createNewChatRoom([profileData._id, candidateData.basic._id])}>Contactar</button>
                     </Modal.Footer>
                 </>
                 :

@@ -1,0 +1,11 @@
+.chatPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+
+    h1 {
+        margin-bottom: 1rem;
+    }
+}
