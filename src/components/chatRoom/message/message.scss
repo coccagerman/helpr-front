@@ -1,0 +1,66 @@
+.message {
+    margin: .5rem 0;
+    position: relative;
+    max-width: 32rem;
+
+    .msg-container {
+        position: relative;
+        padding: .5rem;
+        border-radius: .5rem;
+        max-width: 30rem;
+
+        img {
+            width: 3rem;
+            border-radius: 50%;
+            position: absolute;
+            top: -.5rem;
+        }
+
+        .msg-time {
+            font-size: .75rem;
+            position: absolute;
+            bottom: -1rem;
+            right: .25rem;
+        }
+
+        .talker-indicator {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            top: 0;
+        }
+    }
+}
+
+.sent {
+    .msg-container {
+        background-color: $helpr-lightGreyBackground;
+
+        img {
+            right: -4rem;
+        }
+
+        .talker-indicator {
+            right: -.75rem;
+            border-width: 20px 20px 0 0;
+            border-color: $helpr-lightGreyBackground transparent transparent transparent;
+        }
+    }
+}
+
+.received {
+    .msg-container {
+        background-color: $helpr-greyedBlue;
+
+        img {
+            left: -4rem;
+        }
+
+        .talker-indicator {
+            left: -.75rem;
+            border-width: 0 20px 20px 0;
+            border-color: transparent $helpr-greyedBlue transparent transparent;
+        }
+    }
+}

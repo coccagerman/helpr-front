@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import ChatContext from '../../context/ChatContext'
 import ProfileContext from '../../context/ProfileContext'
 import Input from './input/Input'
+import Message from './message/Message'
 import genericAvatar from '../../assets/genericAvatar.jpeg'
 
 export default function ChatRoom () {
@@ -11,8 +12,8 @@ export default function ChatRoom () {
     const [otherUser, setOtherUser] = useState(null)
 
     const { chatroomId } = useParams()
-    const { getMessagesFromChatRoom, activeChatRoomParticipants } = useContext(ChatContext)
-    const { profileData, fetchProfileData } = useContext(ProfileContext)
+    const { getMessagesFromChatRoom, activeChatRoomParticipants, activeChatRoomMessages } = useContext(ChatContext)
+    const { profileData, fetchProfileData, fetchProfilePicture } = useContext(ProfileContext)
 
     const fixedScroll = useRef()
 
@@ -37,7 +38,10 @@ export default function ChatRoom () {
         }
     }
 
-    useEffect(() => fetchProfileData(), [])
+    useEffect(() => {
+        fetchProfileData()
+        fetchProfilePicture()
+    }, [])
 
     useEffect(() => {
         getMessagesFromChatRoom(chatroomId)
@@ -56,14 +60,14 @@ export default function ChatRoom () {
                     </div>
 
                     <div className='msgs-container'>
-                        {chatMsgs && chatMsgs.length > 0 ?
-                            chatMsgs.map(msg => <p>{msg}</p>)
+                        {activeChatRoomMessages && activeChatRoomMessages.length > 0 ?
+                            activeChatRoomMessages.map(msg => <Message msg={msg} activeChatRoomMessages={activeChatRoomMessages} otherUserProfilePicture={otherUser.profilePicturePath} key={msg._id}/>)
                             :
                             null
                         }
                     </div>
 
-                    <Input fixedScroll={fixedScroll} />
+                    <Input fixedScroll={fixedScroll} chatroomId={chatroomId} />
                 </>
                 :
                 null

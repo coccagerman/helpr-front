@@ -1,25 +1,43 @@
 import { useState, useContext } from 'react'
 import ProfileContext from '../../../context/ProfileContext'
+import ChatContext from '../../../context/ChatContext'
 
 import { Icon } from '@iconify/react'
 
-export default function Input ({ fixedScroll }) {
+export default function Input ({ fixedScroll, chatroomId }) {
 
     const { profileData } = useContext(ProfileContext)
+    const { getMessagesFromChatRoom } = useContext(ChatContext)
     
     const [formValue, setFormValue] = useState('')
 
-    const sendMessage = (e) => {
+    const sendMessage = async e => {
         e.preventDefault()
-        
-        const newMsg = {
+        const accessToken = localStorage.getItem('accessToken')
+
+        const newMessage = {
             content: formValue,
-            date: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
+            date: new Date(),
             sentBy: profileData._id
         }
-            
-        setFormValue('')
-        setTimeout(() => fixedScroll.current.scrollIntoView({behavior: 'smooth'}), .1)
+
+        const response = await fetch(`http://localhost:3001/chat/sendNewMessage/${chatroomId}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': accessToken
+            },
+            body: JSON.stringify({newMessage})
+        })
+
+        const data = await response.json()
+        
+        if (data === 'Success - Message sent') {
+            getMessagesFromChatRoom(chatroomId)
+            setFormValue('')
+            // setTimeout(() => fixedScroll.current.scrollIntoView({behavior: 'smooth'}), .1)
+        }
     }
 
     return (
