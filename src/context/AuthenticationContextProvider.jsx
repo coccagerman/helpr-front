@@ -8,6 +8,7 @@ export default function AuthenticationContextProvider ({ children }) {
 
     const { profileData } = useContext(ProfileContext)
     const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+    const frontUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVFRONT_URL : process.env.REACT_APP_PRODFRONT_URL
 
     /* Global state that is used to conditionally show components when user is logged in or not. */
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -50,8 +51,8 @@ export default function AuthenticationContextProvider ({ children }) {
 
                 const accountTypeData = await accountTypeResponse.json()
 
-                if (accountTypeData.accountType) window.location = 'http://localhost:3000/myProfile'
-                else window.location = 'http://localhost:3000/selectAccountType'
+                if (accountTypeData.accountType) window.location = `${frontUrl}/myProfile`
+                else window.location = `${frontUrl}/selectAccountType`
             }
         }
     }
@@ -73,10 +74,10 @@ export default function AuthenticationContextProvider ({ children }) {
             const data = await response.json()
 
             if (data !== 'Valid token') {
-                window.location.href = 'http://localhost:3000/login'
+                window.location.href = `${frontUrl}/login`
             }
         } else {
-            window.location.href = 'http://localhost:3000/login'
+            window.location.href = `${frontUrl}/login`
         }
     }
 
@@ -118,10 +119,10 @@ export default function AuthenticationContextProvider ({ children }) {
 
                 const data = await response.json()
 
-                if (data.accountType !== 'organization') window.location.href = 'http://localhost:3000/'
+                if (data.accountType !== 'organization') window.location.href = `${frontUrl}/`
 
-            } else { if (profileData.accountType !== 'organization') window.location.href = 'http://localhost:3000/' }
-        } else window.location.href = 'http://localhost:3000/login'
+            } else { if (profileData.accountType !== 'organization') window.location.href = `${frontUrl}/` }
+        } else window.location.href = `${frontUrl}/login`
     }
 
     /* Function that redirects organization users from pages only for volunteers. */
@@ -141,10 +142,10 @@ export default function AuthenticationContextProvider ({ children }) {
 
                 const data = await response.json()
 
-                if (data.accountType !== 'volunteer') window.location.href = 'http://localhost:3000/'
+                if (data.accountType !== 'volunteer') window.location.href = `${frontUrl}/`
 
-            } else { if (profileData.accountType !== 'volunteer') window.location.href = 'http://localhost:3000/' }
-        } else window.location.href = 'http://localhost:3000/login'
+            } else { if (profileData.accountType !== 'volunteer') window.location.href = `${frontUrl}/` }
+        } else window.location.href = `${frontUrl}/login`
     }
 
     return (

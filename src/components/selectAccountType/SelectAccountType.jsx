@@ -7,8 +7,10 @@ export default function SelectAccountType() {
 
     const { fetchProfileData, profileData, editUserRecord } = useContext(ProfileContext)
 
+    const frontUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVFRONT_URL : process.env.REACT_APP_PRODFRONT_URL
+
     const checkIfAlreadyHasAccountTypeAndRedirect = () => {
-        if (profileData && profileData.accountType) window.location = 'http://localhost:3000/myProfile'
+        if (profileData && profileData.accountType) window.location = `${frontUrl}/myProfile`
     }
 
     useEffect(() => {
@@ -34,7 +36,7 @@ export default function SelectAccountType() {
             </article>
 
             <button className='btn btn-primary' onClick={() => {
-                if (editUserRecord('accountType', accountType)) window.location = 'http://localhost:3000/myProfile'
+                if (editUserRecord('accountType', accountType)) window.location = `${frontUrl}/myProfile`
             }}>Avanzar</button>
 
         </section>

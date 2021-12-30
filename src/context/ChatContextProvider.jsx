@@ -10,6 +10,7 @@ export default function ChatContextProvider ({ children }) {
     const [activeChatRoomParticipants, setActiveChatRoomParticipants] = useState(null)
 
     const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+    const frontUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVFRONT_URL : process.env.REACT_APP_PRODFRONT_URL
 
     const createNewChatRoom = async (participants, userId) => {
         const accessToken = localStorage.getItem('accessToken')
@@ -27,7 +28,7 @@ export default function ChatContextProvider ({ children }) {
         const data = await response.json()
 
         if (data.response === 'Success - Chatroom created' || data.response === 'Chatroom already exists') {
-            window.location = `http://localhost:3000/chatRoom/${data.chatroomId}`
+            window.location = `${frontUrl}/chatRoom/${data.chatroomId}`
         }
     }
 
