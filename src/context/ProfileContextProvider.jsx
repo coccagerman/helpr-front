@@ -13,13 +13,16 @@ export default function ProfileContextProvider ({ children }) {
     const [userProfileData, setUserProfileData] = useState(null)
     const [userProfilePicture, setUserProfilePicture] = useState(null)
 
+    const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+
     /* Fetch general profile data */
     /* If userId is provided info from that user is provided, else logged in user info is provided */
     const fetchProfileData = async userId => {
+
         const accessToken = localStorage.getItem('accessToken')
 
         if (!userId) {
-            const response = await fetch('http://localhost:3001/profile', {
+            const response = await fetch(`${serverUrl}/profile`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -32,7 +35,7 @@ export default function ProfileContextProvider ({ children }) {
             setProfileData(data)
 
         } else {
-            const response = await fetch(`http://localhost:3001/profile/user/${userId}`, {
+            const response = await fetch(`${serverUrl}/profile/user/${userId}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -50,7 +53,7 @@ export default function ProfileContextProvider ({ children }) {
     const editUserRecord = async (fieldToEdit, fieldData, queryType) => {
         const accessToken = localStorage.getItem('accessToken')
 
-        const editionResponse = await fetch('http://localhost:3001/profile', {
+        const editionResponse = await fetch(`${serverUrl}/profile`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -67,7 +70,7 @@ export default function ProfileContextProvider ({ children }) {
         const editionData = await editionResponse.json()
 
         if (editionData === 'Successful edition') {
-            const response = await fetch('http://localhost:3001/profile', {
+            const response = await fetch(`${serverUrl}/profile`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -88,7 +91,7 @@ export default function ProfileContextProvider ({ children }) {
     const editProfilePicture = async (profilePicture) => {
         const accessToken = localStorage.getItem('accessToken')
 
-        const editionRresponse = await fetch('http://localhost:3001/profile/profilePicture', {
+        const editionRresponse = await fetch(`${serverUrl}/profile/profilePicture`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -102,7 +105,7 @@ export default function ProfileContextProvider ({ children }) {
         
         if (editionData === 'Successful edition') {
             
-            const response = await fetch('http://localhost:3001/profile/profilePicture', {
+            const response = await fetch(`${serverUrl}/profile/profilePicture`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -123,7 +126,7 @@ export default function ProfileContextProvider ({ children }) {
         const accessToken = localStorage.getItem('accessToken')
 
         if (!userId) {
-            const response = await fetch('http://localhost:3001/profile/profilePicture', {
+            const response = await fetch(`${serverUrl}/profile/profilePicture`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -135,7 +138,7 @@ export default function ProfileContextProvider ({ children }) {
             const data = await response.json()
             setProfilePicture(data)
         } else {
-            const response = await fetch(`http://localhost:3001/profile/profilePicture/user/${userId}`, {
+            const response = await fetch(`${serverUrl}/profile/profilePicture/user/${userId}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -154,7 +157,7 @@ export default function ProfileContextProvider ({ children }) {
         if (!educationRecords) {
             const accessToken = localStorage.getItem('accessToken')
 
-            const response = await fetch('http://localhost:3001/profile/educationRecords', {
+            const response = await fetch(`${serverUrl}/profile/educationRecords`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -173,7 +176,7 @@ export default function ProfileContextProvider ({ children }) {
         if (!educationRecords) {
             const accessToken = localStorage.getItem('accessToken')
 
-            const response = await fetch('http://localhost:3001/profile/experienceRecords', {
+            const response = await fetch(`${serverUrl}/profile/experienceRecords`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -192,7 +195,7 @@ export default function ProfileContextProvider ({ children }) {
         const accessToken = localStorage.getItem('accessToken')
 
         if (!jobsRecords) {
-            const response = await fetch('http://localhost:3001/profile/JobRecords', {
+            const response = await fetch(`${serverUrl}/profile/JobRecords`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -210,7 +213,7 @@ export default function ProfileContextProvider ({ children }) {
     const editEducationOrExperienceRecord = async (fieldToEdit, queryType, fieldData) => {
         const accessToken = localStorage.getItem('accessToken')
 
-        const editionResponse = await fetch('http://localhost:3001/profile', {
+        const editionResponse = await fetch(`${serverUrl}/profile`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -227,7 +230,7 @@ export default function ProfileContextProvider ({ children }) {
         const editionData = await editionResponse.json()
 
         if (editionData === 'Successful edition') {
-            let url = (fieldToEdit === 'education' ? 'http://localhost:3001/profile/educationRecords' : 'http://localhost:3001/profile/experienceRecords')  
+            let url = (fieldToEdit === 'education' ? `${serverUrl}/profile/educationRecords` : `${serverUrl}/profile/experienceRecords`)  
             
             const response = await fetch(url, {
                 method: 'GET',
@@ -247,7 +250,7 @@ export default function ProfileContextProvider ({ children }) {
     const editJobsRecord = async (fieldToEdit, queryType, fieldData) => {
         const accessToken = localStorage.getItem('accessToken')
 
-        const editionResponse = await fetch('http://localhost:3001/profile', {
+        const editionResponse = await fetch(`${serverUrl}/profile`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -265,7 +268,7 @@ export default function ProfileContextProvider ({ children }) {
 
         if (editionData === 'Successful edition') {
             
-            const response = await fetch('http://localhost:3001/profile/jobRecords', {
+            const response = await fetch(`${serverUrl}/profile/jobRecords`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

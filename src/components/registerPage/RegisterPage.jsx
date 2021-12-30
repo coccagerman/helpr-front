@@ -20,8 +20,11 @@ export default function RegisterPage() {
     const { checkIfAlreadyAuthenticatedAndRedirect } = useContext(AuthenticationContext)
     useEffect(() => checkIfAlreadyAuthenticatedAndRedirect(), [])
 
+    const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+
     const submitRegisterForm = async e => {
         e.preventDefault()
+
         let data
 
         if (!name || !email || !emailCheck || !password || !passwordCheck) {
@@ -37,7 +40,7 @@ export default function RegisterPage() {
             setRegisterPageModalMessage('Las passwords que escribiste no coinciden.')
             return setShowRegisterPageModal(true)
         } else {
-            const response = await fetch('http://localhost:3001/users/register', {
+            const response = await fetch(`${serverUrl}/users/register`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -116,21 +119,21 @@ export default function RegisterPage() {
             <h2>O registrate con alguna de estas opciones:</h2>
 
             <div className='registerMethods'>
-                <a href='http://localhost:3001/users/googleAuth'>
+                <a href={`${serverUrl}/users/googleAuth`}>
                     <article>
                         <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
                         <p>Registrate con Google</p>
                     </article>
                 </a>
 
-                <a href='http://localhost:3001/users/facebookAuth'>
+                <a href={`${serverUrl}/users/facebookAuth`}>
                     <article>
                         <Icon className='icon' icon='akar-icons:facebook-fill' color='#406bc8'/>
                         <p>Registrate con Facebook</p>
                     </article>
                 </a>
                 
-                <a href='http://localhost:3001/users/twitterAuth'>
+                <a href={`${serverUrl}/users/twitterAuth`}>
                     <article>
                         <Icon className='icon' icon='ant-design:twitter-circle-filled' color='#406bc8'/>
                         <p>Registrate con Twitter</p>

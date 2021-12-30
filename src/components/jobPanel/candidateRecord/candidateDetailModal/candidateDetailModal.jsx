@@ -9,8 +9,9 @@ export default function CandidateDetailModal({showCandidateDetailModal, setShowC
 
     const fetchCandidateData = async () => {
         const accessToken = localStorage.getItem('accessToken')
+        const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
 
-        const response = await fetch(`http://localhost:3001/profile/user/${candidateId}`, {
+        const response = await fetch(`${serverUrl}/profile/user/${candidateId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

@@ -7,6 +7,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^5.1.1",
+    "dotenv": "^10.0.0",
     "filepond": "^4.30.3",
     "filepond-plugin-file-encode": "^2.1.10",
     "filepond-plugin-file-validate-type": "^1.2.6",

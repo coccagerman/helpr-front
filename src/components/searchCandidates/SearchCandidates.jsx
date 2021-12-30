@@ -25,6 +25,8 @@ export default function SearchCandidates() {
 
     const fetchCandidateSearchResults = async searchParams => {
         const accessToken = localStorage.getItem('accessToken')
+        const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+
         /* We only keep in searchParamsObject the properties that !null */
         for (let key in searchParams) {if (!searchParams[key]) delete searchParams[key]}
 
@@ -40,7 +42,7 @@ export default function SearchCandidates() {
                 searchParams: searchParams
             }
 
-        const response = await fetch('http://localhost:3001/candidates/searchCandidatesWithParams', {
+        const response = await fetch(`${serverUrl}/candidates/searchCandidatesWithParams`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

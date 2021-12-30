@@ -8,8 +8,9 @@ export default function CandidateRecord ({candidate, jobRecordId, fetchJobDetail
 
     const rejectOrReconsiderCandidate = async (jobRecordId, candidateId, queryType) => {
         const accessToken = localStorage.getItem('accessToken')
+        const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
 
-        const response = await fetch(`http://localhost:3001/jobs/rejectOrReconsiderCandidate`, {
+        const response = await fetch(`${serverUrl}/jobs/rejectOrReconsiderCandidate`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

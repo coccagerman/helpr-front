@@ -16,12 +16,19 @@ export default function LoginPage() {
 
     const [showLoginPageModal, setShowLoginPageModal] = useState(false)
 
+    const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+
+    console.log('serverUrl')
+    console.log(`${serverUrl}/users/login`)
+
     const submitLoginForm = async e => {
         e.preventDefault()
 
+        console.log(`${serverUrl}/users/login`)
+
         if (!email || !password) setShowLoginPageModal(true)
         else {
-            const response = await fetch('http://localhost:3001/users/login', {
+            const response = await fetch(`${serverUrl}/users/login`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -53,7 +60,7 @@ export default function LoginPage() {
 
             <div className='horizontal-division'>                
 
-                <form action='http://localhost:3001/users/login' method='POST'>
+                <form action={`${serverUrl}/users/login`} method='POST'>
 
                     <article className='input-container'>
                         <label htmlFor='email'>Email</label>
@@ -74,21 +81,21 @@ export default function LoginPage() {
             <h2>O ingresá con alguna de estas opciones:</h2>
 
             <div className='loginMethods'>
-                <a href='http://localhost:3001/users/googleAuth'>
+                <a href={`${serverUrl}/users/googleAuth`}>
                     <article>
                         <Icon className='icon' icon='akar-icons:google-contained-fill' color='#406bc8'/>
                         <p>Ingresá con Google</p>
                     </article>
                 </a>
 
-                <a href='http://localhost:3001/users/facebookAuth'>
+                <a href={`${serverUrl}/users/facebookAuth`}>
                     <article>
                         <Icon className='icon' icon='akar-icons:facebook-fill' color='#406bc8'/>
                         <p>Ingresá con Facebook</p>
                     </article>
                 </a>
 
-                <a href='http://localhost:3001/users/twitterAuth'>
+                <a href={`${serverUrl}/users/twitterAuth`}>
                     <article>
                         <Icon className='icon' icon='ant-design:twitter-circle-filled' color='#406bc8'/>
                         <p>Ingresá con Twitter</p>

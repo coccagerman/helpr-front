@@ -9,10 +9,12 @@ export default function ChatContextProvider ({ children }) {
     const [activeChatRoomMessages, setActiveChatRoomMessages] = useState([])
     const [activeChatRoomParticipants, setActiveChatRoomParticipants] = useState(null)
 
+    const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+
     const createNewChatRoom = async (participants, userId) => {
         const accessToken = localStorage.getItem('accessToken')
 
-        const response = await fetch('http://localhost:3001/chat/createChatroom', {
+        const response = await fetch(`${serverUrl}/chat/createChatroom`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -32,7 +34,7 @@ export default function ChatContextProvider ({ children }) {
     const getMessagesFromChatRoom = async chatroomId => {
         const accessToken = localStorage.getItem('accessToken')
 
-        const response = await fetch(`http://localhost:3001/chat/getAllmessagesFromChatroom/${chatroomId}`, {
+        const response = await fetch(`${serverUrl}/chat/getAllmessagesFromChatroom/${chatroomId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -51,7 +53,7 @@ export default function ChatContextProvider ({ children }) {
     const getAllUserChatRooms = async userId => {
         const accessToken = localStorage.getItem('accessToken')
 
-        const response = await fetch(`http://localhost:3001/chat//getAllChatroomsFromUser/${userId}`, {
+        const response = await fetch(`${serverUrl}/chat//getAllChatroomsFromUser/${userId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

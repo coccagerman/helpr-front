@@ -20,10 +20,11 @@ export default function ChatRoom () {
         if (activeChatRoomParticipants) {
 
             const accessToken = localStorage.getItem('accessToken')
+            const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
 
             let otherUserId = profileData._id !== activeChatRoomParticipants[0] ? activeChatRoomParticipants[0] : activeChatRoomParticipants[1]
 
-            const response = await fetch(`http://localhost:3001/profile/user/${otherUserId}`, {
+            const response = await fetch(`${serverUrl}/profile/user/${otherUserId}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

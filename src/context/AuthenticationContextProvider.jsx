@@ -7,6 +7,7 @@ import ProfileContext from './ProfileContext'
 export default function AuthenticationContextProvider ({ children }) {
 
     const { profileData } = useContext(ProfileContext)
+    const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
 
     /* Global state that is used to conditionally show components when user is logged in or not. */
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -23,7 +24,7 @@ export default function AuthenticationContextProvider ({ children }) {
         }
 
         if (accessToken) {
-            const response = await fetch('http://localhost:3001/users/validateToken', {
+            const response = await fetch(`${serverUrl}/users/validateToken`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -38,7 +39,7 @@ export default function AuthenticationContextProvider ({ children }) {
                 /* We validate if the user already has an account type. */
                 /* If yes, we redirect to profile page. If not, we redirect to selectAccountType page. */
                 /* This step is necesary since social network auth doesn't include account type selection. */
-                const accountTypeResponse = await fetch('http://localhost:3001/profile/userGetByToken', {
+                const accountTypeResponse = await fetch(`${serverUrl}/profile/userGetByToken`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -60,7 +61,7 @@ export default function AuthenticationContextProvider ({ children }) {
         const accessToken = localStorage.getItem('accessToken')
         if (accessToken) {
 
-            const response = await fetch('http://localhost:3001/users/validateToken', {
+            const response = await fetch(`${serverUrl}/users/validateToken`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -84,7 +85,7 @@ export default function AuthenticationContextProvider ({ children }) {
         const accessToken = localStorage.getItem('accessToken')
         if (accessToken) {
 
-            const response = await fetch('http://localhost:3001/users/validateToken', {
+            const response = await fetch(`${serverUrl}/users/validateToken`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -106,7 +107,7 @@ export default function AuthenticationContextProvider ({ children }) {
         const accessToken = localStorage.getItem('accessToken')
         if (accessToken) {
             if (!profileData) {
-                const response = await fetch('http://localhost:3001/profile', {
+                const response = await fetch(`${serverUrl}/profile`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
@@ -129,7 +130,7 @@ export default function AuthenticationContextProvider ({ children }) {
         if (accessToken) {
             if (!profileData) {
 
-                const response = await fetch('http://localhost:3001/profile', {
+                const response = await fetch(`${serverUrl}/profile`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',

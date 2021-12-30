@@ -29,6 +29,8 @@ export default function SearchJobs() {
 
     const fetchJobSearchResults = async searchParams => {
         const accessToken = localStorage.getItem('accessToken')
+        const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+
         /* We only keep in searchParamsObject the properties that !null */
         for (let key in searchParams) {if (!searchParams[key]) delete searchParams[key]}
 
@@ -41,7 +43,7 @@ export default function SearchJobs() {
         if (publisherInterests) requestBody.searchPublisherInterestsParam = publisherInterests
         if (publishedDate) requestBody.searchPublishedDateParam = publishedDate
 
-        const response = await fetch('http://localhost:3001/jobs/searchJobsWithParams', {
+        const response = await fetch(`${serverUrl}/jobs/searchJobsWithParams`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

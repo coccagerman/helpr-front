@@ -14,6 +14,7 @@ export default function Input ({ fixedScroll, chatroomId }) {
     const sendMessage = async e => {
         e.preventDefault()
         const accessToken = localStorage.getItem('accessToken')
+        const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
 
         const newMessage = {
             content: formValue,
@@ -21,7 +22,7 @@ export default function Input ({ fixedScroll, chatroomId }) {
             sentBy: profileData._id
         }
 
-        const response = await fetch(`http://localhost:3001/chat/sendNewMessage/${chatroomId}`, {
+        const response = await fetch(`${serverUrl}/chat/sendNewMessage/${chatroomId}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
