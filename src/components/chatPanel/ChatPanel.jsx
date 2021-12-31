@@ -10,9 +10,6 @@ export default function ChatPanel () {
 
     useEffect(() => getAllUserChatRooms(profileData._id), [])
 
-    console.log('allUserChatrooms')
-    console.log(allUserChatrooms)
-
     return (
         <section className='chatPanel'>
             {allUserChatrooms && allUserChatrooms.length > 0 ?

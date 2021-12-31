@@ -12,6 +12,7 @@ export default function CandidateRecord ({candidate, jobRecordId, fetchJobDetail
 
         const response = await fetch(`${serverUrl}/jobs/rejectOrReconsiderCandidate`, {
             method: 'PUT',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

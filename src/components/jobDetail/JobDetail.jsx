@@ -20,6 +20,7 @@ export default function JobDetail() {
 
         const response = await fetch(`${serverUrl}/jobs/${jobRecordId}`, {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -37,6 +38,7 @@ export default function JobDetail() {
 
         const response = await fetch(`${serverUrl}/jobs/jobApplication/${jobRecordId}`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

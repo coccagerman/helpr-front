@@ -24,6 +24,7 @@ export default function Input ({ fixedScroll, chatroomId }) {
 
         const response = await fetch(`${serverUrl}/chat/sendNewMessage/${chatroomId}`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

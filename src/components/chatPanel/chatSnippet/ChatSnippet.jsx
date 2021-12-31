@@ -19,6 +19,7 @@ export default function ChatSnippet ({chatRoom}) {
 
         const response = await fetch(`${serverUrl}/profile/profilePicture/user/${otherUserId}`, {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -36,6 +37,7 @@ export default function ChatSnippet ({chatRoom}) {
 
         const response = await fetch(`${serverUrl}/profile/user/${otherUserId}`, {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -53,6 +55,7 @@ export default function ChatSnippet ({chatRoom}) {
 
         const response = await fetch(`${serverUrl}/chat/getAllmessagesFromChatroom/${chatRoom._id}`, {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

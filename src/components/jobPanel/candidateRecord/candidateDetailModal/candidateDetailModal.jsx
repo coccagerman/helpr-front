@@ -13,6 +13,7 @@ export default function CandidateDetailModal({showCandidateDetailModal, setShowC
 
         const response = await fetch(`${serverUrl}/profile/user/${candidateId}`, {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

@@ -17,6 +17,7 @@ export default function ChatContextProvider ({ children }) {
 
         const response = await fetch(`${serverUrl}/chat/createChatroom`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -37,6 +38,7 @@ export default function ChatContextProvider ({ children }) {
 
         const response = await fetch(`${serverUrl}/chat/getAllmessagesFromChatroom/${chatroomId}`, {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -56,6 +58,7 @@ export default function ChatContextProvider ({ children }) {
 
         const response = await fetch(`${serverUrl}/chat//getAllChatroomsFromUser/${userId}`, {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -64,7 +67,6 @@ export default function ChatContextProvider ({ children }) {
         })
 
         const data = await response.json()
-        console.log(data)
         setAllUserChatrooms(data)
     }
 

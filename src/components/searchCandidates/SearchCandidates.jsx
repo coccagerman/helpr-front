@@ -44,6 +44,7 @@ export default function SearchCandidates() {
 
         const response = await fetch(`${serverUrl}/candidates/searchCandidatesWithParams`, {
             method: 'PUT',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

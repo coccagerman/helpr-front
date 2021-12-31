@@ -26,6 +26,7 @@ export default function ChatRoom () {
 
             const response = await fetch(`${serverUrl}/profile/user/${otherUserId}`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',

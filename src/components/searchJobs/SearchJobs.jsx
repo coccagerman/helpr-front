@@ -45,6 +45,7 @@ export default function SearchJobs() {
 
         const response = await fetch(`${serverUrl}/jobs/searchJobsWithParams`, {
             method: 'PUT',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

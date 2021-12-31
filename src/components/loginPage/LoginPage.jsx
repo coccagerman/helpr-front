@@ -18,18 +18,14 @@ export default function LoginPage() {
 
     const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
 
-    console.log('serverUrl')
-    console.log(`${serverUrl}/users/login`)
-
     const submitLoginForm = async e => {
         e.preventDefault()
-
-        console.log(`${serverUrl}/users/login`)
 
         if (!email || !password) setShowLoginPageModal(true)
         else {
             const response = await fetch(`${serverUrl}/users/login`, {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
