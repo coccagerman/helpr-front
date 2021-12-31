@@ -24,6 +24,7 @@ export default function ProfileContextProvider ({ children }) {
         if (!userId) {
             const response = await fetch(`${serverUrl}/profile`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -37,6 +38,7 @@ export default function ProfileContextProvider ({ children }) {
         } else {
             const response = await fetch(`${serverUrl}/profile/user/${userId}`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -55,6 +57,7 @@ export default function ProfileContextProvider ({ children }) {
 
         const editionResponse = await fetch(`${serverUrl}/profile`, {
             method: 'PUT',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -72,6 +75,7 @@ export default function ProfileContextProvider ({ children }) {
         if (editionData === 'Successful edition') {
             const response = await fetch(`${serverUrl}/profile`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -93,6 +97,7 @@ export default function ProfileContextProvider ({ children }) {
 
         const editionRresponse = await fetch(`${serverUrl}/profile/profilePicture`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -107,6 +112,7 @@ export default function ProfileContextProvider ({ children }) {
             
             const response = await fetch(`${serverUrl}/profile/profilePicture`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -128,6 +134,7 @@ export default function ProfileContextProvider ({ children }) {
         if (!userId) {
             const response = await fetch(`${serverUrl}/profile/profilePicture`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -140,6 +147,7 @@ export default function ProfileContextProvider ({ children }) {
         } else {
             const response = await fetch(`${serverUrl}/profile/profilePicture/user/${userId}`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -159,6 +167,7 @@ export default function ProfileContextProvider ({ children }) {
 
             const response = await fetch(`${serverUrl}/profile/educationRecords`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -178,6 +187,7 @@ export default function ProfileContextProvider ({ children }) {
 
             const response = await fetch(`${serverUrl}/profile/experienceRecords`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -197,6 +207,7 @@ export default function ProfileContextProvider ({ children }) {
         if (!jobsRecords) {
             const response = await fetch(`${serverUrl}/profile/JobRecords`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -215,6 +226,7 @@ export default function ProfileContextProvider ({ children }) {
 
         const editionResponse = await fetch(`${serverUrl}/profile`, {
             method: 'PUT',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -234,6 +246,7 @@ export default function ProfileContextProvider ({ children }) {
             
             const response = await fetch(url, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -252,6 +265,7 @@ export default function ProfileContextProvider ({ children }) {
 
         const editionResponse = await fetch(`${serverUrl}/profile`, {
             method: 'PUT',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -270,6 +284,7 @@ export default function ProfileContextProvider ({ children }) {
             
             const response = await fetch(`${serverUrl}/profile/jobRecords`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',

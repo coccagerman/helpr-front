@@ -27,6 +27,7 @@ export default function AuthenticationContextProvider ({ children }) {
         if (accessToken) {
             const response = await fetch(`${serverUrl}/users/validateToken`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -42,6 +43,7 @@ export default function AuthenticationContextProvider ({ children }) {
                 /* This step is necesary since social network auth doesn't include account type selection. */
                 const accountTypeResponse = await fetch(`${serverUrl}/profile/userGetByToken`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -64,6 +66,7 @@ export default function AuthenticationContextProvider ({ children }) {
 
             const response = await fetch(`${serverUrl}/users/validateToken`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -88,6 +91,7 @@ export default function AuthenticationContextProvider ({ children }) {
 
             const response = await fetch(`${serverUrl}/users/validateToken`, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -110,6 +114,7 @@ export default function AuthenticationContextProvider ({ children }) {
             if (!profileData) {
                 const response = await fetch(`${serverUrl}/profile`, {
                     method: 'GET',
+                    mode: 'cors',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
@@ -133,6 +138,7 @@ export default function AuthenticationContextProvider ({ children }) {
 
                 const response = await fetch(`${serverUrl}/profile`, {
                     method: 'GET',
+                    mode: 'cors',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
