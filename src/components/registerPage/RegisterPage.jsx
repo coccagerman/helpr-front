@@ -42,6 +42,7 @@ export default function RegisterPage() {
         } else {
             const response = await fetch(`${serverUrl}/users/register`, {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
