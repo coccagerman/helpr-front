@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react'
 export default function Input ({ scrollDown, chatroomId }) {
 
     const { profileData } = useContext(ProfileContext)
-    const { sendMessage, getMessagesFromChatRoom } = useContext(ChatContext)
+    const { sendMessage } = useContext(ChatContext)
     
     const [formValue, setFormValue] = useState('')
 
@@ -21,7 +21,6 @@ export default function Input ({ scrollDown, chatroomId }) {
                     date: new Date(),
                     sentBy: profileData._id
                 })   
-                getMessagesFromChatRoom(chatroomId)
                 setFormValue('')
                 scrollDown()
                 }}>

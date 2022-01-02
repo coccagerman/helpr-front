@@ -17,10 +17,11 @@ export default function ChatContextProvider ({ children }) {
     const socket = socketIOClient(serverUrl)
 
     useEffect(() => {
-        socket.on('messages', data => setActiveChatRoomMessages(data))
+        socket.on('messages', data => {
+            if (activeChatRoom.id === data.chatroomId) setActiveChatRoomMessages(data.messages)
+        })
         return () => socket.disconnect()
     }, [])
-    /*  */
 
     const createNewChatRoom = async (participants, userId) => {
         const accessToken = localStorage.getItem('accessToken')
