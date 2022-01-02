@@ -46,10 +46,15 @@ export default function ChatRoom () {
 
     useEffect(() => {
         getMessagesFromChatRoom(chatroomId)
-        // fixedScroll.current.scrollIntoView({behavior: 'smooth'})
     }, [profileData])
 
     useEffect(() => fetchOtherUserData(), [activeChatRoomParticipants])
+
+    const scrollDown = () => {
+        if (fixedScroll.current) fixedScroll.current.scrollIntoView({behavior: 'smooth'})
+    }
+
+    useEffect(() => scrollDown())
 
     return (
         <section className='chatRoom'>
@@ -66,9 +71,10 @@ export default function ChatRoom () {
                             :
                             null
                         }
+                        <span ref={fixedScroll}></span>
                     </div>
 
-                    <Input fixedScroll={fixedScroll} chatroomId={chatroomId} />
+                    <Input scrollDown={scrollDown} chatroomId={chatroomId} />
                 </>
                 :
                 null

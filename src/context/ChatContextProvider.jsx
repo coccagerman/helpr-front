@@ -1,7 +1,11 @@
 import ChatContext from './ChatContext'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import socketIOClient from 'socket.io-client'
 
 export default function ChatContextProvider ({ children }) {
+
+    const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
+    const frontUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVFRONT_URL : process.env.REACT_APP_PRODFRONT_URL
 
     const [allUserChatrooms, setAllUserChatrooms] = useState(null)
     
@@ -9,8 +13,14 @@ export default function ChatContextProvider ({ children }) {
     const [activeChatRoomMessages, setActiveChatRoomMessages] = useState([])
     const [activeChatRoomParticipants, setActiveChatRoomParticipants] = useState(null)
 
-    const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVSERVER_URL : process.env.REACT_APP_PRODSERVER_URL
-    const frontUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVFRONT_URL : process.env.REACT_APP_PRODFRONT_URL
+    /* Websocket */
+    const socket = socketIOClient(serverUrl)
+
+    useEffect(() => {
+        socket.on('messages', data => setActiveChatRoomMessages(data))
+        return () => socket.disconnect()
+    }, [])
+    /*  */
 
     const createNewChatRoom = async (participants, userId) => {
         const accessToken = localStorage.getItem('accessToken')
@@ -70,8 +80,16 @@ export default function ChatContextProvider ({ children }) {
         setAllUserChatrooms(data)
     }
 
+    const sendMessage = async (e, newMessage) => {
+        e.preventDefault()
+
+        socket.emit('new-message', newMessage)
+    }
+
+
     return (
         <ChatContext.Provider value={{
+            sendMessage,
             createNewChatRoom,
             getMessagesFromChatRoom,
             getAllUserChatRooms,

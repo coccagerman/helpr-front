@@ -18,7 +18,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem 0;
+        padding: 1rem 0 5rem 0;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: 0.25rem;
+        }
+          
+        &::-webkit-scrollbar-thumb {
+            background: #8c8c8c;
+        }
     }
 
     .chatInput {
