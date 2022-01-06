@@ -1,4 +1,4 @@
-export default function SearchForm({ fetchCandidateSearchResults, textSearch, setTextSearch, educationClassification, setEducationClassification, educationState, setEducationState, interests, setInterests, resultsRecordsPerPage, setResultsRecordsPerPage, setResultsPage}) {
+export default function SearchForm({ fetchCandidateSearchResults, setTextSearch, educationClassification, setEducationClassification, educationState, setEducationState, interests, setInterests, resultsRecordsPerPage, setResultsRecordsPerPage, setResultsPage}) {
 
     return (
         <form className='searchForm'>

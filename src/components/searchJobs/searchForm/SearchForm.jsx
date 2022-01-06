@@ -1,12 +1,10 @@
-import { useState } from 'react'
-
-export default function SearchForm({ fetchJobSearchResults, position, setPosition, classification, setClassification, publishedDate, setPublishedDate, hourDedication, sethourDedication, projectDuration, setProjectDuration, publisherInterests, setPublisherInterests, resultsRecordsPerPage, setResultsRecordsPerPage, setResultsPage }) {
+export default function SearchForm({ fetchJobSearchResults, textSearch, setTextSearch, classification, setClassification, publishedDate, setPublishedDate, hourDedication, sethourDedication, projectDuration, setProjectDuration, publisherInterests, setPublisherInterests, resultsRecordsPerPage, setResultsRecordsPerPage, setResultsPage }) {
 
     return (
         <form className='searchForm'>
             <div className='form-input nameSearch'>
                 <label htmlFor='name'>Nombre de posición u organización</label>
-                <input type='text' defaultValue={position} onChange={e => setPosition(e.target.value)}/>
+                <input type='text' defaultValue={textSearch} onChange={e => setTextSearch(e.target.value)}/>
             </div>
 
             <div className='secondaryInputs'>

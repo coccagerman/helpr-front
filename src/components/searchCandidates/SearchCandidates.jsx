@@ -10,7 +10,6 @@ export default function SearchCandidates() {
 
     const [candidateSearchResults, setCandidateSearchResults] = useState(null)
 
-    /* FIX - Name serch could be handled with elastic search? */
     const [textSearch, setTextSearch] = useState(null)
     const [educationClassification, setEducationClassification] = useState(null)
     const [educationState, setEducationState] = useState(null)
@@ -41,6 +40,8 @@ export default function SearchCandidates() {
                 page: resultsPage,
                 searchParams: searchParams
             }
+        
+        if (textSearch) requestBody.searchTextSearchParam = textSearch
 
         const response = await fetch(`${serverUrl}/candidates/searchCandidatesWithParams`, {
             method: 'PUT',

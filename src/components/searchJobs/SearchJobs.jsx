@@ -12,8 +12,7 @@ export default function SearchJobs() {
 
     const [jobSearchResults, setJobSearchResults] = useState(null)
 
-    /* FIX - Name serch could be handled with elastic search? */
-    const [position, setPosition] = useState(null)
+    const [textSearch, setTextSearch] = useState(null)
     const [classification, setClassification] = useState(null)
     const [publishedDate, setPublishedDate] = useState(null)
     const [hourDedication, sethourDedication] = useState(null)
@@ -40,6 +39,7 @@ export default function SearchJobs() {
             searchParams: searchParams
         }
 
+        if (textSearch) requestBody.searchTextSearchParam = textSearch
         if (publisherInterests) requestBody.searchPublisherInterestsParam = publisherInterests
         if (publishedDate) requestBody.searchPublishedDateParam = publishedDate
 
@@ -94,8 +94,8 @@ export default function SearchJobs() {
 
             <SearchForm
                 fetchJobSearchResults={fetchJobSearchResults}
-                position={position}
-                setPosition={setPosition}
+                textSearch={textSearch}
+                setTextSearch={setTextSearch}
                 classification={classification}
                 setClassification={setClassification}
                 publishedDate={publishedDate}
