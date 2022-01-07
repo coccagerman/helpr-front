@@ -55,6 +55,8 @@ export default function SearchCandidates() {
         })
 
         const data = await response.json()
+        console.log('data')
+        console.log(data)
 
         setCandidateSearchResults(data.results)
         setResultsTotalPages(data.totalPages)
