@@ -56,9 +56,6 @@ export default function SearchJobs() {
 
         const data = await response.json()
 
-        console.log('data')
-        console.log(data)
-
         setJobSearchResults(data.results)
         setResultsTotalPages(data.totalPages)
         setTotalResults(data.totalResults)
